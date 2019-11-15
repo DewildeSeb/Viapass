@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:annox="http://annox.dev.java.net"
+              xmlns:namespace="http://jaxb2-commons.dev.java.net/namespace-prefix"
+              jxb:extensionBindingPrefixes="xjc annox">
+
+    <!--<jxb:globalBindings localScoping="toplevel"/>-->
+
+    <!--<jxb:globalBindings>-->
+    <!--&lt;!&ndash; Use java.util.Calendar instead of javax.xml.datatype.XMLGregorianCalendar for xs:dateTime &ndash;&gt;-->
+    <!--<jxb:javaType name="java.util.Calendar" xmlType="xs:dateTime"-->
+    <!--parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"-->
+    <!--printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />-->
+
+    <!--&lt;!&ndash; Force all classes implements Serializable &ndash;&gt;-->
+    <!--&lt;!&ndash;<xjc:serializable uid="1" />&ndash;&gt;-->
+    <!--</jxb:globalBindings>-->
+
+    <!-- Annotate the following classes with XmlRootElement -->
+    <jxb:bindings schemaLocation="EFCInfoExchange.xsd" node="/xs:schema">
+        <jxb:bindings node="xs:complexType[@name='InfoExchange']">
+            <annox:annotateClass>@javax.xml.bind.annotation.XmlRootElement(name="InfoExchange")</annox:annotateClass>
+            <!--<annox:annotate>-->
+            <!--<annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="infoExchange"/>-->
+            <!--</annox:annotate>-->
+        </jxb:bindings>
+    </jxb:bindings>
+
+
+    <jxb:bindings schemaLocation="AVIAEINumberingAndDataStructures.xsd">
+        <!--<jxb:schemaBindings>-->
+        <!--<jxb:package name="ch.ech.ech0007.v3" />-->
+        <!--</jxb:schemaBindings>-->
+        <jxb:bindings>
+            <namespace:prefix name="AVIAEINumberingAndDataStructures"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="CccModule.xsd">
+        <jxb:bindings>
+            <namespace:prefix name="CccModule"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="ChargingModule.xsd">
+        <jxb:bindings>
+            <namespace:prefix name="ChargingModule"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="ContextDataModule.xsd">
+        <jxb:bindings>
+            <namespace:prefix name="ContextDataModule"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="DSRCData.xsd">
+        <jxb:bindings>
+            <namespace:prefix name="DSRCData"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="EFCInfoExchange.xsd">
+        <jxb:bindings>
+            <namespace:prefix name="EFCInfoExchange"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="EfcModule.xsd">
+        <jxb:bindings>
+            <namespace:prefix name="EfcModule"/>
+        </jxb:bindings>
+    </jxb:bindings>
+    <jxb:bindings schemaLocation="RoamingModule.xsd">
+        <jxb:bindings>
+            <namespace:prefix name="RoamingModule"/>
+        </jxb:bindings>
+    </jxb:bindings>
+
+
+    <jxb:bindings schemaLocation="CccModule.xsd">
+        <jxb:bindings
+                node="//xs:complexType[@name='ActiveContext']/xs:sequence/xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="Context"/>
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <!--==================================-->
+
+    <jxb:bindings schemaLocation="ContextDataModule.xsd">
+        <jxb:bindings
+                node="//xs:complexType[@name='OrdinalTimeParameters']//xs:element[@name='weekdays']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="DayOfWeek"/>
+        </jxb:bindings>
+        <jxb:bindings
+                node="//xs:complexType[@name='OrdinalTimeParameters']//xs:element[@name='absoluteTimeOfDay']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="TimeOfDay"/>
+        </jxb:bindings>
+        <jxb:bindings
+                node="//xs:complexType[@name='OrdinalTimeParameters']//xs:element[@name='relativeTimePeriods']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="Duration"/>
+        </jxb:bindings>
+        <jxb:bindings
+                node="//xs:complexType[@name='OrdinalTimeParameters']//xs:element[@name='periodsInYear']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="Period"/>
+        </jxb:bindings>
+        <jxb:bindings
+                node="//xs:complexType[@name='ChargeDistance']//xs:sequence/xs:element[@name='entryDependingDistance']/xs:complexType">
+            <jxb:class name="EntryDependingDistances"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='CordonExitLocation']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="Location"/>
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <!--==================================-->
+
+    <jxb:bindings schemaLocation="DSRCData.xsd">
+        <jxb:bindings
+                node="//xs:complexType[@name='ApplicationList']/xs:sequence/xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="Application"/>
+        </jxb:bindings>
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <!--==================================-->
+
+    <jxb:bindings schemaLocation="EFCInfoExchange.xsd">
+        <!--ImageLocation : could be simplified with definition in XSD(ASN) or solved by NOT generationg top level-->
+        <!--Qualifier : could be simplified with definition in XSD(ASN) or solved by NOT generationg top level-->
+        <!--RegimeContextData : could be simplified with definition in XSD(ASN) or solved by NOT generationg top level-->
+        <jxb:bindings
+                node="//xs:complexType[@name='BillingDetailsADU']/xs:sequence/xs:element[@name='associatedEventData']/xs:complexType">
+            <jxb:class name="AssociatedEventDataList"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='AckADU']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="AduDetail"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='FeeModifiers']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="VolumeDiscount"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='EFCContextDataADU']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="GnssRegimeContextData"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='UsageDetail']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="IntermediateSection"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='DSRCAttrAuth']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="DSRCAttrAuthEntry"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='ANPRRecord']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="AssociatedImage"/>
+        </jxb:bindings>
+        <jxb:bindings
+                node="(//xs:complexType[@name='BillingDetailsADU']//xs:element[@name='SEQUENCE']/xs:complexType)[1]">
+            <jxb:class name="DeclaredVehicleClass"/>
+        </jxb:bindings>
+        <jxb:bindings
+                node="//xs:complexType[@name='BillingDetailsADU']//xs:element[@name='SEQUENCE']/xs:complexType//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="AppliedTimeClass"/>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:complexType[@name='StatusADU']//xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="ReasonOfADU"/>
+        </jxb:bindings>
+    </jxb:bindings>
+
+    <!--==================================-->
+
+    <jxb:bindings schemaLocation="EfcModule.xsd">
+        <!--ReceiptData1 & 2 USELESS !!-->
+        <jxb:bindings
+                node="//xs:complexType[@name='GetInstanceRs']/xs:sequence/xs:element[@name='SEQUENCE']/xs:complexType">
+            <jxb:class name="Attribute"/>
+        </jxb:bindings>
+    </jxb:bindings>
+
+
+</jxb:bindings>

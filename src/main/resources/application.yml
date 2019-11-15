@@ -1,0 +1,5 @@
+#credentials to connect to viapass DB in local
+viapassdb.enable: true
+viapassdb.connectionstring: jdbc:postgresql://localhost:5432/viapass
+viapassdb.connectionuser: postgres
+viapassdb.connectionpassword: postgres
