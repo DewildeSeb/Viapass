@@ -1,6 +1,6 @@
 package be.iso.viapass.db;
 
-import be.iso.viapass.util.Constants;
+import be.iso.viapass.util.ConstantsISO;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,7 +52,7 @@ public class ConnectionDB {
         public Connection start() throws ClassNotFoundException, SQLException {
                 if (conn == null) {
                         conn = getConnection();
-                        LOG.info("New " + Constants.DB_NAME + " DB connection.");
+                        LOG.info("New " + ConstantsISO.DB_NAME + " DB connection.");
                 }
                 return conn;
         }
