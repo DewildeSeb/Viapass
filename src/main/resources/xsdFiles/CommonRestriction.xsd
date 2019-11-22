@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="/viapass/xsd/namespace/CommonRestrictionModule"
+            elementFormDefault="unqualified">
+
+    <xsd:simpleType name="CountryCode">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-1]{0,}"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="ProviderIdentifier">
+        <xsd:restriction base="xsd:nonNegativeInteger">
+            <!--<xsd:minInclusive value="0"/>-->
+            <xsd:maxInclusive value="16383"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="GeneralizedTime">
+        <xsd:restriction base="xsd:string">
+            <!-- <xsd:pattern  value="\d{14}[,\.]?\d*[+-]\d{4}" /> -->
+            <xsd:pattern value="\d{14}[,\.]?\d*Z"/>
+            <!-- <xsd:pattern  value="\d{14}[,\.]?\d*" /> -->
+        </xsd:restriction>
+    </xsd:simpleType>
+
+
+</xsd:schema>

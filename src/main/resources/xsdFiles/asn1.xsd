@@ -5,8 +5,10 @@
    Copyright (C) 1997-2004 by Objective Systems, Inc. (http://www.obj-sys.com)
    All rights reserved. 
 -->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.obj-sys.com/v1.0/XMLSchema"
-            xmlns="http://www.obj-sys.com/v1.0/XMLSchema" elementFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.obj-sys.com/v1.0/XMLSchema"
+            xmlns="http://www.obj-sys.com/v1.0/XMLSchema"
+            elementFormDefault="unqualified">
 
     <!-- ASN.1 definitions -->
     <xsd:simpleType name="INTEGER">

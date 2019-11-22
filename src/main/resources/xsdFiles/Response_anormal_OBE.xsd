@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:CommonList="/viapass/xsd/namespace/CommonListModule"
+            xmlns:CommonRestriction="/viapass/xsd/namespace/CommonRestrictionModule"
+            xmlns:CommonComplexType="/viapass/xsd/namespace/CommonComplexTypeModule"
+            elementFormDefault="qualified">
+    <xsd:import namespace="/viapass/xsd/namespace/CommonListModule" schemaLocation="CommonList.xsd"/>
+    <xsd:import namespace="/viapass/xsd/namespace/CommonRestrictionModule" schemaLocation="CommonRestriction.xsd"/>
+    <xsd:import namespace="/viapass/xsd/namespace/CommonComplexTypeModule" schemaLocation="CommonComplexType.xsd"/>
     <xsd:element name="InfoExchange">
         <xsd:complexType>
             <xsd:sequence>
@@ -9,52 +16,27 @@
                             <xsd:element name="apci">
                                 <xsd:complexType>
                                     <xsd:sequence>
-                                        <xsd:element name="messageOriginator">
-                                            <xsd:complexType>
-                                                <xsd:sequence>
-                                                    <xsd:element name="countryCode"></xsd:element>
-                                                    <xsd:element name="providerIdentifier"></xsd:element>
-                                                </xsd:sequence>
-                                            </xsd:complexType>
-                                        </xsd:element>
-                                        <xsd:element name="informationSenderID">
-                                            <xsd:complexType>
-                                                <xsd:sequence>
-                                                    <xsd:element name="countryCode"></xsd:element>
-                                                    <xsd:element name="providerIdentifier"></xsd:element>
-                                                </xsd:sequence>
-                                            </xsd:complexType>
-                                        </xsd:element>
-                                        <xsd:element name="informationrecipientID">
-                                            <xsd:complexType>
-                                                <xsd:sequence>
-                                                    <xsd:element name="countryCode"></xsd:element>
-                                                    <xsd:element name="providerIdentifier"></xsd:element>
-                                                </xsd:sequence>
-                                            </xsd:complexType>
-                                        </xsd:element>
-                                        <xsd:element name="contextID"></xsd:element>
-                                        <xsd:element name="messageIdentifier"></xsd:element>
+                                        <xsd:element name="messageOriginator"
+                                                     type="CommonComplexType:CountryProvider"/>
+                                        <xsd:element name="informationSenderID"
+                                                     type="CommonComplexType:CountryProvider"/>
+                                        <xsd:element name="informationrecipientID"
+                                                     type="CommonComplexType:CountryProvider"/>
+                                        <xsd:element name="contextID"/>
+                                        <xsd:element name="messageIdentifier"/>
                                         <xsd:element name="relatedMessageId">
                                             <xsd:complexType>
                                                 <xsd:sequence>
-                                                    <xsd:element name="messageOriginator">
-                                                        <xsd:complexType>
-                                                            <xsd:sequence>
-                                                                <xsd:element name="countryCode"></xsd:element>
-                                                                <xsd:element name="providerIdentifier"></xsd:element>
-                                                            </xsd:sequence>
-                                                        </xsd:complexType>
-                                                    </xsd:element>
-                                                    <xsd:element name="messageIdentifier"></xsd:element>
+                                                    <xsd:element name="messageOriginator"
+                                                                 type="CommonComplexType:CountryProvider"/>
+                                                    <xsd:element name="messageIdentifier"/>
                                                 </xsd:sequence>
                                             </xsd:complexType>
                                         </xsd:element>
-                                        <xsd:element name="aduType">
-<!--choix dans une liste-->
-                                        </xsd:element>
-                                        <xsd:element name="numberofStructs"></xsd:element>
-                                        <xsd:element name="messageDate"></xsd:element>
+                                        <xsd:element name="aduType" type="CommonComplexType:ADUType"/>
+                                        <xsd:element name="numberofStructs"/>
+                                        <xsd:element name="messageDate"
+                                                     type="CommonRestriction:GeneralizedTime"/>
                                     </xsd:sequence>
                                 </xsd:complexType>
                             </xsd:element>
@@ -64,12 +46,11 @@
                                         <xsd:element name="ackADU">
                                             <xsd:complexType>
                                                 <xsd:sequence>
-                                                    <xsd:element name="aDUIdentifier"></xsd:element>
-                                                    <xsd:element name="numberOfADUStructs"></xsd:element>
-                                                    <xsd:element name="ackCode">
-<!--                                                        list de choix: aDUNotOK aDUOK-->
-                                                    </xsd:element>
-                                                    <xsd:element name="aduCode"></xsd:element>
+                                                    <xsd:element name="aDUIdentifier"/>
+                                                    <xsd:element name="numberOfADUStructs"/>
+                                                    <xsd:element name="ackCode"
+                                                                 type="CommonList:ReasonMessageACKADU"/>
+                                                    <xsd:element name="aduCode"/>
                                                 </xsd:sequence>
                                             </xsd:complexType>
                                         </xsd:element>
@@ -79,7 +60,7 @@
                         </xsd:sequence>
                     </xsd:complexType>
                 </xsd:element>
-                <xsd:element name="infoExchangeAuthenticator"></xsd:element>
+                <xsd:element name="infoExchangeAuthenticator"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

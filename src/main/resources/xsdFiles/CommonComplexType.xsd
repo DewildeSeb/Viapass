@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="/viapass/xsd/namespace/CommonComplexTypeModule"
+            xmlns:CommonRestriction="/viapass/xsd/namespace/CommonRestrictionModule"
+            elementFormDefault="unqualified">
+    <xsd:import namespace="/viapass/xsd/namespace/CommonRestrictionModule" schemaLocation="CommonRestriction.xsd"/>
+
+    <xsd:complexType name="CountryProvider">
+        <xsd:sequence>
+            <xsd:element name="countryCode" type="CommonRestriction:CountryCode"></xsd:element>
+            <xsd:element name="providerIdentifier" type="CommonRestriction:ProviderIdentifier"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ADUType">
+        <xsd:choice>
+            <xsd:element name="requestADU"/>
+            <xsd:element name="ackADU"/>
+            <xsd:element name="trustObjectADU"/>
+            <xsd:element name="efcContextDataADU"/>
+            <xsd:element name="exceptionListADU"/>
+            <xsd:element name="reportAbnormalOBEADU"/>
+            <xsd:element name="tollDeclarationADU"/>
+            <xsd:element name="billingDetailsADU"/>
+            <xsd:element name="paymentClaimADU"/>
+            <xsd:element name="reportQAADU"/>
+            <xsd:element name="statusADU"/>
+            <xsd:element name="retrieveUserDetailsADU"/>
+            <xsd:element name="provideUserDetailsADU"/>
+            <xsd:element name="reportCCCEventADU"/>
+            <xsd:element name="retrieveTollDeclarationADU"/>
+            <xsd:element name="retrieveCCCEventADU"/>
+        </xsd:choice>
+    </xsd:complexType>
+</xsd:schema>
