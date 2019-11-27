@@ -1,254 +1,981 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-   ASN.1 base types to XML schema mappings.
-   Conforms to W3C http://www.w3.org/2001/XMLSchema
-   Copyright (C) 1997-2004 by Objective Systems, Inc. (http://www.obj-sys.com)
-   All rights reserved. 
--->
+<!--this .xsd file is use to define each type of element in all request/response in viapass
+this .xsd is base on document Back-office-communication 2.6 28-02-2018,
+this document must resume the european standard iso-12855-->
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="http://www.obj-sys.com/v1.0/XMLSchema"
-            xmlns="http://www.obj-sys.com/v1.0/XMLSchema"
+            targetNamespace="/viapass/xsd/namespace/asn1"
             elementFormDefault="unqualified">
-
-    <!-- ASN.1 definitions -->
-    <xsd:simpleType name="INTEGER">
-        <xsd:restriction base="xsd:integer"/>
-    </xsd:simpleType>
-
-    <xsd:complexType name="BOOLEAN">
-        <xsd:group ref="BooleanGroup"/>
-    </xsd:complexType>
-
-    <xsd:group name="BooleanGroup">
-        <xsd:choice>
-            <xsd:element name="true">
-                <xsd:complexType/>
-            </xsd:element>
-            <xsd:element name="false">
-                <xsd:complexType/>
-            </xsd:element>
-        </xsd:choice>
-    </xsd:group>
-
-    <!-- GeneralizedTime -->
-    <xsd:simpleType  name="GeneralizedTime">
-        <xsd:restriction  base="xsd:string">
-            <!-- <xsd:pattern  value="\d{14}[,\.]?\d*[+-]\d{4}" /> -->
-        <xsd:pattern  value="\d{14}[,\.]?\d*Z" />
-            <!-- <xsd:pattern  value="\d{14}[,\.]?\d*" /> -->
-    </xsd:restriction>
-    </xsd:simpleType>
-
-    <!--RealType ::= SEQUENCE {
-       mantissa INTEGER,
-       base INTEGER (2|10),
-       exponent INTEGER
-    }-->
-    <xsd:complexType name="RealAssociatedType">
-        <xsd:sequence>
-            <xsd:element name="mantissa" type="xsd:integer"/>
-            <xsd:element name="base" type="xsd:integer"/>
-            <xsd:element name="exponent" type="xsd:integer"/>
-        </xsd:sequence>
-    </xsd:complexType>
-
-    <xsd:complexType name="REAL" mixed="true">
-        <xsd:sequence>
-            <xsd:element name="PLUS-INFINITY" minOccurs="0">
-                <xsd:complexType/>
-            </xsd:element>
-            <xsd:element name="MINUS-INFINITY" minOccurs="0">
-                <xsd:complexType/>
-            </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
 
     <xsd:simpleType name="BitString">
         <xsd:restriction base="xsd:string">
             <xsd:pattern value="[0-1]{0,}"/>
         </xsd:restriction>
     </xsd:simpleType>
-
+    <xsd:simpleType name="NumberOfADUStruct">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="1"></xsd:minInclusive>
+            <xsd:maxInclusive value="1"></xsd:maxInclusive>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="DateCompact">
+        <xsd:sequence>
+            <xsd:element name="year">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedShort">
+                        <xsd:minInclusive value="1990"/>
+                        <xsd:maxInclusive value="2117"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="month">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedByte">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="12"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="day">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedByte">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="31"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="CountryCode">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-1]{0,}"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="RegimeID">
+        <xsd:restriction base="xsd:unsignedShort"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ProviderIdentifier">
+        <xsd:restriction base="xsd:nonNegativeInteger">
+            <xsd:maxInclusive value="16383"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="NULL" final="#all"/>
     <xsd:simpleType name="OctetString">
         <xsd:restriction base="xsd:string">
             <xsd:pattern value="[0-9a-fA-F]{0,}"/>
         </xsd:restriction>
     </xsd:simpleType>
-
-    <xsd:complexType name="NULL" final="#all"/>
-
-    <xsd:simpleType name="ObjectIdentifier">
-        <xsd:restriction base="xsd:token">
-            <xsd:pattern value="[0-2](\.[1-3]?[0-9](\.\d+)*)?"/>
+    <xsd:simpleType name="ManufacturerId">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="0"></xsd:minInclusive>
+            <xsd:maxInclusive value="65535"></xsd:maxInclusive>
         </xsd:restriction>
     </xsd:simpleType>
-
-    <xsd:simpleType name="ObjectDescriptor">
-        <xsd:restriction base="xsd:string"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="RelativeOID">
-        <xsd:restriction base="xsd:token">
-            <xsd:pattern value="\d+(\.\d+)*"/>
+    <xsd:simpleType name="PayUnit">
+        <xsd:restriction base="xsd:hexBinary">
+            <xsd:length value="2"/>
         </xsd:restriction>
     </xsd:simpleType>
-
-    <xsd:simpleType name="NumericString">
-        <xsd:restriction base="xsd:token">
-            <xsd:pattern value="[0-9 ]{0,}"/>
+    <xsd:simpleType name="GeneralizedTime">
+        <xsd:restriction base="xsd:string">
+            <!-- <xsd:pattern  value="\d{14}[,\.]?\d*[+-]\d{4}" /> -->
+            <xsd:pattern value="\d{14}[,\.]?\d*Z"/>
+            <!-- <xsd:pattern  value="\d{14}[,\.]?\d*" /> -->
         </xsd:restriction>
     </xsd:simpleType>
-
-    <xsd:simpleType name="PrintableString">
-        <xsd:restriction base="xsd:token">
-            <xsd:pattern value="[A-Za-z0-9 '\(\)\+\-\.\?,:=]{0,}"/>
+    <xsd:simpleType name="ContractSerialNumber">
+        <xsd:restriction base="xsd:integer">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="4294967295"/>
+            <xsd:pattern value="[0-9]+"/>
         </xsd:restriction>
     </xsd:simpleType>
-
-    <xsd:simpleType name="ISO646String">
-        <xsd:restriction base="xsd:token">
-            <xsd:pattern value="[A-Za-z0-9 !&quot;#$%&amp;'\(\)\*\+,\-\./:;&lt;=&gt;\?@\[\\\]\^_`]{0,}"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="VisibleString">
-        <xsd:restriction base="ISO646String"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="TeletexString">
-        <xsd:restriction base="T61String"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="T61String">
-        <xsd:restriction base="xsd:token">
-            <xsd:pattern value="[A-Za-z0-9 !&quot;%&amp;'\(\)\*\+,\-\./:;&lt;=&gt;\?@\[\]_]*"/>
-        </xsd:restriction>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="BMPString">
-        <xsd:restriction base="xsd:token"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="GeneralString">
-        <xsd:restriction base="xsd:token"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="GraphicString">
-        <xsd:restriction base="xsd:token"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="IA5String">
-        <xsd:restriction base="xsd:token"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="UniversalString">
-        <xsd:restriction base="xsd:token"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="UTF8String">
-        <xsd:restriction base="xsd:token"/>
-    </xsd:simpleType>
-
-    <xsd:simpleType name="VideotexString">
-        <xsd:restriction base="xsd:token"/>
-    </xsd:simpleType>
-
-    <xsd:complexType name="OpenType">
+    <xsd:complexType name="DriverCharacteristics">
         <xsd:sequence>
-            <xsd:any processContents="lax" minOccurs="1"/>
+            <xsd:element name="driverClass" type="xsd:unsignedByte"/>
+            <xsd:element name="tripPurpose" type="xsd:unsignedByte"/>
         </xsd:sequence>
     </xsd:complexType>
-
-    <xsd:simpleType name="OIDIRI">
-        <xsd:restriction base="xsd:token"/>
+    <xsd:simpleType name="IssuerIdentifier">
+        <xsd:restriction base="xsd:nonNegativeInteger">
+            <!--<xsd:minInclusive value="0"/>-->
+            <xsd:maxInclusive value="16383"/>
+        </xsd:restriction>
     </xsd:simpleType>
-
-    <xsd:simpleType name="RelativeOIDIRI">
-        <xsd:restriction base="xsd:token"/>
+    <xsd:simpleType name="EquipmentOBUId">
+        <xsd:restriction base="xsd:hexBinary">
+            <xsd:minLength value="4"/>
+            <xsd:maxLength value="4"/>
+        </xsd:restriction>
     </xsd:simpleType>
-
-    <!-- Useful ASN.1 definitions -->
-    <xsd:complexType name="EmbeddedPDV">
+    <xsd:simpleType name="PersonalAccountNumber">
+        <xsd:restriction base="xsd:hexBinary">
+            <xsd:length value="10"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="VehicleDimensions">
         <xsd:sequence>
-            <xsd:element name="identification">
+            <xsd:element name="vehicleLengthOverall" type="xsd:unsignedInt"/>
+            <xsd:element name="vehicleHeigthOverall" type="xsd:unsignedInt"/>
+            <xsd:element name="vehicleWidthOverall" type="xsd:unsignedInt"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="VehicleWeightLimits">
+        <xsd:sequence>
+            <xsd:element name="vehicleMaxLadenWeight" type="xsd:unsignedShort"/>
+            <xsd:element name="vehicleTrainMaximumWeight" type="xsd:unsignedShort"/>
+            <xsd:element name="vehicleWeightUnladen" type="xsd:unsignedShort"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TimeCompact">
+        <xsd:sequence>
+            <xsd:element name="hours">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedByte">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="23"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="mins">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedByte">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="59"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="double-secs">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedByte">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="30"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Position">
+        <xsd:sequence>
+            <xsd:element name="longitude">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:int"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="latitude">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:int"/>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="TrailerAxles">
+        <xsd:restriction base="xsd:unsignedByte">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="7"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="TractorAxles">
+        <xsd:restriction base="xsd:unsignedByte">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="7"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="CommunicationStatus">
+        <xsd:sequence>
+            <xsd:element name="timeOfLastTransmission" type="xsd:unsignedInt"/>
+            <xsd:element name="pendingSince" type="xsd:unsignedInt"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CurrentHDOP">
+        <xsd:sequence>
+            <xsd:element name="hDOP" type="xsd:unsignedByte"/>
+            <xsd:element name="numberOfUsedSatellites" type="xsd:unsignedByte"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SoundLevel">
+        <xsd:sequence>
+            <xsd:element name="soundstationary" type="xsd:unsignedByte"/>
+            <xsd:element name="sounddriveby" type="xsd:unsignedByte"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Engine">
+        <xsd:sequence>
+            <xsd:element name="engineCapacity" type="xsd:unsignedShort"/>
+            <xsd:element name="enginePower" type="xsd:unsignedShort"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PassengerCapacity">
+        <xsd:sequence>
+            <xsd:element name="numberOfSeats" type="xsd:unsignedByte"/>
+            <xsd:element name="numberOfStandingPlaces" type="xsd:unsignedByte"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AxleWeightLimits">
+        <xsd:sequence>
+            <xsd:element name="maxLadenweightOnAxle1" type="xsd:unsignedShort"/>
+            <xsd:element name="maxLadenweightOnAxle2" type="xsd:unsignedShort"/>
+            <xsd:element name="maxLadenweightOnAxle3" type="xsd:unsignedShort"/>
+            <xsd:element name="maxLadenweightOnAxle4" type="xsd:unsignedShort"/>
+            <xsd:element name="maxLadenweightOnAxle5" type="xsd:unsignedShort"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SessionLocation">
+        <xsd:sequence>
+            <xsd:element name="ascendingKilometrage" type="xsd:boolean"/>
+            <xsd:element name="laneCodeNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedByte">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="127"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SessionClass">
+        <xsd:sequence>
+            <xsd:element name="sessionTariffClass" type="xsd:unsignedByte"/>
+            <xsd:element name="sessionClaimedClass" type="xsd:unsignedByte"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ResultFin">
+        <xsd:restriction base="xsd:hexBinary">
+            <xsd:length value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="Record">
+        <xsd:choice>
+            <xsd:element name="simple" type="xsd:string"/>
+            <xsd:any namespace="##other" processContents="lax"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:simpleType name="AttributeIdList">
+        <xsd:restriction>
+            <xsd:simpleType>
+                <xsd:list>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:unsignedInt">
+                            <xsd:minInclusive value="0"/>
+                            <xsd:maxInclusive value="127"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:list>
+            </xsd:simpleType>
+            <xsd:minLength value="0"/>
+            <xsd:maxLength value="127"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="Dsrc-EID">
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="127"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ActionType">
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="127"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="TariffClass">
+        <xsd:sequence>
+            <xsd:element name="locationClassId" minOccurs="0" type="xsd:integer"/>
+            <xsd:element name="timeClassId" minOccurs="0" type="xsd:integer"/>
+            <xsd:element name="userClassId" minOccurs="0" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SignedValue">
+        <xsd:choice>
+            <xsd:element name="positive">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedInt">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="8388607"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="negative">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:int">
+                        <xsd:minInclusive value="-8388608"/>
+                        <xsd:maxInclusive value="-1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="DateAndTime">
+        <xsd:sequence>
+            <xsd:element name="timeDate">
                 <xsd:complexType>
-                    <xsd:choice>
-                        <xsd:element name="syntaxes">
+                    <xsd:sequence>
+                        <xsd:element name="year">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedShort">
+                                    <xsd:minInclusive value="1990"/>
+                                    <xsd:maxInclusive value="2117"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="month">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="12"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="day">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="31"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="timeCompact">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="hours">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="23"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="mins">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="59"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="double-secs">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="30"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Period">
+        <xsd:sequence>
+            <xsd:element name="beginOfPeriod">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="timeDate">
                             <xsd:complexType>
                                 <xsd:sequence>
-                                    <xsd:element name="abstract" type="ObjectIdentifier"/>
-                                    <xsd:element name="transfer" type="ObjectIdentifier"/>
+                                    <xsd:element name="year">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedShort">
+                                                <xsd:minInclusive value="1990"/>
+                                                <xsd:maxInclusive value="2117"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="month">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="12"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="day">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="31"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
                                 </xsd:sequence>
                             </xsd:complexType>
                         </xsd:element>
-                        <xsd:element name="syntax" type="ObjectIdentifier"/>
-                        <xsd:element name="presentation-context-id" type="INTEGER"/>
-                        <xsd:element name="context-negotiation">
+                        <xsd:element name="timeCompact">
                             <xsd:complexType>
                                 <xsd:sequence>
-                                    <xsd:element name="presentation-context-id" type="INTEGER"/>
-                                    <xsd:element name="transfer-syntax" type="ObjectIdentifier"/>
+                                    <xsd:element name="hours">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="23"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="mins">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="59"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="double-secs">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="30"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
                                 </xsd:sequence>
                             </xsd:complexType>
                         </xsd:element>
-                        <xsd:element name="transfer-syntax" type="ObjectIdentifier"/>
-                        <xsd:element name="fixed" type="NULL"/>
-                    </xsd:choice>
+                    </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="data-value" type="xsd:hexBinary"/>
+            <xsd:element name="endOfPeriod">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="timeDate">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="year">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedShort">
+                                                <xsd:minInclusive value="1990"/>
+                                                <xsd:maxInclusive value="2117"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="month">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="12"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="day">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="31"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="timeCompact">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="hours">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="23"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="mins">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="59"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                    <xsd:element name="double-secs">
+                                        <xsd:simpleType>
+                                            <xsd:restriction base="xsd:unsignedByte">
+                                                <xsd:minInclusive value="0"/>
+                                                <xsd:maxInclusive value="30"/>
+                                            </xsd:restriction>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
-
-    <xsd:complexType name="EXTERNAL">
+    <xsd:complexType name="PaymentFee">
         <xsd:sequence>
-            <xsd:element name="direct-reference" type="ObjectIdentifier" minOccurs="0"/>
-            <xsd:element name="indirect-reference" type="ObjectIdentifier" minOccurs="0"/>
-            <xsd:element name="data-value-descriptor" type="ObjectDescriptor" minOccurs="0"/>
-            <xsd:element name="encoding">
+            <xsd:element name="paymentFeeAmount" type="xsd:unsignedShort"/>
+            <xsd:element name="paymentFeeUnit">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:hexBinary">
+                        <xsd:length value="2"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Provider">
+        <xsd:sequence>
+            <xsd:element name="countryCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="[0-1]{0,}"/>
+                        <xsd:maxLength value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="providerIdentifier" minOccurs="1" nillable="true">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:nonNegativeInteger">
+                        <!--<xsd:minInclusive value="0"/>-->
+                        <xsd:maxInclusive value="16383"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OBEStatusHistory">
+        <xsd:sequence>
+            <xsd:element name="statusIndicator">
+                <xsd:simpleType>
+                    <xsd:union>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:token">
+                                <xsd:enumeration value="noGo"/>
+                                <xsd:enumeration value="go"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:unsignedByte"/>
+                        </xsd:simpleType>
+                    </xsd:union>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="timeWhenChanged" type="xsd:unsignedInt"/>
+            <xsd:element name="timeWhenActived" type="xsd:unsignedInt"/>
+            <xsd:element name="timeWhenObePowered" type="xsd:unsignedInt"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PurseBalance">
+        <xsd:sequence>
+            <xsd:element name="purseValue">
                 <xsd:complexType>
                     <xsd:choice>
-                        <xsd:element name="single-ASN1-type" type="ObjectIdentifier"/>
-                        <xsd:element name="octet-aligned" type="xsd:hexBinary"/>
-                        <xsd:element name="arbitrary" type="BitString"/>
+                        <xsd:element name="positive">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedInt">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="8388607"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="negative">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:int">
+                                    <xsd:minInclusive value="-8388608"/>
+                                    <xsd:maxInclusive value="-1"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
                     </xsd:choice>
                 </xsd:complexType>
             </xsd:element>
-        </xsd:sequence>
-    </xsd:complexType>
-
-
-    <!-- Documenation purpose definitions -->
-
-    <!-- Definition to describe named bits in a bit string -->
-    <xsd:complexType name="NamedBitInfo">
-        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-            <xsd:element name="NamedBit">
-                <xsd:complexType>
-                    <xsd:attribute name="name" type="xsd:string"/>
-                    <xsd:attribute name="value" type="xsd:integer"/>
-                </xsd:complexType>
+            <xsd:element name="purseUnit">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:hexBinary">
+                        <xsd:length value="2"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
 
-    <!-- Definition to describe enumeration items in an ENUMERATED type -->
-    <xsd:complexType name="EnumInfo">
-        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-            <xsd:element name="EnumItem">
-                <xsd:complexType>
-                    <xsd:attribute name="name" type="xsd:string"/>
-                    <xsd:attribute name="value" type="xsd:integer"/>
-                </xsd:complexType>
+    <xsd:simpleType name="AlphabetIndicator"> <!--ToDO check if it's a tag or a value-->
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="latinAlphabetNo1"/>
+            <xsd:enumeration value="latinAlphabetNo2"/>
+            <xsd:enumeration value="latinAlphabetNo3"/>
+            <xsd:enumeration value="latinAlphabetNo4"/>
+            <xsd:enumeration value="latinCyrillicAlphabet"/>
+            <xsd:enumeration value="latinArabicAlphabet"/>
+            <xsd:enumeration value="latinGreekAlphabet"/>
+            <xsd:enumeration value="latinHebrewAlphabet"/>
+            <xsd:enumeration value="latinAlphabetNo5"/>
+            <xsd:enumeration value="latinAlphabetNo6"/>
+            <xsd:enumeration value="twoOctetBMP"/>
+            <xsd:enumeration value="fourOctetCanonical"/>
+            <xsd:enumeration value="reservedForUse1"/>
+            <xsd:enumeration value="reservedForUse2"/>
+            <xsd:enumeration value="reservedForUse3"/>
+            <xsd:enumeration value="reservedForUse4"/>
+            <xsd:enumeration value="reservedForUse5"/>
+            <xsd:enumeration value="reservedForUse6"/>
+            <xsd:enumeration value="reservedForUse7"/>
+            <xsd:enumeration value="reservedForUse8"/>
+            <xsd:enumeration value="reservedForUse9"/>
+            <xsd:enumeration value="reservedForUse10"/>
+            <xsd:enumeration value="reservedForUse11"/>
+            <xsd:enumeration value="reservedForUse12"/>
+            <xsd:enumeration value="reservedForUse13"/>
+            <xsd:enumeration value="reservedForUse14"/>
+            <xsd:enumeration value="reservedForUse15"/>
+            <xsd:enumeration value="reservedForUse16"/>
+            <xsd:enumeration value="reservedForUse17"/>
+            <xsd:enumeration value="reservedForUse18"/>
+            <xsd:enumeration value="reservedForUse19"/>
+            <xsd:enumeration value="reservedForUse20"/>
+            <xsd:enumeration value="reservedForUse21"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="UnitType">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="mg-km"/>
+            <xsd:enumeration value="mg-kWh"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="ResultOp">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="correctTransaction"/>
+                    <xsd:enumeration value="obeStatusNotAccepted"/>
+                    <xsd:enumeration value="equipmentStatusNotAccepted"/>
+                    <xsd:enumeration value="contractNotInWhiteList"/>
+                    <xsd:enumeration value="contractIdentifierInBlackList"/>
+                    <xsd:enumeration value="contractIdentifierNotCorrect"/>
+                    <xsd:enumeration value="expiredContract"/>
+                    <xsd:enumeration value="contractRestrictionsNotFulfilled"/>
+                    <xsd:enumeration value="claimedVehicleCharacteristicsNotValid"/>
+                    <xsd:enumeration value="vehicleClassAuthenticationFailed"/>
+                    <xsd:enumeration value="entryVehicleClassDifferentFromExitVehicleClass"/>
+                    <xsd:enumeration value="entryReceiptMissing"/>
+                    <xsd:enumeration value="entryReceiptNotValid"/>
+                    <xsd:enumeration value="entryTollStationNotValid"/>
+                    <xsd:enumeration value="equipmentNotCertified"/>
+                    <xsd:enumeration value="timeDifference"/>
+                    <xsd:enumeration value="accessCredentialsNotAccepted"/>
+                    <xsd:enumeration value="contractAuthenticatorNotAccepted"/>
+                    <xsd:enumeration value="receiptAuthenticatorNotAccepted"/>
+                    <xsd:enumeration value="claimedVehicleCharacteristicsMissing"/>
+                    <xsd:enumeration value="paymentMeansNotAccepted"/>
+                    <xsd:enumeration value="paymentAuthenticatorNotAccepted"/>
+                    <xsd:enumeration value="paymentMeansInBlackList"/>
+                    <xsd:enumeration value="paymentMeansNotCorrect"/>
+                    <xsd:enumeration value="expiredPaymentMeans"/>
+                    <xsd:enumeration value="paymentMeansRestrictionsNotFulfilled"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:unsignedByte"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:simpleType name="ChannelId">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="obu"/>
+                    <xsd:enumeration value="sam1"/>
+                    <xsd:enumeration value="sam2"/>
+                    <xsd:enumeration value="icc"/>
+                    <xsd:enumeration value="display"/>
+                    <xsd:enumeration value="buzzer"/>
+                    <xsd:enumeration value="printer"/>
+                    <xsd:enumeration value="serialInterface"/>
+                    <xsd:enumeration value="parallelInterface"/>
+                    <xsd:enumeration value="gPS"/>
+                    <xsd:enumeration value="tachograph"/>
+                    <xsd:enumeration value="privateUse1"/>
+                    <xsd:enumeration value="privateUse2"/>
+                    <xsd:enumeration value="privateUse3"/>
+                    <xsd:enumeration value="privateUse4"/>
+                    <xsd:enumeration value="privateUse5"/>
+                    <xsd:enumeration value="bluetooth"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:unsignedByte"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:simpleType name="OBEStatus">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="ok"/>
+            <xsd:enumeration value="nok"/>
+            <xsd:enumeration value="contactOperator"/>
+            <xsd:enumeration value="nokInLocalContext"/>
+            <xsd:enumeration value="noSignalling"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="FutureCharacteristics">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="noEntry"/>
+                    <xsd:enumeration value="airSuspension"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:unsignedByte"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:simpleType name="DescriptiveCharacteristics">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="noEntry"/>
+                    <xsd:enumeration value="vehicleShape1"/>
+                    <xsd:enumeration value="vehicleShape2"/>
+                    <xsd:enumeration value="vehicleShape3"/>
+                    <xsd:enumeration value="vehicleShape4"/>
+                    <xsd:enumeration value="vehicleShape5"/>
+                    <xsd:enumeration value="vehicleShape6"/>
+                    <xsd:enumeration value="vehicleShape7"/>
+                    <xsd:enumeration value="vehicleShape8"/>
+                    <xsd:enumeration value="vehicleShape9"/>
+                    <xsd:enumeration value="vehicleShape10"/>
+                    <xsd:enumeration value="vehicleShape11"/>
+                    <xsd:enumeration value="vehicleShape12"/>
+                    <xsd:enumeration value="vehicleShape13"/>
+                    <xsd:enumeration value="vehicleShape14"/>
+                    <xsd:enumeration value="vehicleShape15"/>
+                    <xsd:enumeration value="vehicleShape16"/>
+                    <xsd:enumeration value="vehicleShape17"/>
+                    <xsd:enumeration value="vehicleShape18"/>
+                    <xsd:enumeration value="vehicleShape19"/>
+                    <xsd:enumeration value="vehicleShape20"/>
+                    <xsd:enumeration value="vehicleShape21"/>
+                    <xsd:enumeration value="vehicleShape22"/>
+                    <xsd:enumeration value="vehicleShape23"/>
+                    <xsd:enumeration value="vehicleShape24"/>
+                    <xsd:enumeration value="vehicleShape25"/>
+                    <xsd:enumeration value="vehicleShape26"/>
+                    <xsd:enumeration value="vehicleShape27"/>
+                    <xsd:enumeration value="vehicleShape28"/>
+                    <xsd:enumeration value="vehicleShape29"/>
+                    <xsd:enumeration value="vehicleShape30"/>
+                    <xsd:enumeration value="vehicleShape31"/>
+                    <xsd:enumeration value="vehicleShape32"/>
+                    <xsd:enumeration value="vehicleShape33"/>
+                    <xsd:enumeration value="vehicleShape34"/>
+                    <xsd:enumeration value="vehicleShape35"/>
+                    <xsd:enumeration value="vehicleShape36"/>
+                    <xsd:enumeration value="vehicleShape37"/>
+                    <xsd:enumeration value="vehicleShape38"/>
+                    <xsd:enumeration value="vehicleShape39"/>
+                    <xsd:enumeration value="vehicleShape40"/>
+                    <xsd:enumeration value="vehicleShape41"/>
+                    <xsd:enumeration value="vehicleShape42"/>
+                    <xsd:enumeration value="vehicleShape43"/>
+                    <xsd:enumeration value="vehicleShape44"/>
+                    <xsd:enumeration value="vehicleShape45"/>
+                    <xsd:enumeration value="vehicleShape46"/>
+                    <xsd:enumeration value="vehicleShape47"/>
+                    <xsd:enumeration value="vehicleShape48"/>
+                    <xsd:enumeration value="vehicleShape49"/>
+                    <xsd:enumeration value="vehicleShape50"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:unsignedByte"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:simpleType name="UserStatus">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="noContractualRelation"/>
+                    <xsd:enumeration value="standardPrivateUserContract"/>
+                    <xsd:enumeration value="standardCommercialUserContract"/>
+                    <xsd:enumeration value="tempExceptionListed"/>
+                    <xsd:enumeration value="permanentExceptionListed"/>
+                    <xsd:enumeration value="contractClosed"/>
+                    <xsd:enumeration value="noStatus"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:integer"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:simpleType name="UserDetailsRequestReason">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="0"/>
+            <xsd:enumeration value="1"/>
+            <xsd:enumeration value="2"/>
+            <xsd:enumeration value="3"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="UserParameterStatus">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="userParameterAvailable"/>
+                    <xsd:enumeration value="notAvailable"/>
+                    <xsd:enumeration value="localPrivacyRules"/>
+                    <xsd:enumeration value="missingContractualAgreement"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:integer"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:simpleType name="UserParameterRequest">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="userPostalAddress"/>
+                    <xsd:enumeration value="contractSerialNumber"/>
+                    <xsd:enumeration value="contractValidity"/>
+                    <xsd:enumeration value="driverCharacteristics"/>
+                    <xsd:enumeration value="eFC-ContextMark"/>
+                    <xsd:enumeration value="environmentalCharacteristics"/>
+                    <xsd:enumeration value="engineCharacteristics"/>
+                    <xsd:enumeration value="equipmentOBUId"/>
+                    <xsd:enumeration value="equipmentStatus"/>
+                    <xsd:enumeration value="paymentMeans"/>
+                    <xsd:enumeration value="paymentMeansBalance"/>
+                    <xsd:enumeration value="paymentMeansUnit"/>
+                    <xsd:enumeration value="personalAccountNumber"/>
+                    <xsd:enumeration value="provider"/>
+                    <xsd:enumeration value="receiptContract"/>
+                    <xsd:enumeration value="validityOfContract"/>
+                    <xsd:enumeration value="vehicleAuthenticator"/>
+                    <xsd:enumeration value="vehicleClass"/>
+                    <xsd:enumeration value="vehicleDimensions"/>
+                    <xsd:enumeration value="vehicleLicencePlateNumber"/>
+                    <xsd:enumeration value="vehicleIdentificationNumber"/>
+                    <xsd:enumeration value="vehicleWeightLaden"/>
+                    <xsd:enumeration value="vehicleWeightLimits"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:integer"/>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+
+    <xsd:complexType name="CopValue">
+        <xsd:choice>
+            <xsd:element name="noEntry" type="xsd:string"/>
+            <xsd:element name="co2class1" type="xsd:string"/>
+            <xsd:element name="co2class2" type="xsd:string"/>
+            <xsd:element name="co2class3" type="xsd:string"/>
+            <xsd:element name="co2class4" type="xsd:string"/>
+            <xsd:element name="co2class5" type="xsd:string"/>
+            <xsd:element name="co2class6" type="xsd:string"/>
+            <xsd:element name="co2class7" type="xsd:string"/>
+            <xsd:element name="reservedforUse" type="xsd:string"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="EuroValue">
+        <xsd:choice>
+            <xsd:element name="noEntry" type="xsd:string"/>
+            <xsd:element name="euro-1" type="xsd:string"/>
+            <xsd:element name="euro-2" type="xsd:string"/>
+            <xsd:element name="euro-3" type="xsd:string"/>
+            <xsd:element name="euro-4" type="xsd:string"/>
+            <xsd:element name="euro-5" type="xsd:string"/>
+            <xsd:element name="euro-6" type="xsd:string"/>
+            <xsd:element name="reservedForUse1" type="xsd:string"/>
+            <xsd:element name="reservedForUse2" type="xsd:string"/>
+            <xsd:element name="reservedForUse3" type="xsd:string"/>
+            <xsd:element name="reservedForUse4" type="xsd:string"/>
+            <xsd:element name="reservedForUse5" type="xsd:string"/>
+            <xsd:element name="reservedForUse6" type="xsd:string"/>
+            <xsd:element name="reservedForUse7" type="xsd:string"/>
+            <xsd:element name="reservedForUse8" type="xsd:string"/>
+            <xsd:element name="reservedForUse9" type="xsd:string"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="ADUType">
+        <xsd:choice>
+            <xsd:element name="requestADU"/>
+            <xsd:element name="ackADU"/>
+            <xsd:element name="trustObjectADU"/>
+            <xsd:element name="efcContextDataADU"/>
+            <xsd:element name="exceptionListADU"/>
+            <xsd:element name="reportAbnormalOBEADU"/>
+            <xsd:element name="tollDeclarationADU"/>
+            <xsd:element name="billingDetailsADU"/>
+            <xsd:element name="paymentClaimADU"/>
+            <xsd:element name="reportQAADU"/>
+            <xsd:element name="statusADU"/>
+            <xsd:element name="retrieveUserDetailsADU"/>
+            <xsd:element name="provideUserDetailsADU"/>
+            <xsd:element name="reportCCCEventADU"/>
+            <xsd:element name="retrieveTollDeclarationADU"/>
+            <xsd:element name="retrieveCCCEventADU"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="ReasonMessageACKADU">
+        <xsd:choice>
+            <xsd:element name="obsoleteADU" type="xsd:string"/>
+            <xsd:element name="aDUOK" type="xsd:string"/>
+            <xsd:element name="aDUNotOK" type="xsd:string"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="DisUnit">
+        <xsd:choice>
+            <xsd:element name="kilometres" type="xsd:string"/>
+            <xsd:element name="miles" type="xsd:string"/>
+            <xsd:element name="metres" type="xsd:string"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="AbnormalOBEReasonCode">
+        <xsd:sequence minOccurs="1" maxOccurs="5">
+            <xsd:element name="AbnormalOBEReasonCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string"/>
+                </xsd:simpleType>
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
-
-    <!-- Definition to provide additional information regarding element code -->
-    <xsd:attribute name="description" type="xsd:string"/>
-    <xsd:attribute name="tag" type="xsd:string"/>
-    <xsd:attribute name="tagging" type="xsd:string"/>
-    <xsd:attribute name="value" type="xsd:string"/>
-    <xsd:attribute name="bitno" type="xsd:string"/>
+    <xsd:simpleType name="ExceptionListType">
+        <xsd:union>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:token">
+                    <xsd:enumeration value="blacklist"/>
+                    <xsd:enumeration value="whitelist"/>
+                    <xsd:enumeration value="greylist"/>
+                    <xsd:enumeration value="blackListIncrementalUpdate"/>
+                    <xsd:enumeration value="whiteListIncrementalUpdate"/>
+                    <xsd:enumeration value="greyListIncrementalUpdate"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+            <xsd:simpleType>
+                <xsd:restriction base="xsd:integer">
+                    <xsd:pattern value="1|2|4|5"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+        </xsd:union>
+    </xsd:simpleType>
+    <xsd:complexType name="ExceptionListReasonType">
+        <xsd:choice>
+            <xsd:element name="notToBeDisclosed" type="xsd:string"/>
+            <xsd:element name="obeDeactivated" type="xsd:string"/>
+            <xsd:element name="obeIsStolen" type="xsd:string"/>
+            <xsd:element name="temporaryTechnicalProblem" type="xsd:string"/>
+            <xsd:element name="suspicionOnTechnicalManipulation" type="xsd:string"/>
+            <xsd:element name="latePayment" type="xsd:string"/>
+            <xsd:element name="noPayment" type="xsd:string"/>
+            <xsd:element name="contractHolderInsolvent" type="xsd:string"/>
+            <xsd:element name="normalUser" type="xsd:string"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="ExceptionListBlockType">
+        <xsd:choice>
+            <xsd:element name="allApplications" type="xsd:string"/>
+            <xsd:element name="locallyBlocked" type="xsd:string"/>
+            <xsd:element name="blockedForSchemesRequiringOdometer" type="xsd:string"/>
+        </xsd:choice>
+    </xsd:complexType>
 
 </xsd:schema>

@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?><!--this .xsd file is use to bring together all enumerations and choices xsd of all request/response in viapass
+this .xsd is base on document Back-office-communication 2.6 28-02-2018,
+this document must resume the european standard iso-12855-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/viapass/xsd/namespace/Lists" xmlns:asn1="/viapass/xsd/namespace/asn1" elementFormDefault="unqualified">
+  <xsd:import namespace="/viapass/xsd/namespace/asn1" schemaLocation="../xsdFiles/asn1.xsd"/>
+
+  <!--__________________TO KEEP_____________________-->
+<!--  <xsd:simpleType name="AlphabetIndicator"> &lt;!&ndash;ToDO check if it's a tag or a value&ndash;&gt;-->
+<!--    <xsd:restriction base="xsd:token">-->
+<!--      <xsd:enumeration value="latinAlphabetNo1"/>-->
+<!--      <xsd:enumeration value="latinAlphabetNo2"/>-->
+<!--      <xsd:enumeration value="latinAlphabetNo3"/>-->
+<!--      <xsd:enumeration value="latinAlphabetNo4"/>-->
+<!--      <xsd:enumeration value="latinCyrillicAlphabet"/>-->
+<!--      <xsd:enumeration value="latinArabicAlphabet"/>-->
+<!--      <xsd:enumeration value="latinGreekAlphabet"/>-->
+<!--      <xsd:enumeration value="latinHebrewAlphabet"/>-->
+<!--      <xsd:enumeration value="latinAlphabetNo5"/>-->
+<!--      <xsd:enumeration value="latinAlphabetNo6"/>-->
+<!--      <xsd:enumeration value="twoOctetBMP"/>-->
+<!--      <xsd:enumeration value="fourOctetCanonical"/>-->
+<!--      <xsd:enumeration value="reservedForUse1"/>-->
+<!--      <xsd:enumeration value="reservedForUse2"/>-->
+<!--      <xsd:enumeration value="reservedForUse3"/>-->
+<!--      <xsd:enumeration value="reservedForUse4"/>-->
+<!--      <xsd:enumeration value="reservedForUse5"/>-->
+<!--      <xsd:enumeration value="reservedForUse6"/>-->
+<!--      <xsd:enumeration value="reservedForUse7"/>-->
+<!--      <xsd:enumeration value="reservedForUse8"/>-->
+<!--      <xsd:enumeration value="reservedForUse9"/>-->
+<!--      <xsd:enumeration value="reservedForUse10"/>-->
+<!--      <xsd:enumeration value="reservedForUse11"/>-->
+<!--      <xsd:enumeration value="reservedForUse12"/>-->
+<!--      <xsd:enumeration value="reservedForUse13"/>-->
+<!--      <xsd:enumeration value="reservedForUse14"/>-->
+<!--      <xsd:enumeration value="reservedForUse15"/>-->
+<!--      <xsd:enumeration value="reservedForUse16"/>-->
+<!--      <xsd:enumeration value="reservedForUse17"/>-->
+<!--      <xsd:enumeration value="reservedForUse18"/>-->
+<!--      <xsd:enumeration value="reservedForUse19"/>-->
+<!--      <xsd:enumeration value="reservedForUse20"/>-->
+<!--      <xsd:enumeration value="reservedForUse21"/>-->
+<!--    </xsd:restriction>-->
+<!--  </xsd:simpleType>-->
+<!--  <xsd:simpleType name="UnitType">-->
+<!--    <xsd:restriction base="xsd:token">-->
+<!--      <xsd:enumeration value="mg-km"/>-->
+<!--      <xsd:enumeration value="mg-kWh"/>-->
+<!--    </xsd:restriction>-->
+<!--  </xsd:simpleType>-->
+<!--  <xsd:simpleType name="ResultOp">-->
+<!--    <xsd:union>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:token">-->
+<!--          <xsd:enumeration value="correctTransaction"/>-->
+<!--          <xsd:enumeration value="obeStatusNotAccepted"/>-->
+<!--          <xsd:enumeration value="equipmentStatusNotAccepted"/>-->
+<!--          <xsd:enumeration value="contractNotInWhiteList"/>-->
+<!--          <xsd:enumeration value="contractIdentifierInBlackList"/>-->
+<!--          <xsd:enumeration value="contractIdentifierNotCorrect"/>-->
+<!--          <xsd:enumeration value="expiredContract"/>-->
+<!--          <xsd:enumeration value="contractRestrictionsNotFulfilled"/>-->
+<!--          <xsd:enumeration value="claimedVehicleCharacteristicsNotValid"/>-->
+<!--          <xsd:enumeration value="vehicleClassAuthenticationFailed"/>-->
+<!--          <xsd:enumeration value="entryVehicleClassDifferentFromExitVehicleClass"/>-->
+<!--          <xsd:enumeration value="entryReceiptMissing"/>-->
+<!--          <xsd:enumeration value="entryReceiptNotValid"/>-->
+<!--          <xsd:enumeration value="entryTollStationNotValid"/>-->
+<!--          <xsd:enumeration value="equipmentNotCertified"/>-->
+<!--          <xsd:enumeration value="timeDifference"/>-->
+<!--          <xsd:enumeration value="accessCredentialsNotAccepted"/>-->
+<!--          <xsd:enumeration value="contractAuthenticatorNotAccepted"/>-->
+<!--          <xsd:enumeration value="receiptAuthenticatorNotAccepted"/>-->
+<!--          <xsd:enumeration value="claimedVehicleCharacteristicsMissing"/>-->
+<!--          <xsd:enumeration value="paymentMeansNotAccepted"/>-->
+<!--          <xsd:enumeration value="paymentAuthenticatorNotAccepted"/>-->
+<!--          <xsd:enumeration value="paymentMeansInBlackList"/>-->
+<!--          <xsd:enumeration value="paymentMeansNotCorrect"/>-->
+<!--          <xsd:enumeration value="expiredPaymentMeans"/>-->
+<!--          <xsd:enumeration value="paymentMeansRestrictionsNotFulfilled"/>-->
+<!--        </xsd:restriction>-->
+<!--      </xsd:simpleType>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--      </xsd:simpleType>-->
+<!--    </xsd:union>-->
+<!--  </xsd:simpleType>-->
+<!--  <xsd:simpleType name="ChannelId">-->
+<!--    <xsd:union>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:token">-->
+<!--          <xsd:enumeration value="obu"/>-->
+<!--          <xsd:enumeration value="sam1"/>-->
+<!--          <xsd:enumeration value="sam2"/>-->
+<!--          <xsd:enumeration value="icc"/>-->
+<!--          <xsd:enumeration value="display"/>-->
+<!--          <xsd:enumeration value="buzzer"/>-->
+<!--          <xsd:enumeration value="printer"/>-->
+<!--          <xsd:enumeration value="serialInterface"/>-->
+<!--          <xsd:enumeration value="parallelInterface"/>-->
+<!--          <xsd:enumeration value="gPS"/>-->
+<!--          <xsd:enumeration value="tachograph"/>-->
+<!--          <xsd:enumeration value="privateUse1"/>-->
+<!--          <xsd:enumeration value="privateUse2"/>-->
+<!--          <xsd:enumeration value="privateUse3"/>-->
+<!--          <xsd:enumeration value="privateUse4"/>-->
+<!--          <xsd:enumeration value="privateUse5"/>-->
+<!--          <xsd:enumeration value="bluetooth"/>-->
+<!--        </xsd:restriction>-->
+<!--      </xsd:simpleType>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--      </xsd:simpleType>-->
+<!--    </xsd:union>-->
+<!--  </xsd:simpleType>-->
+<!--  <xsd:simpleType name="OBEStatus">-->
+<!--    <xsd:restriction base="xsd:token">-->
+<!--      <xsd:enumeration value="ok"/>-->
+<!--      <xsd:enumeration value="nok"/>-->
+<!--      <xsd:enumeration value="contactOperator"/>-->
+<!--      <xsd:enumeration value="nokInLocalContext"/>-->
+<!--      <xsd:enumeration value="noSignalling"/>-->
+<!--    </xsd:restriction>-->
+<!--  </xsd:simpleType>-->
+<!--  <xsd:simpleType name="FutureCharacteristics">-->
+<!--    <xsd:union>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:token">-->
+<!--          <xsd:enumeration value="noEntry"/>-->
+<!--          <xsd:enumeration value="airSuspension"/>-->
+<!--        </xsd:restriction>-->
+<!--      </xsd:simpleType>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--      </xsd:simpleType>-->
+<!--    </xsd:union>-->
+<!--  </xsd:simpleType>-->
+<!--  <xsd:simpleType name="DescriptiveCharacteristics">-->
+<!--    <xsd:union>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:token">-->
+<!--          <xsd:enumeration value="noEntry"/>-->
+<!--          <xsd:enumeration value="vehicleShape1"/>-->
+<!--          <xsd:enumeration value="vehicleShape2"/>-->
+<!--          <xsd:enumeration value="vehicleShape3"/>-->
+<!--          <xsd:enumeration value="vehicleShape4"/>-->
+<!--          <xsd:enumeration value="vehicleShape5"/>-->
+<!--          <xsd:enumeration value="vehicleShape6"/>-->
+<!--          <xsd:enumeration value="vehicleShape7"/>-->
+<!--          <xsd:enumeration value="vehicleShape8"/>-->
+<!--          <xsd:enumeration value="vehicleShape9"/>-->
+<!--          <xsd:enumeration value="vehicleShape10"/>-->
+<!--          <xsd:enumeration value="vehicleShape11"/>-->
+<!--          <xsd:enumeration value="vehicleShape12"/>-->
+<!--          <xsd:enumeration value="vehicleShape13"/>-->
+<!--          <xsd:enumeration value="vehicleShape14"/>-->
+<!--          <xsd:enumeration value="vehicleShape15"/>-->
+<!--          <xsd:enumeration value="vehicleShape16"/>-->
+<!--          <xsd:enumeration value="vehicleShape17"/>-->
+<!--          <xsd:enumeration value="vehicleShape18"/>-->
+<!--          <xsd:enumeration value="vehicleShape19"/>-->
+<!--          <xsd:enumeration value="vehicleShape20"/>-->
+<!--          <xsd:enumeration value="vehicleShape21"/>-->
+<!--          <xsd:enumeration value="vehicleShape22"/>-->
+<!--          <xsd:enumeration value="vehicleShape23"/>-->
+<!--          <xsd:enumeration value="vehicleShape24"/>-->
+<!--          <xsd:enumeration value="vehicleShape25"/>-->
+<!--          <xsd:enumeration value="vehicleShape26"/>-->
+<!--          <xsd:enumeration value="vehicleShape27"/>-->
+<!--          <xsd:enumeration value="vehicleShape28"/>-->
+<!--          <xsd:enumeration value="vehicleShape29"/>-->
+<!--          <xsd:enumeration value="vehicleShape30"/>-->
+<!--          <xsd:enumeration value="vehicleShape31"/>-->
+<!--          <xsd:enumeration value="vehicleShape32"/>-->
+<!--          <xsd:enumeration value="vehicleShape33"/>-->
+<!--          <xsd:enumeration value="vehicleShape34"/>-->
+<!--          <xsd:enumeration value="vehicleShape35"/>-->
+<!--          <xsd:enumeration value="vehicleShape36"/>-->
+<!--          <xsd:enumeration value="vehicleShape37"/>-->
+<!--          <xsd:enumeration value="vehicleShape38"/>-->
+<!--          <xsd:enumeration value="vehicleShape39"/>-->
+<!--          <xsd:enumeration value="vehicleShape40"/>-->
+<!--          <xsd:enumeration value="vehicleShape41"/>-->
+<!--          <xsd:enumeration value="vehicleShape42"/>-->
+<!--          <xsd:enumeration value="vehicleShape43"/>-->
+<!--          <xsd:enumeration value="vehicleShape44"/>-->
+<!--          <xsd:enumeration value="vehicleShape45"/>-->
+<!--          <xsd:enumeration value="vehicleShape46"/>-->
+<!--          <xsd:enumeration value="vehicleShape47"/>-->
+<!--          <xsd:enumeration value="vehicleShape48"/>-->
+<!--          <xsd:enumeration value="vehicleShape49"/>-->
+<!--          <xsd:enumeration value="vehicleShape50"/>-->
+<!--        </xsd:restriction>-->
+<!--      </xsd:simpleType>-->
+<!--      <xsd:simpleType>-->
+<!--        <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--      </xsd:simpleType>-->
+<!--    </xsd:union>-->
+<!--  </xsd:simpleType>-->
+<!--  <xsd:complexType name="CopValue">-->
+<!--    <xsd:choice>-->
+<!--      <xsd:element name="noEntry" type="xsd:string"/>-->
+<!--      <xsd:element name="co2class1" type="xsd:string"/>-->
+<!--      <xsd:element name="co2class2" type="xsd:string"/>-->
+<!--      <xsd:element name="co2class3" type="xsd:string"/>-->
+<!--      <xsd:element name="co2class4" type="xsd:string"/>-->
+<!--      <xsd:element name="co2class5" type="xsd:string"/>-->
+<!--      <xsd:element name="co2class6" type="xsd:string"/>-->
+<!--      <xsd:element name="co2class7" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedforUse" type="xsd:string"/>-->
+<!--    </xsd:choice>-->
+<!--  </xsd:complexType>-->
+<!--  <xsd:complexType name="EuroValue">-->
+<!--    <xsd:choice>-->
+<!--      <xsd:element name="noEntry" type="xsd:string"/>-->
+<!--      <xsd:element name="euro-1" type="xsd:string"/>-->
+<!--      <xsd:element name="euro-2" type="xsd:string"/>-->
+<!--      <xsd:element name="euro-3" type="xsd:string"/>-->
+<!--      <xsd:element name="euro-4" type="xsd:string"/>-->
+<!--      <xsd:element name="euro-5" type="xsd:string"/>-->
+<!--      <xsd:element name="euro-6" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse1" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse2" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse3" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse4" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse5" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse6" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse7" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse8" type="xsd:string"/>-->
+<!--      <xsd:element name="reservedForUse9" type="xsd:string"/>-->
+<!--    </xsd:choice>-->
+<!--  </xsd:complexType>-->
+<!--  <xsd:complexType name="ADUType">-->
+<!--    <xsd:choice>-->
+<!--      <xsd:element name="requestADU"/>-->
+<!--      <xsd:element name="ackADU"/>-->
+<!--      <xsd:element name="trustObjectADU"/>-->
+<!--      <xsd:element name="efcContextDataADU"/>-->
+<!--      <xsd:element name="exceptionListADU"/>-->
+<!--      <xsd:element name="reportAbnormalOBEADU"/>-->
+<!--      <xsd:element name="tollDeclarationADU"/>-->
+<!--      <xsd:element name="billingDetailsADU"/>-->
+<!--      <xsd:element name="paymentClaimADU"/>-->
+<!--      <xsd:element name="reportQAADU"/>-->
+<!--      <xsd:element name="statusADU"/>-->
+<!--      <xsd:element name="retrieveUserDetailsADU"/>-->
+<!--      <xsd:element name="provideUserDetailsADU"/>-->
+<!--      <xsd:element name="reportCCCEventADU"/>-->
+<!--      <xsd:element name="retrieveTollDeclarationADU"/>-->
+<!--      <xsd:element name="retrieveCCCEventADU"/>-->
+<!--    </xsd:choice>-->
+<!--  </xsd:complexType>-->
+<!--  <xsd:complexType name="ReasonMessageACKADU">-->
+<!--    <xsd:choice>-->
+<!--      <xsd:element name="obsoleteADU" type="xsd:string"/>-->
+<!--      <xsd:element name="aDUOK" type="xsd:string"/>-->
+<!--      <xsd:element name="aDUNotOK" type="xsd:string"/>-->
+<!--    </xsd:choice>-->
+<!--  </xsd:complexType>-->
+<!--  <xsd:complexType name="DisUnit">-->
+<!--    <xsd:choice>-->
+<!--      <xsd:element name="kilometres" type="xsd:string"/>-->
+<!--      <xsd:element name="miles" type="xsd:string"/>-->
+<!--      <xsd:element name="metres" type="xsd:string"/>-->
+<!--    </xsd:choice>-->
+<!--  </xsd:complexType>-->
+
+  <!--Common-->
+<!--  <xsd:complexType name="VehicleAxles">-->
+<!--    <xsd:sequence>-->
+<!--      <xsd:element name="vehicleFirstAxleHeight" type="xsd:unsignedByte"/>-->
+<!--      <xsd:element name="vehicleAxlesNumber">-->
+<!--        <xsd:complexType>-->
+<!--          <xsd:sequence>-->
+<!--            <xsd:element name="tyreType">-->
+<!--              <xsd:simpleType>-->
+<!--                <xsd:restriction base="xsd:token">-->
+<!--                  <xsd:enumeration value="notSpecified"/>-->
+<!--                  <xsd:enumeration value="singleTyre"/>-->
+<!--                  <xsd:enumeration value="dualTyres"/>-->
+<!--                  <xsd:enumeration value="reservedForUse"/>-->
+<!--                </xsd:restriction>-->
+<!--              </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="numberOfAxles">-->
+<!--              <xsd:complexType>-->
+<!--                <xsd:sequence>-->
+<!--                  <xsd:element name="trailerAxles" type="asn1:TrailerAxles"/>-->
+<!--                  <xsd:element name="tractorAxles" type="asn1:TractorAxles"/>-->
+<!--                </xsd:sequence>-->
+<!--              </xsd:complexType>-->
+<!--            </xsd:element>-->
+<!--          </xsd:sequence>-->
+<!--        </xsd:complexType>-->
+<!--      </xsd:element>-->
+<!--    </xsd:sequence>-->
+<!--  </xsd:complexType>-->
+<!--  <xsd:complexType name="EFC_ContextMark">-->
+<!--    <xsd:sequence>-->
+<!--      <xsd:element name="contractProvider" type="asn1:Provider"/>-->
+<!--      <xsd:element name="typeOfContract">-->
+<!--        <xsd:simpleType>-->
+<!--          <xsd:restriction base="xsd:hexBinary">-->
+<!--            <xsd:length value="2"/>-->
+<!--          </xsd:restriction>-->
+<!--        </xsd:simpleType>-->
+<!--      </xsd:element>-->
+<!--      <xsd:element name="contextVersion">-->
+<!--        <xsd:simpleType>-->
+<!--          <xsd:restriction base="xsd:unsignedInt">-->
+<!--            <xsd:minInclusive value="0"/>-->
+<!--            <xsd:maxInclusive value="127"/>-->
+<!--          </xsd:restriction>-->
+<!--        </xsd:simpleType>-->
+<!--      </xsd:element>-->
+<!--    </xsd:sequence>-->
+<!--  </xsd:complexType>-->
+<!--  <xsd:complexType name="ObeId">-->
+<!--    <xsd:sequence>-->
+<!--      <xsd:element name="manufacturerId" type="asn1:ManufacturerId"/>-->
+<!--      <xsd:element name="equipmentOBUId" type="asn1:OctetString"/>-->
+<!--    </xsd:sequence>-->
+<!--  </xsd:complexType>-->
+
+
+
+  <!--Don't keep-->
+
+
+<!--    <xsd:simpleType name="UserStatus">-->
+<!--      <xsd:union>-->
+<!--        <xsd:simpleType>-->
+<!--          <xsd:restriction base="xsd:token">-->
+<!--            <xsd:enumeration value="noContractualRelation"/>-->
+<!--            <xsd:enumeration value="standardPrivateUserContract"/>-->
+<!--            <xsd:enumeration value="standardCommercialUserContract"/>-->
+<!--            <xsd:enumeration value="tempExceptionListed"/>-->
+<!--            <xsd:enumeration value="permanentExceptionListed"/>-->
+<!--            <xsd:enumeration value="contractClosed"/>-->
+<!--            <xsd:enumeration value="noStatus"/>-->
+<!--          </xsd:restriction>-->
+<!--        </xsd:simpleType>-->
+<!--        <xsd:simpleType>-->
+<!--          <xsd:restriction base="xsd:integer"/>-->
+<!--        </xsd:simpleType>-->
+<!--      </xsd:union>-->
+<!--    </xsd:simpleType>-->
+<!--    <xsd:simpleType name="UserParameterStatus">-->
+<!--      <xsd:union>-->
+<!--        <xsd:simpleType>-->
+<!--          <xsd:restriction base="xsd:token">-->
+<!--            <xsd:enumeration value="userParameterAvailable"/>-->
+<!--            <xsd:enumeration value="notAvailable"/>-->
+<!--            <xsd:enumeration value="localPrivacyRules"/>-->
+<!--            <xsd:enumeration value="missingContractualAgreement"/>-->
+<!--          </xsd:restriction>-->
+<!--        </xsd:simpleType>-->
+<!--        <xsd:simpleType>-->
+<!--          <xsd:restriction base="xsd:integer"/>-->
+<!--        </xsd:simpleType>-->
+<!--      </xsd:union>-->
+<!--    </xsd:simpleType>-->
+
+  <!--  <xsd:simpleType name="DetectionMode">-->
+  <!--    <xsd:restriction base="xsd:token">-->
+  <!--      <xsd:enumeration value="measured"/>-->
+  <!--      <xsd:enumeration value="inferred"/>-->
+  <!--      <xsd:enumeration value="lac"/>-->
+  <!--    </xsd:restriction>-->
+  <!--  </xsd:simpleType>-->
+
+  <!--  <xsd:simpleType name="AccountStatus">-->
+  <!--    <xsd:union memberTypes="xsd:token">-->
+  <!--      <xsd:simpleType>-->
+  <!--        <xsd:restriction base="xsd:token">-->
+  <!--          <xsd:enumeration value="ok"/>-->
+  <!--          <xsd:enumeration value="low"/>-->
+  <!--          <xsd:enumeration value="empty"/>-->
+  <!--          <xsd:enumeration value="negative"/>-->
+  <!--        </xsd:restriction>-->
+  <!--      </xsd:simpleType>-->
+  <!--    </xsd:union>-->
+  <!--  </xsd:simpleType>-->
+  <!--  <xsd:simpleType name="OdometerStatus">-->
+  <!--    <xsd:restriction base="xsd:token">-->
+  <!--      <xsd:enumeration value="odometerInterfaceNotPresent"/>-->
+  <!--      <xsd:enumeration value="presentAndSignalReceived"/>-->
+  <!--      <xsd:enumeration value="presentAndSignalNotReceived"/>-->
+  <!--      <xsd:enumeration value="reservedForFutureUse"/>-->
+  <!--    </xsd:restriction>-->
+  <!--  </xsd:simpleType>-->
+  <!--  <xsd:simpleType name="StationType">-->
+  <!--    <xsd:restriction base="xsd:token">-->
+  <!--      <xsd:enumeration value="unspecified"/>-->
+  <!--      <xsd:enumeration value="closedEntryWithPayment"/>-->
+  <!--      <xsd:enumeration value="closedEntryWithoutPayment"/>-->
+  <!--      <xsd:enumeration value="closedTransit"/>-->
+  <!--      <xsd:enumeration value="closedExit"/>-->
+  <!--      <xsd:enumeration value="closedCredit"/>-->
+  <!--      <xsd:enumeration value="mixed"/>-->
+  <!--      <xsd:enumeration value="passage"/>-->
+  <!--      <xsd:enumeration value="checkpoint"/>-->
+  <!--      <xsd:enumeration value="reload"/>-->
+  <!--      <xsd:enumeration value="reservedForFutureCENUse1"/>-->
+  <!--      <xsd:enumeration value="reservedForFutureCENUse2"/>-->
+  <!--      <xsd:enumeration value="reservedForFutureCENUse3"/>-->
+  <!--      <xsd:enumeration value="reservedForFutureCENUse4"/>-->
+  <!--      <xsd:enumeration value="privateUse5"/>-->
+  <!--      <xsd:enumeration value="privateUse6"/>-->
+  <!--    </xsd:restriction>-->
+  <!--  </xsd:simpleType>-->
+  <!--  <xsd:simpleType name="Profile">-->
+  <!--    <xsd:union>-->
+  <!--      <xsd:simpleType>-->
+  <!--        <xsd:restriction base="xsd:token">-->
+  <!--          <xsd:enumeration value="profile0"/>-->
+  <!--          <xsd:enumeration value="profile1"/>-->
+  <!--        </xsd:restriction>-->
+  <!--      </xsd:simpleType>-->
+  <!--      <xsd:simpleType>-->
+  <!--        <xsd:restriction base="xsd:unsignedInt">-->
+  <!--          <xsd:minInclusive value="0"/>-->
+  <!--          <xsd:maxInclusive value="127"/>-->
+  <!--        </xsd:restriction>-->
+  <!--      </xsd:simpleType>-->
+  <!--    </xsd:union>-->
+  <!--  </xsd:simpleType>-->
+
+  <!--  <xsd:simpleType name="ReturnStatus">-->
+  <!--    <xsd:union>-->
+  <!--      <xsd:simpleType>-->
+  <!--        <xsd:restriction base="xsd:token">-->
+  <!--          <xsd:enumeration value="noError"/>-->
+  <!--          <xsd:enumeration value="accessDenied"/>-->
+  <!--          <xsd:enumeration value="argumentError"/>-->
+  <!--          <xsd:enumeration value="complexityLimitation"/>-->
+  <!--          <xsd:enumeration value="processingFailure"/>-->
+  <!--          <xsd:enumeration value="processing"/>-->
+  <!--          <xsd:enumeration value="chainingError"/>-->
+  <!--        </xsd:restriction>-->
+  <!--      </xsd:simpleType>-->
+  <!--      <xsd:simpleType>-->
+  <!--        <xsd:restriction base="xsd:unsignedInt">-->
+  <!--          <xsd:minInclusive value="0"/>-->
+  <!--          <xsd:maxInclusive value="127"/>-->
+  <!--        </xsd:restriction>-->
+  <!--      </xsd:simpleType>-->
+  <!--    </xsd:union>-->
+  <!--  </xsd:simpleType>-->
+  <!--  <xsd:complexType name="ContractValidity">-->
+  <!--    <xsd:sequence>-->
+  <!--      <xsd:element name="contractRestrictions">-->
+  <!--        <xsd:simpleType>-->
+  <!--          <xsd:restriction base="xsd:hexBinary">-->
+  <!--            <xsd:length value="4"/>-->
+  <!--          </xsd:restriction>-->
+  <!--        </xsd:simpleType>-->
+  <!--      </xsd:element>-->
+  <!--      <xsd:element name="contractExpiryDate" type="asn1:DateCompact"/>-->
+  <!--    </xsd:sequence>-->
+  <!--  </xsd:complexType>-->
+  <!--  <xsd:complexType name="BeaconId">-->
+  <!--    <xsd:sequence>-->
+  <!--      <xsd:element name="manufacturerid">-->
+  <!--        <xsd:simpleType>-->
+  <!--          <xsd:restriction base="xsd:unsignedShort"/>-->
+  <!--        </xsd:simpleType>-->
+  <!--      </xsd:element>-->
+  <!--      <xsd:element name="individualid">-->
+  <!--        <xsd:simpleType>-->
+  <!--          <xsd:restriction base="xsd:unsignedInt">-->
+  <!--            <xsd:minInclusive value="0"/>-->
+  <!--            <xsd:maxInclusive value="134217727"/>-->
+  <!--          </xsd:restriction>-->
+  <!--        </xsd:simpleType>-->
+  <!--      </xsd:element>-->
+  <!--    </xsd:sequence>-->
+  <!--  </xsd:complexType>-->
+  <!--  <xsd:complexType name="ReceiptContract">-->
+  <!--    <xsd:sequence>-->
+  <!--      <xsd:element name="sessionContractProvider" type="asn1:Provider"/>-->
+  <!--      <xsd:element name="sessionTypeOfContract">-->
+  <!--        <xsd:simpleType>-->
+  <!--          <xsd:restriction base="xsd:hexBinary">-->
+  <!--            <xsd:length value="2"/>-->
+  <!--          </xsd:restriction>-->
+  <!--        </xsd:simpleType>-->
+  <!--      </xsd:element>-->
+  <!--      <xsd:element name="sessionContractSerialNumber" type="xsd:unsignedInt"/>-->
+  <!--    </xsd:sequence>-->
+  <!--  </xsd:complexType>-->
+
+
+  <!--    <xsd:complexType name="Container">-->
+  <!--        <xsd:choice>-->
+  <!--            <xsd:element name="integer" type="xsd:integer"/>-->
+  <!--            <xsd:element name="bitstring" type="asn1:BitString"/>-->
+  <!--            <xsd:element name="octetstring">-->
+  <!--                <xsd:simpleType>-->
+  <!--                    <xsd:restriction base="xsd:hexBinary">-->
+  <!--                        <xsd:minLength value="0"/>-->
+  <!--                        <xsd:maxLength value="127"/>-->
+  <!--                    </xsd:restriction>-->
+  <!--                </xsd:simpleType>-->
+  <!--            </xsd:element>-->
+  <!--            <xsd:element name="universalString" type="xsd:token"/>-->
+  <!--            <xsd:element name="beaconId" type="Util:BeaconID"/>-->
+  <!--            <xsd:element name="t-apdu" type="Lists_2:T-APDUs"/>-->
+  <!--            <xsd:element name="dsrcApplicationEntityId" type="Lists_2:DSRCApplicationEntityID"/>-->
+  <!--            <xsd:element name="dsrc-Ase-Id" type="asn1:Dsrc-EID"/>-->
+  <!--            <xsd:element name="attrIdList" type="asn1:AttributeIdList"/>-->
+  <!--            <xsd:element name="attrList" type="Lists_2:AttributeList"/>-->
+  <!--            <xsd:element name="broadcastPool" type="Lists_2:BroadcastPool"/>-->
+  <!--            <xsd:element name="directory" type="Lists_2:Directory"/>-->
+  <!--            <xsd:element name="file" type="Util:File"/>-->
+  <!--            <xsd:element name="fileType" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="record" type="asn1:Record"/>-->
+  <!--            <xsd:element name="time" type="xsd:unsignedInt"/>-->
+  <!--            <xsd:element name="vector">-->
+  <!--                <xsd:simpleType>-->
+  <!--                    <xsd:restriction>-->
+  <!--                        <xsd:simpleType>-->
+  <!--                            <xsd:list>-->
+  <!--                                <xsd:simpleType>-->
+  <!--                                    <xsd:restriction base="xsd:unsignedInt">-->
+  <!--                                        <xsd:minInclusive value="0"/>-->
+  <!--                                        <xsd:maxInclusive value="127"/>-->
+  <!--                                    </xsd:restriction>-->
+  <!--                                </xsd:simpleType>-->
+  <!--                            </xsd:list>-->
+  <!--                        </xsd:simpleType>-->
+  <!--                        <xsd:minLength value="0"/>-->
+  <!--                        <xsd:maxLength value="255"/>-->
+  <!--                    </xsd:restriction>-->
+  <!--                </xsd:simpleType>-->
+  <!--            </xsd:element>-->
+  <!--            <xsd:element name="gstrq" type="Util_Com:GetStampedRq"/>-->
+  <!--            <xsd:element name="gstrs" type="Util_Com:GetStampedRs"/>-->
+  <!--            <xsd:element name="sstrq" type="Util_Com:SetStampedRq"/>-->
+  <!--            <xsd:element name="ginrq" type="Util_Com:GetInstanceRq"/>-->
+  <!--            <xsd:element name="ginrs" type="Util_Com:GetInstanceRs"/>-->
+  <!--            <xsd:element name="sinrq" type="Util_Com:SetInstanceRq"/>-->
+  <!--            <xsd:element name="charq" type="Util_Com:ChannelRq"/>-->
+  <!--            <xsd:element name="chars" type="Util_Com:ChannelRs"/>-->
+  <!--            <xsd:element name="cpprq" type="Util_Com:CopyRq"/>-->
+  <!--            <xsd:element name="subrq" type="Util_Com:SubRq"/>-->
+  <!--            <xsd:element name="addrq" type="Util_Com:AddRq"/>-->
+  <!--            <xsd:element name="debrq" type="Util_Com:DebitRq"/>-->
+  <!--            <xsd:element name="debrs" type="Util_Com:DebitRs"/>-->
+  <!--            <xsd:element name="crerq" type="Util_Com:CreditRq"/>-->
+  <!--            <xsd:element name="crers" type="Util_Com:CreditRs"/>-->
+  <!--            <xsd:element name="efccontext" type="Util:EFC_ContextMark"/>-->
+  <!--            <xsd:element name="contser" type="asn1:ContractSerialNumber"/>-->
+  <!--            <xsd:element name="contval" type="Util:ContractValidity"/>-->
+  <!--            <xsd:element name="contveh" type="asn1:LicensePlateNumber"/>-->
+  <!--            <xsd:element name="contauth" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="recspt" type="Util:ReceiptServicePart"/>-->
+  <!--            <xsd:element name="sessioncls" type="asn1:SessionClass"/>-->
+  <!--            <xsd:element name="recservserialno">-->
+  <!--                <xsd:simpleType>-->
+  <!--                    <xsd:restriction base="xsd:unsignedInt">-->
+  <!--                        <xsd:minInclusive value="0"/>-->
+  <!--                        <xsd:maxInclusive value="16777215"/>-->
+  <!--                    </xsd:restriction>-->
+  <!--                </xsd:simpleType>-->
+  <!--            </xsd:element>-->
+  <!--            <xsd:element name="recfinptENV" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="reccont" type="Util:ReceiptContract"/>-->
+  <!--            <xsd:element name="recOBUId" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="recICCId" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="rectext" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="recauth" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="recdist">-->
+  <!--                <xsd:simpleType>-->
+  <!--                    <xsd:restriction base="xsd:unsignedInt">-->
+  <!--                        <xsd:minInclusive value="0"/>-->
+  <!--                        <xsd:maxInclusive value="16777215"/>-->
+  <!--                    </xsd:restriction>-->
+  <!--                </xsd:simpleType>-->
+  <!--            </xsd:element>-->
+  <!--            <xsd:element name="vehlpn" type="asn1:LicensePlateNumber"/>-->
+  <!--            <xsd:element name="vehid" type="xsd:string"/>-->
+  <!--            <xsd:element name="vehclass" type="xsd:unsignedByte"/>-->
+  <!--            <xsd:element name="vehdims" type="asn1:VehicleDimensions"/>-->
+  <!--            <xsd:element name="vehaxles" type="Lists_2:VehicleAxles"/>-->
+  <!--            <xsd:element name="vehwtlims" type="asn1:VehicleWeightLimits"/>-->
+  <!--            <xsd:element name="vehwtladen" type="xsd:unsignedShort"/>-->
+  <!--            <xsd:element name="vehspchars" type="Util:VehicleSpecificCharacteristics"/>-->
+  <!--            <xsd:element name="vehauth" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="equOBUId" type="asn1:EquipmentOBUId"/>-->
+  <!--            <xsd:element name="equICCId" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="equstat">-->
+  <!--                <xsd:simpleType>-->
+  <!--                    <xsd:restriction base="asn1:BitString">-->
+  <!--                        <xsd:length value="16"/>-->
+  <!--                    </xsd:restriction>-->
+  <!--                </xsd:simpleType>-->
+  <!--            </xsd:element>-->
+  <!--            <xsd:element name="dvrchars" type="asn1:DriverCharacteristics"/>-->
+  <!--            <xsd:element name="paymeansENV" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="paymbal" type="asn1:SignedValue"/>-->
+  <!--            <xsd:element name="paymunit" type="asn1:PayUnit"/>-->
+  <!--            <xsd:element name="paysecdata" type="xsd:hexBinary"/>-->
+  <!--            <xsd:element name="paymeans" type="Util:PaymentMeans"/>-->
+  <!--            <xsd:element name="recdata1" type="Util:ReceiptData"/>-->
+  <!--            <xsd:element name="recdata2" type="Util:ReceiptData"/>-->
+  <!--            <xsd:element name="valofcon" type="Util:ValidityOfContract"/>-->
+  <!--            <xsd:element name="recfinpt" type="Util:ReceiptFinancialPart"/>-->
+  <!--            <xsd:element name="setmmirq" type="Lists_2:SetMMIRq"/>-->
+  <!--            <xsd:element name="awl" type="asn1:AxleWeightLimits"/>-->
+  <!--            <xsd:element name="paca" type="asn1:PassengerCapacity"/>-->
+  <!--            <xsd:element name="eng" type="asn1:Engine"/>-->
+  <!--            <xsd:element name="sl" type="asn1:SoundLevel"/>-->
+  <!--            <xsd:element name="eev" type="Util:ExhaustEmissionValues"/>-->
+  <!--            <xsd:element name="dev" type="Util:DieselEmissionValues"/>-->
+  <!--            <xsd:element name="co2ev" type="xsd:unsignedShort"/>-->
+  <!--            <xsd:element name="vtd" type="xsd:unsignedInt"/>-->
+  <!--            <xsd:element name="tlpn" type="asn1:LicensePlateNumber"/>-->
+  <!--            <xsd:element name="tch" type="Util:TrailerCharacteristics"/>-->
+  <!--            <xsd:element name="anp" type="xsd:unsignedByte"/>-->
+  <!--            <xsd:element name="rfuCenISO48" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="rfuCenISO49" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="rfuCenISO50" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="rfuCenISO51" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="rfuCenISO52" type="asn1:NULL"/>-->
+  <!--            <xsd:element name="rfuCenISO53" type="asn1:NULL"/>-->
+  <!--            <xsd:any namespace="##other" processContents="lax"/>-->
+  <!--        </xsd:choice>-->
+  <!--    </xsd:complexType>-->
+
+  <!--    <xsd:complexType name="UsageStatementList">-->
+  <!--        <xsd:sequence minOccurs="0" maxOccurs="unbounded">-->
+  <!--            <xsd:element name="UsageStatement"/>-->
+  <!--            <xsd:element name="usageStatementID" minOccurs="0">-->
+  <!--                <xsd:simpleType>-->
+  <!--                    <xsd:restriction base="xsd:unsignedShort"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--                </xsd:simpleType>-->
+  <!--            </xsd:element>-->
+  <!--            <xsd:element name="regimeID" minOccurs="0">-->
+  <!--                <xsd:simpleType>-->
+  <!--                    <xsd:restriction base="xsd:unsignedShort"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--                </xsd:simpleType>-->
+  <!--            </xsd:element>-->
+  <!--            <xsd:element name="aggregatedFee" minOccurs="0" type="Util:AggregatedFee"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--            <xsd:element name="vat" minOccurs="0" type="asn1:PaymentFee"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--            <xsd:element name="aggregatedSingleTariffClassSession" minOccurs="0"-->
+  <!--                         type="Util:AggregatedSingleTariffClassSession"/> &lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--            <xsd:element name="listOfChargeObjects" minOccurs="0" type="Lists_2:ListOfChargeObjects"/>-->
+  <!--            <xsd:element name="listOfDSRCUsageData" minOccurs="0" type="Lists_2:AttributeList"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--            <xsd:element name="listOfRawUsageData" minOccurs="0" type="Lists_2:ListOfRawUsageData"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--            <xsd:element name="noUsage" minOccurs="0" type="xsd:boolean"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--            <xsd:element name="additionalUsageInformation" minOccurs="0" type="xsd:hexBinary"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--            <xsd:element name="usageAuthenticator" minOccurs="0" type="xsd:hexBinary"/>&lt;!&ndash;ToDO Check with norme ISO&ndash;&gt;-->
+  <!--        </xsd:sequence>-->
+  <!--    </xsd:complexType>-->
+
+  <!--    <xsd:complexType name="ApplicationList">-->
+  <!--        <xsd:sequence minOccurs="0" maxOccurs="127">-->
+  <!--            <xsd:element name="SEQUENCE">-->
+  <!--                <xsd:complexType>-->
+  <!--                    <xsd:sequence>-->
+  <!--                        <xsd:element name="aid" type="Lists_2:DSRCApplicationEntityID"/>-->
+  <!--                        <xsd:element name="eid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+  <!--                        <xsd:element name="parameter" minOccurs="0">-->
+  <!--                            <xsd:complexType>-->
+  <!--                                <xsd:choice>-->
+  <!--                                    <xsd:element name="integer" type="xsd:integer"/>-->
+  <!--                                    <xsd:element name="bitstring" type="asn1:BitString"/>-->
+  <!--                                    <xsd:element name="octetstring">-->
+  <!--                                        <xsd:simpleType>-->
+  <!--                                            <xsd:restriction base="xsd:hexBinary">-->
+  <!--                                                <xsd:minLength value="0"/>-->
+  <!--                                                <xsd:maxLength value="127"/>-->
+  <!--                                            </xsd:restriction>-->
+  <!--                                        </xsd:simpleType>-->
+  <!--                                    </xsd:element>-->
+  <!--                                    <xsd:element name="universalString" type="xsd:token"/>-->
+  <!--                                    <xsd:element name="beaconId" type="Util:BeaconID"/>-->
+  <!--                                    <xsd:element name="t-apdu" type="Lists_2:T-APDUs"/>-->
+  <!--                                    <xsd:element name="dsrcApplicationEntityId" type="Lists_2:DSRCApplicationEntityID"/>-->
+  <!--                                    <xsd:element name="dsrc-Ase-Id" type="asn1:Dsrc-EID"/>-->
+  <!--                                    <xsd:element name="attrIdList" type="asn1:AttributeIdList"/>-->
+  <!--                                    <xsd:element name="attrList" type="Lists_2:AttributeList"/>-->
+  <!--                                    <xsd:element name="broadcastPool" type="Lists_2:BroadcastPool"/>-->
+  <!--                                    <xsd:element name="directory" type="Lists_2:Directory"/>-->
+  <!--                                    <xsd:element name="file" type="Util:File"/>-->
+  <!--                                    <xsd:element name="fileType" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="record" type="asn1:Record"/>-->
+  <!--                                    <xsd:element name="time" type="xsd:unsignedInt"/>-->
+  <!--                                    <xsd:element name="vector">-->
+  <!--                                        <xsd:simpleType>-->
+  <!--                                            <xsd:restriction>-->
+  <!--                                                <xsd:simpleType>-->
+  <!--                                                    <xsd:list>-->
+  <!--                                                        <xsd:simpleType>-->
+  <!--                                                            <xsd:restriction base="xsd:unsignedInt">-->
+  <!--                                                                <xsd:minInclusive value="0"/>-->
+  <!--                                                                <xsd:maxInclusive value="127"/>-->
+  <!--                                                            </xsd:restriction>-->
+  <!--                                                        </xsd:simpleType>-->
+  <!--                                                    </xsd:list>-->
+  <!--                                                </xsd:simpleType>-->
+  <!--                                                <xsd:minLength value="0"/>-->
+  <!--                                                <xsd:maxLength value="255"/>-->
+  <!--                                            </xsd:restriction>-->
+  <!--                                        </xsd:simpleType>-->
+  <!--                                    </xsd:element>-->
+  <!--                                    <xsd:element name="gstrq" type="Util_Com:GetStampedRq"/>-->
+  <!--                                    <xsd:element name="gstrs" type="Util_Com:GetStampedRs"/>-->
+  <!--                                    <xsd:element name="sstrq" type="Util_Com:SetStampedRq"/>-->
+  <!--                                    <xsd:element name="ginrq" type="Util_Com:GetInstanceRq"/>-->
+  <!--                                    <xsd:element name="ginrs" type="Util_Com:GetInstanceRs"/>-->
+  <!--                                    <xsd:element name="sinrq" type="Util_Com:SetInstanceRq"/>-->
+  <!--                                    <xsd:element name="charq" type="Util_Com:ChannelRq"/>-->
+  <!--                                    <xsd:element name="chars" type="Util_Com:ChannelRs"/>-->
+  <!--                                    <xsd:element name="cpprq" type="Util_Com:CopyRq"/>-->
+  <!--                                    <xsd:element name="subrq" type="Util_Com:SubRq"/>-->
+  <!--                                    <xsd:element name="addrq" type="Util_Com:AddRq"/>-->
+  <!--                                    <xsd:element name="debrq" type="Util_Com:DebitRq"/>-->
+  <!--                                    <xsd:element name="debrs" type="Util_Com:DebitRs"/>-->
+  <!--                                    <xsd:element name="crerq" type="Util_Com:CreditRq"/>-->
+  <!--                                    <xsd:element name="crers" type="Util_Com:CreditRs"/>-->
+  <!--                                    <xsd:element name="efccontext" type="Util:EFC_ContextMark"/>-->
+  <!--                                    <xsd:element name="contser" type="asn1:ContractSerialNumber"/>-->
+  <!--                                    <xsd:element name="contval" type="Util:ContractValidity"/>-->
+  <!--                                    <xsd:element name="contveh" type="asn1:LicensePlateNumber"/>-->
+  <!--                                    <xsd:element name="contauth" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="recspt" type="Util:ReceiptServicePart"/>-->
+  <!--                                    <xsd:element name="sessioncls" type="asn1:SessionClass"/>-->
+  <!--                                    <xsd:element name="recservserialno">-->
+  <!--                                        <xsd:simpleType>-->
+  <!--                                            <xsd:restriction base="xsd:unsignedInt">-->
+  <!--                                                <xsd:minInclusive value="0"/>-->
+  <!--                                                <xsd:maxInclusive value="16777215"/>-->
+  <!--                                            </xsd:restriction>-->
+  <!--                                        </xsd:simpleType>-->
+  <!--                                    </xsd:element>-->
+  <!--                                    <xsd:element name="recfinptENV" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="reccont" type="Util:ReceiptContract"/>-->
+  <!--                                    <xsd:element name="recOBUId" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="recICCId" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="rectext" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="recauth" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="recdist">-->
+  <!--                                        <xsd:simpleType>-->
+  <!--                                            <xsd:restriction base="xsd:unsignedInt">-->
+  <!--                                                <xsd:minInclusive value="0"/>-->
+  <!--                                                <xsd:maxInclusive value="16777215"/>-->
+  <!--                                            </xsd:restriction>-->
+  <!--                                        </xsd:simpleType>-->
+  <!--                                    </xsd:element>-->
+  <!--                                    <xsd:element name="vehlpn" type="asn1:LicensePlateNumber"/>-->
+  <!--                                    <xsd:element name="vehid" type="xsd:string"/>-->
+  <!--                                    <xsd:element name="vehclass" type="xsd:unsignedByte"/>-->
+  <!--                                    <xsd:element name="vehdims" type="asn1:VehicleDimensions"/>-->
+  <!--                                    <xsd:element name="vehaxles" type="Lists_2:VehicleAxles"/>-->
+  <!--                                    <xsd:element name="vehwtlims" type="asn1:VehicleWeightLimits"/>-->
+  <!--                                    <xsd:element name="vehwtladen" type="xsd:unsignedShort"/>-->
+  <!--                                    <xsd:element name="vehspchars" type="Util:VehicleSpecificCharacteristics"/>-->
+  <!--                                    <xsd:element name="vehauth" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="equOBUId" type="asn1:EquipmentOBUId"/>-->
+  <!--                                    <xsd:element name="equICCId" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="equstat">-->
+  <!--                                        <xsd:simpleType>-->
+  <!--                                            <xsd:restriction base="asn1:BitString">-->
+  <!--                                                <xsd:length value="16"/>-->
+  <!--                                            </xsd:restriction>-->
+  <!--                                        </xsd:simpleType>-->
+  <!--                                    </xsd:element>-->
+  <!--                                    <xsd:element name="dvrchars" type="asn1:DriverCharacteristics"/>-->
+  <!--                                    <xsd:element name="paymeansENV" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="paymbal" type="asn1:SignedValue"/>-->
+  <!--                                    <xsd:element name="paymunit" type="asn1:PayUnit"/>-->
+  <!--                                    <xsd:element name="paysecdata" type="xsd:hexBinary"/>-->
+  <!--                                    <xsd:element name="paymeans" type="Util:PaymentMeans"/>-->
+  <!--                                    <xsd:element name="recdata1" type="Util:ReceiptData"/>-->
+  <!--                                    <xsd:element name="recdata2" type="Util:ReceiptData"/>-->
+  <!--                                    <xsd:element name="valofcon" type="Util:ValidityOfContract"/>-->
+  <!--                                    <xsd:element name="recfinpt" type="Util:ReceiptFinancialPart"/>-->
+  <!--                                    <xsd:element name="setmmirq" type="Lists_2:SetMMIRq"/>-->
+  <!--                                    <xsd:element name="awl" type="asn1:AxleWeightLimits"/>-->
+  <!--                                    <xsd:element name="paca" type="asn1:PassengerCapacity"/>-->
+  <!--                                    <xsd:element name="eng" type="asn1:Engine"/>-->
+  <!--                                    <xsd:element name="sl" type="asn1:SoundLevel"/>-->
+  <!--                                    <xsd:element name="eev" type="Util:ExhaustEmissionValues"/>-->
+  <!--                                    <xsd:element name="dev" type="Util:DieselEmissionValues"/>-->
+  <!--                                    <xsd:element name="co2ev" type="xsd:unsignedShort"/>-->
+  <!--                                    <xsd:element name="vtd" type="xsd:unsignedInt"/>-->
+  <!--                                    <xsd:element name="tlpn" type="asn1:LicensePlateNumber"/>-->
+  <!--                                    <xsd:element name="tch" type="Util:TrailerCharacteristics"/>-->
+  <!--                                    <xsd:element name="anp" type="xsd:unsignedByte"/>-->
+  <!--                                    <xsd:element name="rfuCenISO48" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="rfuCenISO49" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="rfuCenISO50" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="rfuCenISO51" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="rfuCenISO52" type="asn1:NULL"/>-->
+  <!--                                    <xsd:element name="rfuCenISO53" type="asn1:NULL"/>-->
+  <!--                                    <xsd:any namespace="##other" processContents="lax"/>-->
+  <!--                                </xsd:choice>-->
+  <!--                            </xsd:complexType>-->
+  <!--                        </xsd:element>-->
+  <!--                    </xsd:sequence>-->
+  <!--                </xsd:complexType>-->
+  <!--            </xsd:element>-->
+  <!--        </xsd:sequence>-->
+  <!--    </xsd:complexType>-->
+
+</xsd:schema>

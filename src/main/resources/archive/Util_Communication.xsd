@@ -1,0 +1,335 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--&lt;!&ndash;this .xsd file is use to bring together the common part xsd of all request/response in viapass-->
+<!--this .xsd is base on document Back-office-communication 2.6 28-02-2018,-->
+<!--this document must resume the european standard iso-12855&ndash;&gt;-->
+<!--<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"-->
+<!--            targetNamespace="/viapass/xsd/namespace/Util_Communication"-->
+<!--            xmlns:asn1="/viapass/xsd/namespace/asn1"-->
+<!--            xmlns:Lists="/viapass/xsd/namespace/Lists"-->
+<!--            xmlns:Lists_2="/viapass/xsd/namespace/Lists_Second_Layer"-->
+<!--            xmlns:Util="/viapass/xsd/namespace/Util"-->
+<!--            elementFormDefault="unqualified">-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/asn1" schemaLocation="asn1.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Lists" schemaLocation="Lists.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Lists_Second_Layer" schemaLocation="Lists_Second_Layer.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Util" schemaLocation="Util.xsd"/>-->
+
+
+<!--    <xsd:complexType name="Get-Response">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="fill">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="asn1:BitString">-->
+<!--                        <xsd:length value="1"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="attributelist" minOccurs="0" type="Lists_2:AttributeList"/>-->
+<!--            <xsd:element name="ret" minOccurs="0" type="Lists:ReturnStatus"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="GetStampedRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="attributeIdList" type="xsd:string"/>-->
+<!--            <xsd:element name="nonce" type="xsd:hexBinary"/>-->
+<!--            <xsd:element name="keyRef">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="GetStampedRs">-->
+<!--    <xsd:sequence>-->
+<!--        <xsd:element name="attributeList" type="xsd:string"/>-->
+<!--        <xsd:element name="authenticator" type="xsd:hexBinary"/>-->
+<!--    </xsd:sequence>-->
+<!--</xsd:complexType>-->
+
+<!--    <xsd:complexType name="SetStampedRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="attributeList" type="xsd:string"/>-->
+<!--            <xsd:element name="nonce" type="xsd:hexBinary"/>-->
+<!--            <xsd:element name="keyRef">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="GetInstanceRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="posOfFirstInstance">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="posOfLastInstance">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="attributeIdList" type="xsd:string"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="GetInstanceRs">-->
+<!--        <xsd:sequence minOccurs="0" maxOccurs="127">-->
+<!--            <xsd:element name="SEQUENCE">-->
+<!--                <xsd:complexType>-->
+<!--                    <xsd:sequence>-->
+<!--                        <xsd:element name="attributeId">-->
+<!--                            <xsd:simpleType>-->
+<!--                                <xsd:restriction base="xsd:unsignedInt">-->
+<!--                                    <xsd:minInclusive value="0"/>-->
+<!--                                    <xsd:maxInclusive value="127"/>-->
+<!--                                </xsd:restriction>-->
+<!--                            </xsd:simpleType>-->
+<!--                        </xsd:element>-->
+<!--                        <xsd:element name="attributeValues" type="xsd:string"/>-->
+<!--                    </xsd:sequence>-->
+<!--                </xsd:complexType>-->
+<!--            </xsd:element>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="SetInstanceRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="posOfInstance">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="attribute" type="xsd:string"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="ChannelRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="channelId" type="asn1:ChannelId"/>-->
+<!--            <xsd:element name="apdu" type="xsd:hexBinary"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="ChannelRs">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="channelId" type="asn1:ChannelId"/>-->
+<!--            <xsd:element name="apdu" type="xsd:hexBinary"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="CopyRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="destinationEID">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedInt">-->
+<!--                        <xsd:minInclusive value="0"/>-->
+<!--                        <xsd:maxInclusive value="127"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="attributeIdList" type="xsd:string"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="SubRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="attributeId">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedInt">-->
+<!--                        <xsd:minInclusive value="0"/>-->
+<!--                        <xsd:maxInclusive value="127"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="value" type="xsd:integer"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="AddRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="attributeId">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedInt">-->
+<!--                        <xsd:minInclusive value="0"/>-->
+<!--                        <xsd:maxInclusive value="127"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="value" type="xsd:integer"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="DebitRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="debitPaymentFee" type="asn1:PaymentFee"/>-->
+<!--            <xsd:element name="nonce" type="xsd:hexBinary"/>-->
+<!--            <xsd:element name="keyRef">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="DebitRs">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="debitResult" type="asn1:ResultFin"/>-->
+<!--            <xsd:element name="debitAuthenticator" type="xsd:hexBinary"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="CreditRq">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="refund" type="asn1:PaymentFee"/>-->
+<!--            <xsd:element name="nonce" type="xsd:hexBinary"/>-->
+<!--            <xsd:element name="key">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="CreditRs">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="creditResult" type="asn1:ResultFin"/>-->
+<!--            <xsd:element name="creditAuthenticator" type="xsd:hexBinary"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Get-Request">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="fill">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="asn1:BitString">-->
+<!--                        <xsd:length value="1"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="accessCredentials" minOccurs="0">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:hexBinary">-->
+<!--                        <xsd:minLength value="0"/>-->
+<!--                        <xsd:maxLength value="127"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="attrIdList" minOccurs="0" type="asn1:AttributeIdList"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Set-Response">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="fill">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="asn1:BitString">-->
+<!--                        <xsd:length value="2"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="ret" minOccurs="0" type="Lists:ReturnStatus"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Set-Request">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="fill">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="asn1:BitString">-->
+<!--                        <xsd:length value="1"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="mode" type="xsd:boolean"/>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="accessCredentials" minOccurs="0">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:hexBinary">-->
+<!--                        <xsd:minLength value="0"/>-->
+<!--                        <xsd:maxLength value="127"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="attrList" type="Lists_2:AttributeList"/>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Event-Report-Response">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="fill">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="asn1:BitString">-->
+<!--                        <xsd:length value="2"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="ret" minOccurs="0" type="Lists:ReturnStatus"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Event-Report-Request">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="mode" type="xsd:boolean"/>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="eventType" type="Util:EventType"/>-->
+<!--            <xsd:element name="accessCredentials" minOccurs="0">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:hexBinary">-->
+<!--                        <xsd:minLength value="0"/>-->
+<!--                        <xsd:maxLength value="127"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="eventParameter" minOccurs="0" type="Lists:Container"/>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Action-Response">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="fill">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="asn1:BitString">-->
+<!--                        <xsd:length value="1"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="responseParameter" minOccurs="0" type="Lists:Container"/>-->
+<!--            <xsd:element name="ret" minOccurs="0" type="Lists:ReturnStatus"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Action-Request">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="mode" type="xsd:boolean"/>-->
+<!--            <xsd:element name="eid" type="asn1:Dsrc-EID"/>-->
+<!--            <xsd:element name="actionType" type="asn1:ActionType"/>-->
+<!--            <xsd:element name="accessCredentials" minOccurs="0">-->
+<!--                <xsd:simpleType>-->
+<!--                    <xsd:restriction base="xsd:hexBinary">-->
+<!--                        <xsd:minLength value="0"/>-->
+<!--                        <xsd:maxLength value="127"/>-->
+<!--                    </xsd:restriction>-->
+<!--                </xsd:simpleType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="actionParameter" minOccurs="0" type="Lists:Container"/>-->
+<!--            <xsd:element name="iid" minOccurs="0" type="asn1:Dsrc-EID"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--</xsd:schema>-->

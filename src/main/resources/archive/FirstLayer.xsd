@@ -1,0 +1,24 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--&lt;!&ndash;this .xsd file is use to bring together first layer xsd of all request/response in viapass-->
+<!--this is use to separate the complexeType of xsd-->
+<!--this .xsd is base on document Back-office-communication 2.6 28-02-2018,-->
+<!--this document must resume the european standard iso-12855&ndash;&gt;-->
+<!--<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"-->
+<!--            targetNamespace="/viapass/xsd/namespace/FirstLayer"-->
+<!--            xmlns:asn1="/viapass/xsd/namespace/asn1"-->
+<!--            xmlns:Common="/viapass/xsd/namespace/Common"-->
+<!--            xmlns:Util="/viapass/xsd/namespace/Util"-->
+<!--            xmlns:Lists="/viapass/xsd/namespace/Lists"-->
+<!--            xmlns:Lists_2="/viapass/xsd/namespace/Lists_Second_Layer"-->
+<!--            elementFormDefault="unqualified">-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/asn1" schemaLocation="asn1.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Common" schemaLocation="Common.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Util" schemaLocation="Util.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Lists" schemaLocation="Lists.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Lists_Second_Layer" schemaLocation="Lists_Second_Layer.xsd"/>-->
+
+
+
+
+
+<!--</xsd:schema>-->

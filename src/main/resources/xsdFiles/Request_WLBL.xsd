@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!--this .xsd file is use to validate the Request_WLBL in viapass
+this .xsd is base on document Back-office-communication 2.6 28-02-2018,
+this document must resume the european standard iso-12855-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Common="/viapass/xsd/namespace/Common" xmlns:asn1="/viapass/xsd/namespace/asn1" elementFormDefault="qualified">
+
+    <xsd:import namespace="/viapass/xsd/namespace/Common" schemaLocation="Common.xsd"/>
+    <xsd:import namespace="/viapass/xsd/namespace/asn1" schemaLocation="asn1.xsd"/>
+
+    <xsd:element name="InfoExchange">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="infoExchangeContent">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="apci" type="Common:apci"/>
+                            <xsd:element name="adu">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="exceptionListADU">
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                    <xsd:element name="exceptionListversion" type="xsd:integer"/>
+                                                    <xsd:element name="exceptionListType" type="asn1:ExceptionListType"/>
+                                                    <xsd:element name="exceptionValidityStart" type="asn1:GeneralizedTime" minOccurs="0"/>
+                                                    <xsd:element name="exceptionValidityEnd" type="asn1:GeneralizedTime" minOccurs="0"/>
+                                                    <xsd:element name="exceptionListEntries">
+                                                        <xsd:complexType>
+                                                            <xsd:sequence>
+                                                                <xsd:element name="ExceptionListEntry" minOccurs="0" maxOccurs="100000">
+                                                                    <xsd:complexType>
+                                                                        <xsd:sequence>
+                                                                            <xsd:element name="blockType" type="asn1:ExceptionListBlockType"/>
+                                                                            <xsd:element name="reasonCode" type="asn1:ExceptionListReasonType"/>
+                                                                            <xsd:element name="dateAndTime" type="asn1:GeneralizedTime"/>
+                                                                        </xsd:sequence>
+                                                                    </xsd:complexType>
+                                                                </xsd:element>
+                                                            </xsd:sequence>
+                                                        </xsd:complexType>
+                                                    </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="infoExchangeAuthenticator" type="asn1:BitString" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

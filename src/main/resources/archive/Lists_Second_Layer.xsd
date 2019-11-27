@@ -1,0 +1,165 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--&lt;!&ndash;this .xsd file is use to bring together all enumerations and choices xsd of all request/response in viapass-->
+<!--this .xsd is base on document Back-office-communication 2.6 28-02-2018,-->
+<!--this document must resume the european standard iso-12855&ndash;&gt;-->
+<!--<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"-->
+<!--            targetNamespace="/viapass/xsd/namespace/Lists_Second_Layer"-->
+<!--            xmlns:Util="/viapass/xsd/namespace/Util"-->
+<!--            xmlns:Util_Com="/viapass/xsd/namespace/Util_Communication"-->
+<!--            xmlns:asn1="/viapass/xsd/namespace/asn1"-->
+<!--            elementFormDefault="unqualified">-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/asn1" schemaLocation="asn1.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Util" schemaLocation="Util.xsd"/>-->
+<!--    <xsd:import namespace="/viapass/xsd/namespace/Util_Communication" schemaLocation="Util_Communication.xsd"/>-->
+
+<!--    <xsd:complexType name="T-APDUs">-->
+<!--        <xsd:choice>-->
+<!--            <xsd:element name="action-request" type="Util_Com:Action-Request"/>-->
+<!--            <xsd:element name="action-response" type="Util_Com:Action-Response"/>-->
+<!--            <xsd:element name="event-report-request" type="Util_Com:Event-Report-Request"/>-->
+<!--            <xsd:element name="event-report-response" type="Util_Com:Event-Report-Response"/>-->
+<!--            <xsd:element name="set-request" type="Util_Com:Set-Request"/>-->
+<!--            <xsd:element name="set-response" type="Util_Com:Set-Response"/>-->
+<!--            <xsd:element name="get-request" type="Util_Com:Get-Request"/>-->
+<!--            <xsd:element name="get-response" type="Util_Com:Get-Response"/>-->
+<!--            <xsd:element name="initialisation-request" type="Util:BST"/>-->
+<!--            <xsd:element name="initialisation-response" type="Util:VST"/>-->
+<!--        </xsd:choice>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:simpleType name="DSRCApplicationEntityID">-->
+<!--        <xsd:union>-->
+<!--            <xsd:simpleType>-->
+<!--                <xsd:restriction base="xsd:token">-->
+<!--                    <xsd:enumeration value="system"/>-->
+<!--                    <xsd:enumeration value="electronic-fee-collection"/>-->
+<!--                    <xsd:enumeration value="freight-fleet-management"/>-->
+<!--                    <xsd:enumeration value="public-transport"/>-->
+<!--                    <xsd:enumeration value="traffic-traveller-information"/>-->
+<!--                    <xsd:enumeration value="traffic-control"/>-->
+<!--                    <xsd:enumeration value="parking-management"/>-->
+<!--                    <xsd:enumeration value="geographic-road-database"/>-->
+<!--                    <xsd:enumeration value="medium-range-preinformation"/>-->
+<!--                    <xsd:enumeration value="man-machine-interface"/>-->
+<!--                    <xsd:enumeration value="intersystem-interface"/>-->
+<!--                    <xsd:enumeration value="automatic-vehicle-identification"/>-->
+<!--                    <xsd:enumeration value="emergency-warning"/>-->
+<!--                    <xsd:enumeration value="private"/>-->
+<!--                    <xsd:enumeration value="multi-purpose-payment"/>-->
+<!--                    <xsd:enumeration value="dsrc-resource-manager"/>-->
+<!--                    <xsd:enumeration value="after-theft-systems"/>-->
+<!--                </xsd:restriction>-->
+<!--            </xsd:simpleType>-->
+<!--            <xsd:simpleType>-->
+<!--                <xsd:restriction base="xsd:unsignedInt">-->
+<!--                    <xsd:minInclusive value="0"/>-->
+<!--                    <xsd:maxInclusive value="31"/>-->
+<!--                </xsd:restriction>-->
+<!--            </xsd:simpleType>-->
+<!--        </xsd:union>-->
+<!--    </xsd:simpleType>-->
+
+<!--    <xsd:complexType name="AttributeList">-->
+<!--        <xsd:sequence minOccurs="0" maxOccurs="127">-->
+<!--            <xsd:element name="Attributes" type="Util:Attributes"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="BroadcastPool">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="directoryvalue">-->
+<!--                <xsd:complexType>-->
+<!--                    <xsd:sequence minOccurs="0" maxOccurs="127">-->
+<!--                        <xsd:element name="FileName" type="Util:FileName"/>-->
+<!--                    </xsd:sequence>-->
+<!--                </xsd:complexType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="content">-->
+<!--                <xsd:complexType>-->
+<!--                    <xsd:sequence minOccurs="0" maxOccurs="127">-->
+<!--                        <xsd:element name="File" type="Util:File"/>-->
+<!--                    </xsd:sequence>-->
+<!--                </xsd:complexType>-->
+<!--            </xsd:element>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="Directory">-->
+<!--        <xsd:sequence minOccurs="0" maxOccurs="127">-->
+<!--            <xsd:element name="FileName" type="Util:FileName"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="VehicleAxles">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="vehicleFirstAxleHeight" type="xsd:unsignedByte"/>-->
+<!--            <xsd:element name="vehicleAxlesNumber">-->
+<!--                <xsd:complexType>-->
+<!--                    <xsd:sequence>-->
+<!--                        <xsd:element name="tyreType">-->
+<!--                            <xsd:simpleType>-->
+<!--                                <xsd:restriction base="xsd:token">-->
+<!--                                    <xsd:enumeration value="notSpecified"/>-->
+<!--                                    <xsd:enumeration value="singleTyre"/>-->
+<!--                                    <xsd:enumeration value="dualTyres"/>-->
+<!--                                    <xsd:enumeration value="reservedForUse"/>-->
+<!--                                </xsd:restriction>-->
+<!--                            </xsd:simpleType>-->
+<!--                        </xsd:element>-->
+<!--                        <xsd:element name="numberOfAxles">-->
+<!--                            <xsd:complexType>-->
+<!--                                <xsd:sequence>-->
+<!--                                    <xsd:element name="trailerAxles" type="asn1:TrailerAxles"/>-->
+<!--                                    <xsd:element name="tractorAxles" type="asn1:TractorAxles"/>-->
+<!--                                </xsd:sequence>-->
+<!--                            </xsd:complexType>-->
+<!--                        </xsd:element>-->
+<!--                    </xsd:sequence>-->
+<!--                </xsd:complexType>-->
+<!--            </xsd:element>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:simpleType name="SetMMIRq">-->
+<!--        <xsd:union>-->
+<!--            <xsd:simpleType>-->
+<!--                <xsd:restriction base="xsd:token">-->
+<!--                    <xsd:enumeration value="ok"/>-->
+<!--                    <xsd:enumeration value="nok"/>-->
+<!--                    <xsd:enumeration value="contactOperator"/>-->
+<!--                    <xsd:enumeration value="noSignalling"/>-->
+<!--                </xsd:restriction>-->
+<!--            </xsd:simpleType>-->
+<!--            <xsd:simpleType>-->
+<!--                <xsd:restriction base="xsd:unsignedByte"/>-->
+<!--            </xsd:simpleType>-->
+<!--        </xsd:union>-->
+<!--    </xsd:simpleType>-->
+
+<!--    <xsd:complexType name="ListOfChargeObjects">-->
+<!--        <xsd:sequence minOccurs="1" maxOccurs="100">-->
+<!--            <xsd:element name="DetectedChargeObject" type="Util:DetectedChargeObject"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="ListOfCCCAttributes">-->
+<!--        <xsd:sequence minOccurs="0" maxOccurs="unbounded">&lt;!&ndash;ToDO Check with norme ISO unbounded?&ndash;&gt;-->
+<!--            <xsd:element name="CCCAttributes" type="Util:CCCAttributes"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--    <xsd:complexType name="ListOfRawUsageData">-->
+<!--        <xsd:sequence>-->
+<!--            <xsd:element name="rawDataList">-->
+<!--                <xsd:complexType>-->
+<!--                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">-->
+<!--                        <xsd:element name="MeasuredRawData" type="Util:MeasuredRawData"/>-->
+<!--                    </xsd:sequence>-->
+<!--                </xsd:complexType>-->
+<!--            </xsd:element>-->
+<!--            <xsd:element name="vehicleDescription" minOccurs="0" type="Util:VehicleDescription"/>-->
+<!--            <xsd:element name="tariffClass" minOccurs="0" type="asn1:TariffClass"/>-->
+<!--        </xsd:sequence>-->
+<!--    </xsd:complexType>-->
+
+<!--</xsd:schema>-->

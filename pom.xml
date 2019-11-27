@@ -101,6 +101,12 @@
 			<artifactId>camel-core-starter</artifactId>
 			<version>3.0.0-RC3</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-validator-starter -->
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-validator-starter</artifactId>
+			<version>3.0.0-RC3</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.camel/camel-test-spring -->
 		<dependency>
 			<groupId>org.apache.camel</groupId>
