@@ -2,53 +2,53 @@
     <infoExchangeContent>
         <apci>
             <messageOriginator>
-                <countryCode>1001110000</countryCode>
-                <providerIdentifier>35</providerIdentifier>
+                <countryCode>1001010000</countryCode>
+                <providerIdentifier>123</providerIdentifier>
             </messageOriginator>
             <informationSenderID>
-                <countryCode>1001110000</countryCode>
-                <providerIdentifier>35</providerIdentifier>
+                <countryCode>1001010000</countryCode>
+                <providerIdentifier>123</providerIdentifier>
             </informationSenderID>
             <informationrecipientID>
-                <countryCode>1001110000</countryCode>
-                <providerIdentifier>35</providerIdentifier>
+                <countryCode>1001010000</countryCode>
+                <providerIdentifier>321</providerIdentifier>
             </informationrecipientID>
-            <contextID>604</contextID>
-            <messageIdentifier>58967458652</messageIdentifier>
+            <contextID>1</contextID>
+            <messageIdentifier>140731109369900100003</messageIdentifier>
             <aduType>
                 <exceptionListADU/>
             </aduType>
             <numberofStructs>1</numberofStructs>
-            <messageDate>20160215141800Z</messageDate>
+            <messageDate>20140806074453Z</messageDate>
         </apci>
         <adu>
             <exceptionListADU>
-                <exceptionListversion>698758954445</exceptionListversion>
+                <exceptionListversion>1</exceptionListversion>
                 <exceptionListType>1</exceptionListType>
                 <exceptionListEntries>
                     <ExceptionListEntry>
                         <userId>
-                            <pan>01020304050607080901</pan>
-                            <contractSerialNumber>100</contractSerialNumber>
+                            <pan>0000000000000000001F</pan>
+                            <contractSerialNumber>12345</contractSerialNumber>
                             <licensePlateNumber>
-                                <countryCode>1001110000</countryCode>
+                                <countryCode>1001010200</countryCode>
                                 <alphabetIndicator>
                                     latinAlphabetNo1
                                 </alphabetIndicator>
-                                <licensePlateNumber>0102030405060708</licensePlateNumber>
+                                <licensePlateNumber>0E534B204B20323531320000000000</licensePlateNumber>
                             </licensePlateNumber>
                             <obeID>
-                                <manufacturerId>25</manufacturerId>
-                                <equipmentOBUId>01020304</equipmentOBUId>
+                                <manufacturerId>54321</manufacturerId>
+                                <equipmentOBUId>0442473031</equipmentOBUId>
                             </obeID>
                         </userId>
                         <blockType>
                             <allApplications/>
                         </blockType>
                         <reasonCode>
-                            <contractHolderInsolvent/>
+                            <obeIsStolen/>
                         </reasonCode>
-                        <dateAndTime>20160215141800Z</dateAndTime>
+                        <dateAndTime>20140601121122Z</dateAndTime>
                     </ExceptionListEntry>
                 </exceptionListEntries>
             </exceptionListADU>

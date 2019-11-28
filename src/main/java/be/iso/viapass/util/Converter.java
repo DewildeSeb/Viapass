@@ -37,7 +37,6 @@ public interface Converter {
         {
                 //Parser that produces DOM object trees from XML content
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-
                 //API to obtain DOM Document instance
                 DocumentBuilder builder = null;
                 try

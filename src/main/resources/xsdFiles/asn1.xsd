@@ -48,6 +48,7 @@ this document must resume the european standard iso-12855-->
     <xsd:simpleType name="CountryCode">
         <xsd:restriction base="xsd:string">
             <xsd:pattern value="[0-1]{0,}"/>
+            <xsd:minLength value="10"/>
             <xsd:maxLength value="10"/>
         </xsd:restriction>
     </xsd:simpleType>

@@ -36,7 +36,22 @@ public class ISOValidationServiceImpl implements ISOValidationService {
                         Validator validator = schema.newValidator();
                         validator.validate(new StreamSource(ConstantsISO.VEHICLE_XML_PATH));
                 } catch (IOException | SAXException e) {
-                        System.out.println("Exception: " + e.getMessage());
+                        LOG.error("Exception: " + e.getMessage());
+                        return false;
+                }
+                return true;
+        }
+
+        @Override
+        public Boolean validateRequestISOFromXMLString(String xmlString, String xsdPath) {
+                try {
+                        SchemaFactory factory =
+                                SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+                        Schema schema = factory.newSchema(new File(xsdPath));
+                        Validator validator = schema.newValidator();
+                        validator.validate(new StreamSource(new StringReader(xmlString)));
+                } catch (IOException | SAXException e) {
+                        LOG.error("Exception: " + e.getMessage());
                         return false;
                 }
                 return true;
@@ -51,7 +66,7 @@ public class ISOValidationServiceImpl implements ISOValidationService {
                         Validator validator = schema.newValidator();
                         validator.validate(new StreamSource(new File(xmlPath)));
                 } catch (IOException | SAXException e) {
-                        System.out.println("Exception: " + e.getMessage());
+                        LOG.error("Exception: " + e.getMessage());
                         return false;
                 }
                 return true;

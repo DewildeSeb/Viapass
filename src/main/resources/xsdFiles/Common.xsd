@@ -67,7 +67,7 @@ this document must resume the european standard iso-12855-->
                     <xsd:sequence>
                         <xsd:element name="countryCode" type="asn1:CountryCode"></xsd:element>
                         <xsd:element name="alphabetIndicator" type="asn1:AlphabetIndicator"></xsd:element>
-                        <xsd:element name="licencePlateNumber" type="asn1:OctetString"></xsd:element>
+                        <xsd:element name="licensePlateNumber" type="asn1:OctetString"></xsd:element>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>

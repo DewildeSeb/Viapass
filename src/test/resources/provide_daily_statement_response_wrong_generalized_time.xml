@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<InfoExchange>
+    <infoExchangeContent>
+        <apci>
+            <messageOriginator>
+                <countryCode>1001110000</countryCode>
+                <providerIdentifier>35</providerIdentifier>
+            </messageOriginator>
+            <informationSenderID>
+                <countryCode>1001110000</countryCode>
+                <providerIdentifier>35</providerIdentifier>
+            </informationSenderID>
+            <informationrecipientID>
+                <countryCode>1001110000</countryCode>
+                <providerIdentifier>35</providerIdentifier>
+            </informationrecipientID>
+            <contextID>0</contextID>
+            <messageIdentifier>-3288132030096945306</messageIdentifier>
+            <relatedMessageId>
+                <messageOriginator>
+                    <countryCode>1001110000</countryCode>
+                    <providerIdentifier>35</providerIdentifier>
+                </messageOriginator>
+                <messageIdentifier>-6738555241948594712</messageIdentifier>
+            </relatedMessageId>
+            <aduType>
+                <ackADU/>
+            </aduType>
+            <numberofStructs>1</numberofStructs>
+            <messageDate>20151129151334</messageDate>
+        </apci>
+        <adu>
+            <ackADU>
+                <aDUIdentifier>-2951028713003195519</aDUIdentifier>
+                <numberOfADUStructs/>
+                <ackCode>
+                    <aDUNotOK/>
+                </ackCode>
+                <aduCode/>
+            </ackADU>
+        </adu>
+    </infoExchangeContent>
+    <infoExchangeAuthenticator/>
+</InfoExchange>

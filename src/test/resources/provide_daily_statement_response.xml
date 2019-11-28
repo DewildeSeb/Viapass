@@ -3,22 +3,22 @@
     <infoExchangeContent>
         <apci>
             <messageOriginator>
-                <countryCode>10011100 00</countryCode>
+                <countryCode>1001110000</countryCode>
                 <providerIdentifier>35</providerIdentifier>
             </messageOriginator>
             <informationSenderID>
-                <countryCode>10011100 00</countryCode>
+                <countryCode>1001110000</countryCode>
                 <providerIdentifier>35</providerIdentifier>
             </informationSenderID>
             <informationrecipientID>
-                <countryCode>10011100 00</countryCode>
+                <countryCode>1001110000</countryCode>
                 <providerIdentifier>35</providerIdentifier>
             </informationrecipientID>
             <contextID>0</contextID>
             <messageIdentifier>-3288132030096945306</messageIdentifier>
             <relatedMessageId>
                 <messageOriginator>
-                    <countryCode>10011100 00</countryCode>
+                    <countryCode>1001110000</countryCode>
                     <providerIdentifier>35</providerIdentifier>
                 </messageOriginator>
                 <messageIdentifier>-6738555241948594712</messageIdentifier>
@@ -27,7 +27,7 @@
                 <ackADU/>
             </aduType>
             <numberofStructs>1</numberofStructs>
-            <messageDate>20151129151334</messageDate>
+            <messageDate>20151129151334Z</messageDate>
         </apci>
         <adu>
             <ackADU>

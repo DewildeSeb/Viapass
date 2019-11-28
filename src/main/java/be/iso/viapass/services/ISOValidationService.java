@@ -10,6 +10,8 @@ public interface ISOValidationService {
 
         Boolean validateRequestISO(String xml);
 
+        Boolean validateRequestISOFromXMLString(String xml, String xsd);
+
         Boolean validateRequestISO(String xml, String xsd);
 
         String findADUTypeInRequestISOPath(String xmlPath) throws XPathExpressionException, IOException, SAXException, ParserConfigurationException;

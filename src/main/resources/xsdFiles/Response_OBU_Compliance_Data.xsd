@@ -39,9 +39,9 @@ this document must resume the european standard iso-12855-->
                                                     <xsd:element name="gnssTollDeclaration">
                                                         <xsd:complexType>
                                                             <xsd:sequence>
-                                                                <xsd:element name="ChargeReport">
+                                                                <xsd:element name="ChargeReport" minOccurs="0" maxOccurs="unbounded">
                                                                     <xsd:complexType>
-                                                                        <xsd:sequence minOccurs="0" maxOccurs="10000">
+                                                                        <xsd:sequence>
                                                                             <xsd:element name="obeId">
                                                                                 <xsd:complexType>
                                                                                     <xsd:sequence>

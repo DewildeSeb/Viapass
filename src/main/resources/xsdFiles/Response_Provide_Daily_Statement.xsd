@@ -26,7 +26,7 @@ this document must resume the european standard iso-12855-->
                                                     <xsd:element name="ackCode">
                                                         <xsd:complexType>
                                                             <xsd:sequence>
-                                                                <xsd:element name="aDUNotOK" type="xsd:string"/>
+                                                                <xsd:element name="aDUNotOK" type="xsd:string" minOccurs="0"/>
                                                             </xsd:sequence>
                                                         </xsd:complexType>
                                                     </xsd:element>

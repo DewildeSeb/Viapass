@@ -41,7 +41,7 @@ this document must resume the european standard iso-12855-->
                                                             <xsd:sequence>
                                                                 <xsd:element name="ChargeReport">
                                                                     <xsd:complexType>
-                                                                        <xsd:sequence maxOccurs="100000">
+                                                                        <xsd:sequence maxOccurs="unbounded">
                                                                             <xsd:element name="obeId">
                                                                                 <xsd:complexType>
                                                                                     <xsd:sequence>
