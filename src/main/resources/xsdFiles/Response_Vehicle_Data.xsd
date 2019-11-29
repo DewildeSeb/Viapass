@@ -23,7 +23,7 @@ this document must resume the european standard iso-12855-->
                                                 <xsd:sequence>
                                                     <xsd:element name="provideUserDetails" minOccurs="0"/>
                                                     <xsd:element name="originaluserIdRequest" minOccurs="1" type="Common:userID"/>
-                                                    <xsd:element name="userID" minOccurs="1" type="Common:userID"/>
+                                                    <xsd:element name="userId" minOccurs="1" type="Common:userID"/>
                                                     <xsd:element name="statusFlag" minOccurs="0" maxOccurs="1" type="asn1:UserStatus"/>
                                                     <xsd:element name="listOfUserParameters" minOccurs="0" maxOccurs="1">
                                                         <xsd:complexType>

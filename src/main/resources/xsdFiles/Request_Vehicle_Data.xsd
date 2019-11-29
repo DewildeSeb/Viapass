@@ -24,7 +24,7 @@ this document must resume the european standard iso-12855-->
                                                     <xsd:element name="RetrieveUserDetails" maxOccurs="unbounded">
                                                         <xsd:complexType>
                                                             <xsd:sequence>
-                                                                <xsd:element name="userID" type="Common:userID"/>
+                                                                <xsd:element name="userId" type="Common:userID"/>
                                                                 <xsd:element name="listOfParametersRequested" type="asn1:UserParameterRequest"/>
                                                                 <xsd:element name="userDetailsRequestReason" type="asn1:UserDetailsRequestReason" minOccurs="0"/>
                                                             </xsd:sequence>

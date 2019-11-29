@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--this .xsd file is use to define each type of element in all request/response in viapass
+<?xml version="1.0" encoding="UTF-8"?><!--this .xsd file is use to define each type of element in all request/response in viapass
 this .xsd is base on document Back-office-communication 2.6 28-02-2018,
 this document must resume the european standard iso-12855-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-            targetNamespace="/viapass/xsd/namespace/asn1"
-            elementFormDefault="unqualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="/viapass/xsd/namespace/asn1" elementFormDefault="unqualified">
 
     <xsd:simpleType name="BitString">
         <xsd:restriction base="xsd:string">
@@ -828,40 +825,47 @@ this document must resume the european standard iso-12855-->
             </xsd:simpleType>
         </xsd:union>
     </xsd:simpleType>
-    <xsd:simpleType name="UserParameterRequest">
-        <xsd:union>
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:token">
-                    <xsd:enumeration value="userPostalAddress"/>
-                    <xsd:enumeration value="contractSerialNumber"/>
-                    <xsd:enumeration value="contractValidity"/>
-                    <xsd:enumeration value="driverCharacteristics"/>
-                    <xsd:enumeration value="eFC-ContextMark"/>
-                    <xsd:enumeration value="environmentalCharacteristics"/>
-                    <xsd:enumeration value="engineCharacteristics"/>
-                    <xsd:enumeration value="equipmentOBUId"/>
-                    <xsd:enumeration value="equipmentStatus"/>
-                    <xsd:enumeration value="paymentMeans"/>
-                    <xsd:enumeration value="paymentMeansBalance"/>
-                    <xsd:enumeration value="paymentMeansUnit"/>
-                    <xsd:enumeration value="personalAccountNumber"/>
-                    <xsd:enumeration value="provider"/>
-                    <xsd:enumeration value="receiptContract"/>
-                    <xsd:enumeration value="validityOfContract"/>
-                    <xsd:enumeration value="vehicleAuthenticator"/>
-                    <xsd:enumeration value="vehicleClass"/>
-                    <xsd:enumeration value="vehicleDimensions"/>
-                    <xsd:enumeration value="vehicleLicencePlateNumber"/>
-                    <xsd:enumeration value="vehicleIdentificationNumber"/>
-                    <xsd:enumeration value="vehicleWeightLaden"/>
-                    <xsd:enumeration value="vehicleWeightLimits"/>
-                </xsd:restriction>
-            </xsd:simpleType>
-            <xsd:simpleType>
-                <xsd:restriction base="xsd:integer"/>
-            </xsd:simpleType>
-        </xsd:union>
-    </xsd:simpleType>
+    <xsd:complexType name="UserParameterRequest">
+        <xsd:sequence>
+            <xsd:element name="UserParameterRequest">
+                <xsd:simpleType>
+                    <xsd:union>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:token">
+                                <xsd:enumeration value="0"/><!--                    <xsd:enumeration value="userPostalAddress"/>-->
+                                <xsd:enumeration value="1"/><!--                    <xsd:enumeration value="contractSerialNumber"/>-->
+                                <xsd:enumeration value="2"/><!--                    <xsd:enumeration value="contractValidity"/>-->
+                                <xsd:enumeration value="3"/><!--                    <xsd:enumeration value="driverCharacteristics"/>-->
+                                <xsd:enumeration value="4"/><!--                    <xsd:enumeration value="eFC-ContextMark"/>-->
+                                <xsd:enumeration value="5"/><!--                    <xsd:enumeration value="environmentalCharacteristics"/>-->
+                                <xsd:enumeration value="6"/><!--                    <xsd:enumeration value="engineCharacteristics"/>-->
+                                <xsd:enumeration value="7"/><!--                    <xsd:enumeration value="equipmentOBUId"/>-->
+                                <xsd:enumeration value="8"/><!--                    <xsd:enumeration value="equipmentStatus"/>-->
+                                <xsd:enumeration value="9"/><!--                    <xsd:enumeration value="paymentMeans"/>-->
+                                <xsd:enumeration value="10"/><!--                    <xsd:enumeration value="paymentMeansBalance"/>-->
+                                <xsd:enumeration value="11"/><!--                    <xsd:enumeration value="paymentMeansUnit"/>-->
+                                <xsd:enumeration value="12"/><!--                    <xsd:enumeration value="personalAccountNumber"/>-->
+                                <xsd:enumeration value="13"/><!--                    <xsd:enumeration value="provider"/>-->
+                                <xsd:enumeration value="14"/><!--                    <xsd:enumeration value="receiptContract"/>-->
+                                <xsd:enumeration value="15"/><!--                    <xsd:enumeration value="validityOfContract"/>-->
+                                <xsd:enumeration value="16"/><!--                    <xsd:enumeration value="vehicleAuthenticator"/>-->
+                                <xsd:enumeration value="17"/><!--                    <xsd:enumeration value="vehicleClass"/>-->
+                                <xsd:enumeration value="18"/><!--                    <xsd:enumeration value="vehicleDimensions"/>-->
+                                <xsd:enumeration value="19"/><!--                    <xsd:enumeration value="vehicleLicencePlateNumber"/>-->
+                                <xsd:enumeration value="20"/><!--                    <xsd:enumeration value="vehicleIdentificationNumber"/>-->
+                                <xsd:enumeration value="21"/><!--                    <xsd:enumeration value="vehicleWeightLaden"/>-->
+                                <xsd:enumeration value="22"/><!--                    <xsd:enumeration value="vehicleWeightLimits"/>-->
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:integer"/>
+                        </xsd:simpleType>
+                    </xsd:union>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
 
     <xsd:complexType name="CopValue">
         <xsd:choice>

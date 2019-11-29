@@ -24,7 +24,7 @@ this document must resume the european standard iso-12855-->
                                                         <xsd:complexType>
                                                             <xsd:sequence>
                                                                 <xsd:element name="originaluserIdRequest" type="Common:userID"/>
-                                                                <xsd:element name="userID" type="Common:userID"/>
+                                                                <xsd:element name="userId" type="Common:userID"/>
                                                                 <xsd:element name="statusFlag" minOccurs="0" type="asn1:UserStatus"/>
                                                                 <xsd:element name="listOfUserParameters" minOccurs="0">
                                                                     <xsd:complexType>

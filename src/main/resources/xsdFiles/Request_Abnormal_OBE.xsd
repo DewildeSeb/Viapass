@@ -23,7 +23,7 @@ this document must resume the european standard iso-12855-->
                                                 <xsd:sequence>
                                                     <xsd:element name="userId" type="Common:userID"/>
                                                     <xsd:element name="dateAndTime" type="asn1:GeneralizedTime"/>
-                                                    <xsd:element name="AbnormalOBEReasonCode" type="asn1:AbnormalOBEReasonCode"/>
+                                                    <xsd:element name="abnormalOBEReasonCode" type="asn1:AbnormalOBEReasonCode"/>
                                                 </xsd:sequence>
                                             </xsd:complexType>
                                         </xsd:element>
