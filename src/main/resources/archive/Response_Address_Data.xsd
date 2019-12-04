@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--this .xsd file is use to validate the Response_Address_Data in viapass
+this .xsd is base on document Back-office-communication 2.6 28-02-2018,
+this document must resume the european standard iso-12855-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Common="CommonNamespace" xmlns:asn1="asn1Namespace" elementFormDefault="qualified">
+
+    <xsd:import namespace="CommonNamespace" schemaLocation="../xsdFiles/Common.xsd"/>
+    <xsd:import namespace="asn1Namespace" schemaLocation="../xsdFiles/asn1.xsd"/>
+
+    <xsd:element name="InfoExchange">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="infoExchangeContent">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="apci" type="Common:apci"/>
+                            <xsd:element name="adu">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="infoExchangeAuthenticator" type="asn1:BitString" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

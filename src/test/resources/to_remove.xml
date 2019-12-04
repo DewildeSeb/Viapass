@@ -33,7 +33,7 @@
                             <licensePlateNumber>
                                 <countryCode>1001110000</countryCode>
                                 <alphabetIndicator>
-                                    latinAlphabetNo1
+                                    <latinAlphabetNo1/>
                                 </alphabetIndicator>
                                 <licensePlateNumber>0102030405060708</licensePlateNumber>
                             </licensePlateNumber>

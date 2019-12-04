@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--this .xsd file is use to validate the Response_Address_Data in viapass
+<!--this .xsd file is use to validate the Response_Vehicle_Data in viapass
 this .xsd is base on document Back-office-communication 2.6 28-02-2018,
 this document must resume the european standard iso-12855-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Common="/viapass/xsd/namespace/Common" xmlns:asn1="/viapass/xsd/namespace/asn1" elementFormDefault="qualified">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Common="CommonNamespace"
+            xmlns:asn1="asn1Namespace" elementFormDefault="qualified">
 
-    <xsd:import namespace="/viapass/xsd/namespace/Common" schemaLocation="Common.xsd"/>
-    <xsd:import namespace="/viapass/xsd/namespace/asn1" schemaLocation="asn1.xsd"/>
+    <xsd:import namespace="CommonNamespace" schemaLocation="../xsdFiles/Common.xsd"/>
+    <xsd:import namespace="asn1Namespace" schemaLocation="../xsdFiles/asn1.xsd"/>
 
     <xsd:element name="InfoExchange">
         <xsd:complexType>
@@ -19,17 +20,17 @@ this document must resume the european standard iso-12855-->
                                     <xsd:sequence>
                                         <xsd:element name="provideUserDetailsADU">
                                             <xsd:complexType>
-                                                <xsd:sequence>
-                                                    <xsd:element name="ProvideUserDetails" minOccurs="0">
+                                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                                    <xsd:element name="ProvideUserDetails">
                                                         <xsd:complexType>
-                                                            <xsd:sequence>
+                                                            <xsd:sequence >
                                                                 <xsd:element name="originaluserIdRequest" type="Common:userID"/>
-                                                                <xsd:element name="userId" type="Common:userID"/>
+                                                                <xsd:element name="userId"  type="Common:userID"/>
                                                                 <xsd:element name="statusFlag" minOccurs="0" type="asn1:UserStatus"/>
-                                                                <xsd:element name="listOfUserParameters" minOccurs="0">
+                                                                <xsd:element name="listOfUserParameters" minOccurs="0" >
                                                                     <xsd:complexType>
                                                                         <xsd:sequence minOccurs="0" maxOccurs="7">
-                                                                            <xsd:element name="UserParameterResponse">
+                                                                            <xsd:element name="UserParameterResponse" minOccurs="1">
                                                                                 <xsd:complexType>
                                                                                     <xsd:sequence>
                                                                                         <xsd:element name="userParameterResponse" type="Common:UserParameterResponseDetails"/>

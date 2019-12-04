@@ -6,9 +6,9 @@
 <!--            targetNamespace="/viapass/xsd/namespace/Lists_Second_Layer"-->
 <!--            xmlns:Util="/viapass/xsd/namespace/Util"-->
 <!--            xmlns:Util_Com="/viapass/xsd/namespace/Util_Communication"-->
-<!--            xmlns:asn1="/viapass/xsd/namespace/asn1"-->
+<!--            xmlns:asn1="asn1Namespace"-->
 <!--            elementFormDefault="unqualified">-->
-<!--    <xsd:import namespace="/viapass/xsd/namespace/asn1" schemaLocation="asn1.xsd"/>-->
+<!--    <xsd:import namespace="asn1Namespace" schemaLocation="asn1.xsd"/>-->
 <!--    <xsd:import namespace="/viapass/xsd/namespace/Util" schemaLocation="Util.xsd"/>-->
 <!--    <xsd:import namespace="/viapass/xsd/namespace/Util_Communication" schemaLocation="Util_Communication.xsd"/>-->
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><!--this .xsd file is use to validate each xml who transit in viapass
+this .xsd is base on document Back-office-communication 2.6 28-02-2018,
+this document must resume the european standard iso-12855-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:Common="CommonNamespace" xmlns:asn1="asn1Namespace" xmlns:CommonAPCI_ADUType="CommonAPCI_ADUTypeNamespace" elementFormDefault="qualified">
+
+    <xsd:import namespace="CommonNamespace" schemaLocation="Common.xsd"/>
+    <xsd:import namespace="asn1Namespace" schemaLocation="asn1.xsd"/>
+    <xsd:import namespace="CommonAPCI_ADUTypeNamespace" schemaLocation="CommonAPCI_ADUType.xsd"/>
+
+    <xsd:element name="InfoExchange">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="infoExchangeContent">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="apci" type="CommonAPCI_ADUType:Apci"/>
+                            <xsd:element name="adu" type="CommonAPCI_ADUType:AduType"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="infoExchangeAuthenticator" type="asn1:BitString" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
