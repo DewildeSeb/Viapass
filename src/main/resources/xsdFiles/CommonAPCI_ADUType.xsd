@@ -241,14 +241,7 @@ this document must resume the european standard iso-12855-->
                                                             <xsd:element name="listOfDSRCUsageData" minOccurs="0">
                                                                 <xsd:complexType>
                                                                     <xsd:sequence minOccurs="0" maxOccurs="127">
-                                                                        <xsd:element name="Attributes">
-                                                                            <xsd:complexType>
-                                                                                <xsd:sequence>
-                                                                                    <xsd:element name="attributeId" type="asn1:UnsignedInt0_127"/>
-                                                                                    <xsd:element name="attributeValue" type="Common:Container"/>
-                                                                                </xsd:sequence>
-                                                                            </xsd:complexType>
-                                                                        </xsd:element>
+                                                                        <xsd:element name="Attributes" type="Common:Attributes"/>
                                                                     </xsd:sequence>
                                                                 </xsd:complexType>
                                                             </xsd:element>
@@ -386,13 +379,13 @@ this document must resume the european standard iso-12855-->
     </xsd:complexType>
 
     <xsd:complexType name="RetrieveUserDetailsADU">
-        <xsd:sequence>
-            <xsd:element name="RetrieveUserDetails" maxOccurs="unbounded">
+        <xsd:sequence  minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="RetrieveUserDetails">
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="userId" type="Common:userID"/>
-                        <xsd:element name="listOfParametersRequested" type="asn1:UserParameterRequest"/>
-                        <xsd:element name="userDetailsRequestReason" type="asn1:UserDetailsRequestReason" minOccurs="0"/>
+                        <xsd:element name="listOfParametersRequested" type="Common:ListOfParametersRequested"/>
+                        <xsd:element name="userDetailsRequestReason" minOccurs="0" type="asn1:UserDetailsRequestReason"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
@@ -426,10 +419,27 @@ this document must resume the european standard iso-12855-->
 
     <xsd:complexType name="AckADU">
         <xsd:sequence>
-            <xsd:element name="aDUIdentifier" type="xsd:integer"/>
-            <xsd:element name="numberOfADUStructs" minOccurs="0"/>
+            <xsd:element name="aDUIdentifier" type="asn1:MessageIdentifier"/>
+            <xsd:element name="numberOfADUStructs" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="asn1:NumberOfADUStruct"/>
+                </xsd:simpleType>
+            </xsd:element>
             <xsd:element name="ackCode" type="asn1:ReasonMessageACKADU"/>
-            <xsd:element name="aduCode" minOccurs="0"/>
+            <xsd:element name="aduCode" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SEQUENCE">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="numberOfADUStruct" type="asn1:NumberOfADUStruct"/>
+                                    <xsd:element name="aDUReasonCode" type="asn1:ADUReasonCode"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -559,5 +569,149 @@ this document must resume the european standard iso-12855-->
         </xsd:choice>
     </xsd:complexType>
 
+    <xsd:complexType name="BillingDetailsADU">
+        <xsd:sequence>
+            <xsd:element name="billingDetailsId">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="issuerId" type="Common:Provider"/>
+                        <xsd:element name="claimId" type="xsd:integer"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tollChargerId" type="Common:Provider"/>
+            <xsd:element name="contextId" type="xsd:unsignedShort"/>
+            <xsd:element name="userId" minOccurs="0" type="Common:userID"/>
+            <xsd:element name="period" type="Common:Period"/>
+            <xsd:element name="billingDetailsAmount" type="Common:Amount"/>
+            <xsd:element name="usageDetails" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="contextName" type="xsd:string"/>
+                        <xsd:element name="appliedUserClass" type="xsd:string"/>
+                        <xsd:element name="perDeclaredVehicleClasses">
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="SEQUENCE">
+                                        <xsd:complexType>
+                                            <xsd:sequence>
+                                                <xsd:element name="declaredVehicleClass" type="xsd:string"/>
+                                                <xsd:element name="perUsedTimeClasses">
+                                                    <xsd:complexType>
+                                                        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                                            <xsd:element name="SEQUENCE">
+                                                                <xsd:complexType>
+                                                                    <xsd:sequence>
+                                                                        <xsd:element name="appliedTimeClass"
+                                                                                     type="xsd:string"/>
+                                                                        <xsd:element name="costCenter" minOccurs="0"
+                                                                                     type="xsd:string"/>
+                                                                        <xsd:element name="usageList">
+                                                                            <xsd:complexType>
+                                                                                <xsd:sequence minOccurs="0"
+                                                                                              maxOccurs="unbounded">
+                                                                                    <xsd:element name="UsageDetail"
+                                                                                                 type="Common:UsageDetail"/>
+                                                                                </xsd:sequence>
+                                                                            </xsd:complexType>
+                                                                        </xsd:element>
+                                                                    </xsd:sequence>
+                                                                </xsd:complexType>
+                                                            </xsd:element>
+                                                        </xsd:sequence>
+                                                    </xsd:complexType>
+                                                </xsd:element>
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="refTollDeclaration" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="TollDeclarationId" type="Common:TollDeclarationId"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="associatedEventData" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="AssociatedEventData" type="Common:AssociatedEventData"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="PaymentClaimADU">
+        <xsd:sequence>
+            <xsd:element name="paymentClaimId" type="xsd:integer"/>
+            <xsd:element name="startDateTime" type="xsd:dateTime"/>
+            <xsd:element name="endDateTime" minOccurs="0" type="xsd:dateTime"/>
+            <xsd:element name="userId" minOccurs="0" type="Common:userID"/>
+            <xsd:element name="paymentClaimAmount" type="Common:Amount"/>
+            <xsd:element name="paymentClaimStatus" type="asn1:PaymentClaimStatus"/>
+            <xsd:element name="typeOfGoods" minOccurs="0" type="asn1:TypeOfGoods"/>
+            <xsd:element name="associatedBillingDetails" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="RelatedMessageId" type="Common:RelatedMessageId"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReportQAADU">
+        <xsd:sequence>
+            <xsd:element name="qualityParameterID" type="xsd:integer"/>
+            <xsd:element name="qualityParameterName" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="qualityParameterValue" minOccurs="0" type="xsd:double"/>
+            <xsd:element name="qualityParameterStatus" type="asn1:QualityParameterStatus"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="StatusADU">
+        <xsd:choice>
+            <xsd:element name="generalStatusCode" type="asn1:GeneralStatusCode"/>
+            <xsd:element name="messageStatusCode" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="message" type="asn1:MessageIdentifier"/>
+                        <xsd:element name="reasonOfADUStruct">
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="SEQUENCE">
+                                        <xsd:complexType>
+                                            <xsd:sequence>
+                                                <xsd:element name="numberOfADUStruct" type="asn1:NumberOfADUStruct"/>
+                                                <xsd:element name="reason" type="asn1:MessageReasonCode"/>
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReportCCCEventADU">
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="CCCEvent" type="Common:CCCEvent"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RetrieveCCCEventADU">
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="RetrieveCCCEvents" type="Common:RetrieveCCCEvents"/>
+        </xsd:sequence>
+    </xsd:complexType>
 
 </xsd:schema>

@@ -223,7 +223,7 @@ this document must resume the european standard iso-12855-->
                                                                                                     <xsd:element name="listOfDSRCUsageData" minOccurs="0">
                                                                                                         <xsd:complexType>
                                                                                                             <xsd:sequence minOccurs="0" maxOccurs="127">
-                                                                                                                <xsd:element name="Attributes">
+                                                                                                                <xsd:element name="Attributes" type="">
                                                                                                                     <xsd:complexType>
                                                                                                                         <xsd:sequence>
                                                                                                                             <xsd:element name="attributeId">

@@ -51,6 +51,16 @@ this document must resume the european standard iso-12855-->
         </xsd:sequence>
     </xsd:complexType>
 
+    <xsd:complexType name="ListOfParametersRequested">
+        <xsd:sequence minOccurs="1" maxOccurs="7">
+            <xsd:element name="UserParameterRequest">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string"/>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
     <xsd:complexType name="PaymentMeans">
         <xsd:sequence>
             <xsd:element minOccurs="0" name="personalAccountNumber" type="asn1:PersonalAccountNumber"/>
@@ -289,14 +299,7 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="attrList">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="127">
-                        <xsd:element name="Attributes">
-                            <xsd:complexType>
-                                <xsd:sequence>
-                                    <xsd:element name="attributeId" type="asn1:UnsignedInt0_127"/>
-                                    <xsd:element name="attributeValue" type="x:Container"/>
-                                </xsd:sequence>
-                            </xsd:complexType>
-                        </xsd:element>
+                        <xsd:element name="Attributes" type="x:Attributes"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
@@ -856,7 +859,7 @@ this document must resume the european standard iso-12855-->
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="tollContextOverviewVersion" type="VersionAndValidity"/>
+            <xsd:element name="tollContextOverviewVersion" type="x:VersionAndValidity"/>
             <xsd:element name="tollContextOverviewAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
@@ -865,13 +868,13 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="tariffs">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="Tariff" type="Tariff"/>
+                        <xsd:element name="Tariff" type="x:Tariff"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="roundingRule" minOccurs="0" type="RoundingRule"/>
-            <xsd:element name="tariffTableVersion" type="VersionAndValidity"/>
-            <xsd:element name="tariffTableAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="roundingRule" minOccurs="0" type="asn1:RoundingRule"/>
+            <xsd:element name="tariffTableVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="tariffTableAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="TariffClassDefinition">
@@ -879,12 +882,12 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="tariffClasses">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="TariffClass" type="TariffClass"/>
+                        <xsd:element name="TariffClass" type="x:TariffClass"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="tariffClassDefinitionVersion" type="VersionAndValidity"/>
-            <xsd:element name="tariffClassDefinitionAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="tariffClassDefinitionVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="tariffClassDefinitionAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="LocalVehicleClassDefinition">
@@ -892,12 +895,12 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="localVehicleClasses">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="LocalVehicleClass" type="LocalVehicleClass"/>
+                        <xsd:element name="LocalVehicleClass" type="x:LocalVehicleClass"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="localVehicleClassVersion" type="VersionAndValidity"/>
-            <xsd:element name="localVehicleClassAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="localVehicleClassVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="localVehicleClassAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="TimeClassDefinition">
@@ -905,12 +908,12 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="timeClasses">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="TimeClass" type="TimeClass"/>
+                        <xsd:element name="TimeClass" type="x:TimeClass"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="timeClassDefinitionVersion" type="VersionAndValidity"/>
-            <xsd:element name="timeClassDefinitionAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="timeClassDefinitionVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="timeClassDefinitionAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="UserClassDefinition">
@@ -918,20 +921,20 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="userClasses">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="UserClass" type="UserClass"/>
+                        <xsd:element name="UserClass" type="x:UserClass"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="userClassDefinitionVersion" type="VersionAndValidity"/>
-            <xsd:element name="userClassDefinitionAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="userClassDefinitionVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="userClassDefinitionAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="TollContextLayout">
         <xsd:sequence>
-            <xsd:element name="layoutDescription" type="Layout"/>
-            <xsd:element name="geoRefPoint" minOccurs="0" type="Point"/>
-            <xsd:element name="tollContextVersion" type="VersionAndValidity"/>
-            <xsd:element name="tollContextAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="layoutDescription" type="x:Layout"/>
+            <xsd:element name="geoRefPoint" minOccurs="0" type="x:Point"/>
+            <xsd:element name="tollContextVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="tollContextAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="ChargeReportingEvents">
@@ -939,42 +942,635 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="absoluteTimeEvents" minOccurs="0">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="AbsoluteTimeEvent" type="AbsoluteTimeEvent"/>
+                        <xsd:element name="AbsoluteTimeEvent" type="x:AbsoluteTimeEvent"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
             <xsd:element name="relativeTimeEvents" minOccurs="0">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="RelativeTimeEvent" type="RelativeTimeEvent"/>
+                        <xsd:element name="RelativeTimeEvent" type="x:RelativeTimeEvent"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="travelledDistanceEvents" minOccurs="0" type="ChargingModule:Distance"/>
+            <xsd:element name="travelledDistanceEvents" minOccurs="0" type="x:Distance"/>
             <xsd:element name="locationEvents" minOccurs="0">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="LocationEvent" type="LocationEvent"/>
+                        <xsd:element name="LocationEvent" type="x:LocationEvent"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="feeLimitEvents" minOccurs="0" type="FeeLimit"/>
-            <xsd:element name="chargeReportingEventsVersion" type="VersionAndValidity"/>
-            <xsd:element name="chargeReportingEventsAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="feeLimitEvents" minOccurs="0" type="asn1:PaymentFee"/>
+            <xsd:element name="chargeReportingEventsVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="chargeReportingEventsAuthenticator" minOccurs="0" type="asn1:BitString"/>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="ChargeReportConfiguration">
         <xsd:sequence>
-            <xsd:element name="chargeReportContent" type="ChargeReportContent"/>
-            <xsd:element name="usageStatementContent" type="UsageStatementContent"/>
-            <xsd:element name="cccAttributesContent" minOccurs="0" type="CccAttributesContent"/>
-            <xsd:element name="aggregatedSingleTariffClassSessionContent" minOccurs="0"
-                         type="AggregatedSingleTariffClassSessionContent"/>
-            <xsd:element name="detectedChargeObjectContent" minOccurs="0" type="DetectedChargeObjectContent"/>
-            <xsd:element name="listOfRawUsageDataContent" minOccurs="0" type="ListOfRawUsageDataContent"/>
-            <xsd:element name="vehicleDescriptionContent" minOccurs="0" type="VehicleDescriptionContent"/>
-            <xsd:element name="chargeReportConfigurationVersion" type="VersionAndValidity"/>
-            <xsd:element name="chargeReportConfigurationAuthenticator" minOccurs="0" type="MessageAuthenticator"/>
+            <xsd:element name="chargeReportContent" type="asn1:ChargeReportContent"/>
+            <xsd:element name="usageStatementContent" type="asn1:UsageStatementContent"/>
+            <xsd:element name="cccAttributesContent" minOccurs="0" type="asn1:CccAttributesContent"/>
+            <xsd:element name="aggregatedSingleTariffClassSessionContent" minOccurs="0" type="asn1:AggregatedSingleTariffClassSessionContent"/>
+            <xsd:element name="detectedChargeObjectContent" minOccurs="0" type="asn1:DetectedChargeObjectContent"/>
+            <xsd:element name="listOfRawUsageDataContent" minOccurs="0" type="asn1:ListOfRawUsageDataContent"/>
+            <xsd:element name="vehicleDescriptionContent" minOccurs="0" type="asn1:VehicleDescriptionContent"/>
+            <xsd:element name="chargeReportConfigurationVersion" type="x:VersionAndValidity"/>
+            <xsd:element name="chargeReportConfigurationAuthenticator" minOccurs="0" type="asn1:BitString"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AbsoluteTimeEvent">
+        <xsd:sequence>
+            <xsd:element name="timesDuringDay" type="asn1:Time"/>
+            <xsd:element name="randomDelay" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RelativeTimeEvent">
+        <xsd:sequence>
+            <xsd:element name="timeDuration" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="randomDelay" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LocationEvent">
+        <xsd:sequence>
+            <xsd:element name="chargeObject" minOccurs="0" type="xsd:unsignedInt"/>
+            <xsd:element name="line" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="lineDescription" type="x:Line"/>
+                        <xsd:element name="crossingDirection1" type="xsd:boolean"/>
+                        <xsd:element name="crossingDirection2" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="area" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="areaDescription" type="x:Polygon"/>
+                        <xsd:element name="atEntry" type="xsd:boolean"/>
+                        <xsd:element name="atExit" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Line">
+        <xsd:sequence>
+            <xsd:element name="point1" type="x:Point"/>
+            <xsd:element name="point2" type="x:Point"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Layout">
+        <xsd:choice>
+            <xsd:element name="sectionPricingLayout">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SectionLayout" type="x:SectionLayout"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="areaPricingLayout">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="AreaLayout" type="x:AreaLayout"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="cordonPricingLayout">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="CordonLayout" type="x:CordonLayout"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="AreaLayout">
+        <xsd:sequence>
+            <xsd:element name="areaId" type="xsd:unsignedByte"/>
+            <xsd:element name="aeaBorder" type="x:Polygon"/>
+            <xsd:element name="locationClass" type="xsd:unsignedInt"/>
+            <xsd:element name="roadNetworks" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="RoadNetwork" type="x:RoadNetwork"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CordonLayout">
+        <xsd:sequence>
+            <xsd:element name="cordonId" type="xsd:unsignedByte"/>
+            <xsd:element name="cordonBorderPolygon">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="CordonBorderSegment" type="x:CordonBorderSegment"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RoadNetwork">
+        <xsd:sequence>
+            <xsd:element name="networkId" type="xsd:unsignedByte"/>
+            <xsd:element name="locationClass" type="xsd:unsignedInt"/>
+            <xsd:element name="roadNetworkObjects">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="RoadNetworkObject" type="x:RoadNetworkObject"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RoadNetworkObject">
+        <xsd:sequence>
+            <xsd:element name="chargeObjectId" type="xsd:unsignedInt"/>
+            <xsd:element name="chargeObjectName" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="chargeObjectRefPoint" minOccurs="0" type="x:Point"/>
+            <xsd:element name="networkPoints" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Point" type="x:Point"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tollPath" type="x:Link"/>
+            <xsd:element name="supportingInformation" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SupportingPoint" type="x:SupportingPoint"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="applicableTimeClasses" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Polygon">
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Point" type="x:Point"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CordonBorderSegment">
+        <xsd:sequence>
+            <xsd:element name="cordonSegmentId" type="xsd:unsignedInt"/>
+            <xsd:element name="startPoint" type="x:Point"/>
+            <xsd:element name="cordonEntryLocation" minOccurs="0" type="x:CordonEntryLocation"/>
+            <xsd:element name="cordonExitLocation" minOccurs="0" type="x:CordonExitLocation"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CordonEntryLocation">
+        <xsd:sequence>
+            <xsd:element name="entryLocationId" type="xsd:unsignedInt"/>
+            <xsd:element name="entryLocationClass" type="xsd:unsignedInt"/>
+            <xsd:element name="applicableTimeClasses" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CordonExitLocation">
+        <xsd:sequence>
+            <xsd:element name="exitLocationId" type="xsd:unsignedInt"/>
+            <xsd:element name="exitLocationClass">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SEQUENCE">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="locationClass" type="xsd:unsignedInt"/>
+                                    <xsd:element name="entryLocation" minOccurs="0">
+                                        <xsd:simpleType>
+                                            <xsd:list itemType="xsd:unsignedInt"/>
+                                        </xsd:simpleType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="applicableTimeClasses" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="SectionLayout">
+        <xsd:sequence>
+            <xsd:element name="chargeObjectId" type="xsd:unsignedInt"/>
+            <xsd:element name="chargeObjectName" minOccurs="0" type="xsd:string"/>
+            <xsd:element name="chargeObjectRefPoint" minOccurs="0" type="x:Point"/>
+            <xsd:element name="networkPoints" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="PointIdDefinition" type="x:PointIdDefinition"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tollPath" type="x:Link"/>
+            <xsd:element name="liabilityRules" type="x:LiabilityRules"/>
+            <xsd:element name="pathStructureTowards" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Link" type="x:Link"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="pathStructureOnwards" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Link" type="x:Link"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="supportingInformation" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SupportingPoint" type="x:SupportingPoint"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="chargeDistance" type="x:ChargeDistance"/>
+            <xsd:element name="realDistance" minOccurs="0" type="x:Distance"/>
+            <xsd:element name="applicableTimeClasses" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="locationClass" type="xsd:unsignedInt"/>
+            <xsd:element name="storageRequired" minOccurs="0" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Point">
+        <xsd:choice>
+            <xsd:element name="pointIdentifier" type="xsd:unsignedInt"/>
+            <xsd:element name="absolutePointCoordinates" type="asn1:Position"/>
+            <xsd:element name="relativePointCoordinates" type="asn1:Position"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="PointIdDefinition">
+        <xsd:sequence>
+            <xsd:element name="pointId" type="xsd:unsignedInt"/>
+            <xsd:element name="pointCoordinates" type="asn1:Position"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Link">
+        <xsd:sequence>
+            <xsd:element name="linkId" type="xsd:unsignedInt"/>
+            <xsd:element name="startPoint" type="x:Point"/>
+            <xsd:element name="endPoint" type="x:Point"/>
+            <xsd:element name="intermediatePoints" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Point" type="x:Point"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="LiabilityRules">
+        <xsd:choice>
+            <xsd:element name="tollPoints">
+                <xsd:complexType>
+                    <xsd:sequence maxOccurs="2">
+                        <xsd:element name="Point" type="x:Point"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="minTollPath" type="x:Link"/>
+            <xsd:element name="minTollPortion">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedShort">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="1000"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="SupportingPoint">
+        <xsd:sequence>
+            <xsd:element name="supportPoint" type="x:Point"/>
+            <xsd:element name="distanceToNextRoad" minOccurs="0" type="x:Distance"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChargeDistance">
+        <xsd:choice>
+            <xsd:element name="predefinedDistance" type="x:Distance"/>
+            <xsd:element name="entryDependingDistance">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="entryDependingDistance">
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="EntryDependingDistanceData" type="x:EntryDependingDistanceData"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="missingEntryInformation" type="x:Distance"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="EntryDependingDistanceData">
+        <xsd:sequence>
+            <xsd:element name="chargeObjectAtEntry" type="xsd:unsignedInt"/>
+            <xsd:element name="definedDistance" type="x:Distance"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserClass">
+        <xsd:sequence>
+            <xsd:element name="userClassId" type="xsd:unsignedByte"/>
+            <xsd:element name="contractTypes" minOccurs="0" type="x:ContractTypes"/>
+            <xsd:element name="actualNumberOfPassengers" minOccurs="0" type="xsd:unsignedByte"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ContractTypes">
+        <xsd:sequence>
+            <xsd:element name="contractProvider" type="x:Provider"/>
+            <xsd:element name="typeOfContract" type="asn1:HexBinaryLength2"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TimeClass">
+        <xsd:sequence>
+            <xsd:element name="timeClassId" type="xsd:unsignedByte"/>
+            <xsd:element name="nominalElements" minOccurs="0" type="x:NominalTimeParameters"/>
+            <xsd:element name="ordinalElements" minOccurs="0" type="x:OrdinalTimeParameters"/>
+            <xsd:element name="priorityValue" minOccurs="0" type="xsd:unsignedByte"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OrdinalTimeParameters">
+        <xsd:sequence>
+            <xsd:element name="weekdays" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SEQUENCE">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="startDay" type="asn1:Weekday"/>
+                                    <xsd:element name="endDay" type="asn1:Weekday"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="absoluteTimeOfDay" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SEQUENCE">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="startTime" type="asn1:Time"/>
+                                    <xsd:element name="endTime" type="asn1:Time"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="relativeTimePeriods" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SEQUENCE">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="minPeriod" minOccurs="0" type="xsd:unsignedShort"/>
+                                    <xsd:element name="maxPeriod" minOccurs="0" type="xsd:unsignedShort"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="periodsInYear" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SEQUENCE">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="startDay" type="asn1:DateCompact"/>
+                                    <xsd:element name="endDay" type="asn1:DateCompact"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NominalTimeParameters">
+        <xsd:sequence>
+            <xsd:element name="weekdays" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="asn1:Weekday"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="dates" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="DateCompact" type="asn1:DateCompact"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="classesSetExternally" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list>
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:token">
+                                <xsd:enumeration value="congestionChargeLevel1"/>
+                                <xsd:enumeration value="congestionChargeLevel2"/>
+                                <xsd:enumeration value="futureUse1"/>
+                                <xsd:enumeration value="futureUse2"/>
+                                <xsd:enumeration value="futureUse3"/>
+                                <xsd:enumeration value="futureUse4"/>
+                                <xsd:enumeration value="futureUse5"/>
+                                <xsd:enumeration value="futureUse6"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:list>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="LocalVehicleClass">
+        <xsd:sequence>
+            <xsd:element name="localVehicleClassId" type="xsd:unsignedByte"/>
+            <xsd:element name="nominalElements" type="x:NominalVehicleParameters"/>
+            <xsd:element name="ordinalElements" minOccurs="0" type="x:OrdinalVehicleParameters"/>
+            <xsd:element name="priorityValue" minOccurs="0" type="xsd:unsignedByte"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NominalVehicleParameters">
+        <xsd:sequence>
+            <xsd:element name="vehicleClasses">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="vehicleAxlesNumbers" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleAxles" type="x:VehicleAxles"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <!--<xsd:element name="euroValues" minOccurs="0">-->
+            <!--<xsd:simpleType>-->
+            <!--<xsd:list itemType="EfcModule:EuroValue"/>-->
+            <!--</xsd:simpleType>-->
+            <!--</xsd:element>-->
+            <xsd:element name="euroValues" type="asn1:EuroValue"/>
+            <xsd:any namespace="##other" processContents="lax" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OrdinalVehicleParameters">
+        <xsd:sequence>
+            <xsd:element name="vehicleLengthOverall" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleLengthOverallRange" type="asn1:VehicleOverallRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleHeightOverall" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleHeightOverallRange" type="asn1:VehicleOverallRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleWidthOverall" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleWidthOverallRange" type="asn1:VehicleOverallRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleFirstAxleHeight" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleFirstAxleHeightRange" type="asn1:VehicleOverallRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleAxlesNumber" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleAxlesNumberRange" type="asn1:VehicleOverallRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleMaxLadenWeight" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleMaxLadenWeightRange" type="asn1:VehicleWeightRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleTrainMaximumWeight" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleTrainMaximumWeightRange" type="asn1:VehicleWeightRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleWeightUnladen" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleWeightUnladenRange" type="asn1:VehicleWeightRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleWeightLaden" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleWeightLadenRange" type="asn1:VehicleWeightRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="euroValue" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="EuroValueRange" type="x:EuroValueRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="copValue" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="CopValueRange" type="x:CopValueRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleClass" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="VehicleClassRange" type="asn1:VehicleOverallRange"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="co2EmissionValue" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedShort"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:any namespace="##other" processContents="lax" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="EuroValueRange">
+        <xsd:sequence>
+            <xsd:element name="lowerLimit" type="asn1:EuroValue"/>
+            <xsd:element name="upperLimit" type="asn1:EuroValue"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CopValueRange">
+        <xsd:sequence>
+            <xsd:element name="lowerLimit" type="asn1:CopValue"/>
+            <xsd:element name="upperLimit" type="asn1:CopValue"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="TariffClass">
+        <xsd:sequence>
+            <xsd:element name="tariffClassId" type="xsd:unsignedShort"/>
+            <xsd:element name="localVehicleClasses">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="timeClasses" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="locationClasses" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedInt"/>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="userClasses" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:list itemType="xsd:unsignedByte"/>
+                </xsd:simpleType>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -988,6 +1584,69 @@ this document must resume the european standard iso-12855-->
         <xsd:sequence>
             <xsd:element name="startsOperationAt" type="asn1:DateAndTime"/>
             <xsd:element name="stopsOperationAt" minOccurs="0" type="asn1:DateAndTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Tariff">
+        <xsd:sequence>
+            <xsd:element name="tariffClass" type="xsd:unsignedShort"/>
+            <xsd:element name="chargeUnit" type="x:ChargeUnit"/>
+            <xsd:element name="currency" type="asn1:unsignedShort1_999"/>
+            <xsd:element name="basicFeePerChargeUnit" type="xsd:double"/>
+            <xsd:element name="vat" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="intervalScaleParameters" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="IntervalScaleParameter" type="x:IntervalScaleParameter"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="offsetFee" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="minFee" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="thresholdFee" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="maxFee" minOccurs="0" type="x:MaxFee"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MaxFee">
+        <xsd:sequence>
+            <xsd:element name="perDay" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="perWeek" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="perMonth" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+            <xsd:element name="perYear" minOccurs="0" type="asn1:unsignedInt0_16777215"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChargeUnit">
+        <xsd:choice>
+            <xsd:element name="distance" type="x:Distance"/>
+            <xsd:element name="time" type="x:Duration"/>
+            <xsd:element name="event" type="xsd:unsignedByte"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="Duration">
+        <xsd:sequence>
+            <xsd:element name="dur" type="xsd:double"/>
+            <xsd:element name="durUnit" default="seconds" minOccurs="0" type="asn1:DurUnit"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="IntervalScaleParameter">
+        <xsd:sequence>
+            <xsd:element name="vehicleMaxLadenWeightIntervals" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="zeroOffset" type="xsd:short"/>
+                        <xsd:element name="resolution" type="xsd:unsignedShort"/>
+                        <xsd:element name="max" type="xsd:unsignedShort"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleLengthOverallIntervals" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="zeroOffset" type="xsd:short"/>
+                        <xsd:element name="resolution" type="xsd:unsignedByte"/>
+                        <xsd:element name="max" type="xsd:unsignedByte"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -1027,12 +1686,12 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="activationFee" minOccurs="0">
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="amount" type="Amount"/>
+                        <xsd:element name="amount" type="x:Amount"/>
                         <xsd:element name="timeInterval" minOccurs="0" type="asn1:TimeInterval"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="minAmountOfFee" minOccurs="0" type="Amount"/>
+            <xsd:element name="minAmountOfFee" minOccurs="0" type="x:Amount"/>
             <xsd:element name="numberOfTrips" minOccurs="0">
                 <xsd:complexType>
                     <xsd:sequence>
@@ -1074,12 +1733,12 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="chargeObjects">
                 <xsd:complexType>
                     <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="GDFChargeObject" type="GDFChargeObject"/>
+                        <xsd:element name="GDFChargeObject" type="x:GDFChargeObject"/>
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="referencedGDFsource" type="GDFSource"/>
-            <xsd:element name="eFClayerVersion" type="ContextDataModule:VersionAndValidity"/>
+            <xsd:element name="referencedGDFsource" type="x:GDFSource"/>
+            <xsd:element name="eFClayerVersion" type="x:VersionAndValidity"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -1131,8 +1790,7 @@ this document must resume the european standard iso-12855-->
                         <xsd:element name="roadElementsTowardChargePoint">
                             <xsd:complexType>
                                 <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                                    <xsd:element name="RoadElementsTowardChargePoint"
-                                                 type="x:RoadElementsTowardChargePoint"/>
+                                    <xsd:element name="RoadElementsTowardChargePoint" type="x:RoadElementsTowardChargePoint"/>
                                 </xsd:sequence>
                             </xsd:complexType>
                         </xsd:element>
@@ -1140,7 +1798,7 @@ this document must resume the european standard iso-12855-->
                     </xsd:sequence>
                 </xsd:complexType>
             </xsd:element>
-            <xsd:element name="efcNnodeTo" type="EFCnodeId"/>
+            <xsd:element name="efcNnodeTo" type="x:EFCnodeId"/>
         </xsd:sequence>
     </xsd:complexType>
 
@@ -1167,4 +1825,436 @@ this document must resume the european standard iso-12855-->
         </xsd:sequence>
     </xsd:complexType>
 
+    <xsd:complexType name="UsageDetail">
+        <xsd:choice>
+            <xsd:element name="forSectionedRoads">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="qualifier" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:choice>
+                                    <xsd:element name="howOften" type="xsd:integer"/>
+                                    <xsd:element name="entranceTime" type="xsd:dateTime"/>
+                                </xsd:choice>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="entranceChargeObject" type="xsd:unsignedInt"/>
+                        <xsd:element name="entranceChargeObjectName" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="intermediateSections" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="SEQUENCE">
+                                        <xsd:complexType>
+                                            <xsd:sequence>
+                                                <xsd:element name="intermediateSection"
+                                                             type="xsd:unsignedInt"/>
+                                                <xsd:element name="intermediateSectionName" minOccurs="0"
+                                                             type="xsd:string"/>
+                                                <xsd:element name="intermediateSectionTime" minOccurs="0"
+                                                             type="xsd:dateTime"/>
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="exitQualifier">
+                            <xsd:complexType>
+                                <xsd:choice>
+                                    <xsd:element name="exitChargeObjectStruct">
+                                        <xsd:complexType>
+                                            <xsd:sequence>
+                                                <xsd:element name="exitChargeObject"
+                                                             type="xsd:unsignedInt"/>
+                                                <xsd:element name="exitChargeObjectName" minOccurs="0"
+                                                             type="xsd:string"/>
+                                                <xsd:element name="exitTime" minOccurs="0" type="xsd:dateTime"/>
+                                            </xsd:sequence>
+                                        </xsd:complexType>
+                                    </xsd:element>
+                                    <xsd:element name="singleChargeObject" type="xsd:boolean"/>
+                                </xsd:choice>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="fee" minOccurs="0" type="x:Amount"/>
+                        <xsd:element name="feeQualifier" minOccurs="0" type="asn1:FeeQualifier"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="forTravellingInArea">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="areaDisplayName" type="xsd:string"/>
+                        <xsd:element name="accumulatedDistance" type="xsd:integer"/>
+                        <xsd:element name="beginOfAccumulation" minOccurs="0" type="xsd:dateTime"/>
+                        <xsd:element name="endOfAccumulation" minOccurs="0" type="xsd:dateTime"/>
+                        <xsd:element name="fee" minOccurs="0" type="x:Amount"/>
+                        <xsd:element name="feeQualifier" minOccurs="0" type="asn1:FeeQualifier"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="forStayedInArea">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="areaDisplayName" type="xsd:string"/>
+                        <xsd:element name="qualifier" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:choice>
+                                    <xsd:element name="howOften" type="xsd:integer"/>
+                                    <xsd:element name="entranceTime" type="xsd:dateTime"/>
+                                </xsd:choice>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="stayedDuration" type="xsd:integer"/>
+                        <xsd:element name="chargeUnit" type="x:ChargeUnit"/>
+                        <xsd:element name="fee" minOccurs="0" type="x:Amount"/>
+                        <xsd:element name="feeQualifier" minOccurs="0" type="asn1:FeeQualifier"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="forCordonCrossings">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="qualifier" minOccurs="0">
+                            <xsd:complexType>
+                                <xsd:choice>
+                                    <xsd:element name="howOften" type="xsd:integer"/>
+                                    <xsd:element name="entranceTime" type="xsd:dateTime"/>
+                                </xsd:choice>
+                            </xsd:complexType>
+                        </xsd:element>
+                        <xsd:element name="entranceChargeObject" type="x:CordonEntryLocation"/>
+                        <xsd:element name="entranceChargeObjectName" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="exitChargeObject" minOccurs="0" type="x:CordonExitLocation"/>
+                        <xsd:element name="exitChargeObjectName" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="exitTime" minOccurs="0" type="xsd:dateTime"/>
+                        <xsd:element name="fee" minOccurs="0" type="x:Amount"/>
+                        <xsd:element name="feeQualifier" minOccurs="0" type="asn1:FeeQualifier"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="freeTextDetail">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="textLanguage" type="xsd:string"/>
+                        <xsd:element name="textDetail" type="xsd:string"/>
+                        <xsd:element name="fee" minOccurs="0" type="x:Amount"/>
+                        <xsd:element name="feeQualifier" minOccurs="0" type="asn1:FeeQualifier"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:complexType name="TollDeclarationId">
+        <xsd:sequence>
+            <xsd:element name="issuerId" type="x:Provider"/>
+            <xsd:element name="declarationId" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AssociatedEventData">
+        <xsd:sequence>
+            <xsd:element name="cCCRecord" minOccurs="0" type="x:CCCEvent"/>
+            <xsd:element name="imageRecord" minOccurs="0" type="x:ImageRecord"/>
+            <xsd:element name="aNPRRecord" minOccurs="0" type="x:ANPRRecord"/>
+            <xsd:element name="classificationRecord" minOccurs="0" type="x:ClassificationRecord"/>
+            <xsd:element name="operatorRecord" minOccurs="0" type="x:OperatorRecord"/>
+            <xsd:element name="dsrcData" minOccurs="0" type="x:DSRCData"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CCCEvent">
+        <xsd:sequence>
+            <xsd:element name="userID" minOccurs="0" type="x:userID"/>
+            <xsd:element name="timeOfEvent" minOccurs="0" type="xsd:dateTime"/>
+            <xsd:element name="locationOfEvent" minOccurs="0" type="x:Location"/>
+            <xsd:element name="cccMessages">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="DSRCData" type="x:DSRCData"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="initiatedActions">
+                <xsd:simpleType>
+                    <xsd:list itemType="asn1:InitiatedAction"/>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Location">
+        <xsd:sequence>
+            <xsd:element name="positionOfLocation" minOccurs="0" type="x:Point"/>
+            <xsd:element name="location" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="locationProviderId" type="x:Provider"/>
+                        <xsd:element name="locationID" type="xsd:integer"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DSRCData">
+        <xsd:sequence>
+            <xsd:element name="dsrcRSEData" minOccurs="0" type="x:DSRCRSEData"/>
+            <xsd:element name="dsrcAttributesRead" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Attributes" type="x:Attributes"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="dsrcAttributesWritten" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="Attributes" type="x:Attributes"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="dsrcAttrAuth" minOccurs="0" type="x:DSRCAttrAuth"/>
+            <xsd:element name="chargeObjectId" minOccurs="0" type="xsd:unsignedInt"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DSRCRSEData">
+        <xsd:sequence>
+            <xsd:element name="transactionId" type="xsd:integer"/>
+            <xsd:element name="rSEDateTime" type="xsd:dateTime"/>
+            <xsd:element name="transactionResult" type="asn1:ResultOp"/>
+            <xsd:element name="transactionStatus" type="asn1:TransactionStatus"/>
+            <xsd:element name="exceptionListMatch" minOccurs="0" type="x:ExceptionListEntry"/>
+            <xsd:element name="tariffID" minOccurs="0" type="xsd:unsignedShort"/>
+            <xsd:element name="fee" minOccurs="0" type="x:Amount"/>
+            <xsd:element name="feeQualifier" minOccurs="0" type="asn1:FeeQualifier"/>
+            <xsd:element name="tollStationID" minOccurs="0" type="xsd:integer"/>
+            <xsd:element name="laneDirectionNumber" minOccurs="0" type="x:SessionLocation"/>
+            <xsd:element name="typeOfTransaction" minOccurs="0" type="asn1:StationType"/>
+            <xsd:element name="vstData" minOccurs="0" type="x:ObeConfiguration"/>
+            <xsd:any namespace="##other" processContents="lax" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ExceptionListEntry">
+        <xsd:sequence>
+            <xsd:element name="userId" type="x:userID"/>
+            <xsd:element name="blockType" type="asn1:ExceptionListBlockType"/>
+            <xsd:element name="reasonCode" type="asn1:ExceptionListReasonType"/>
+            <xsd:element name="dateAndTime" type="asn1:GeneralizedTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SessionLocation">
+        <xsd:sequence>
+            <xsd:element name="ascendingKilometrage" type="xsd:boolean"/>
+            <xsd:element name="laneCodeNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:unsignedByte">
+                        <xsd:minInclusive value="0"/>
+                        <xsd:maxInclusive value="127"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Attributes">
+        <xsd:sequence>
+            <xsd:element name="attributeId" type="asn1:UnsignedInt0_127"/>
+            <xsd:element name="attributeValue" type="x:Container"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DSRCAttrAuth">
+        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="SEQUENCE">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="attrOrigEncoding" type="asn1:BitString"/>
+                        <xsd:element name="rndRSE" type="xsd:hexBinary"/>
+                        <xsd:element name="keyRef" type="xsd:integer"/>
+                        <xsd:element name="authCode" type="xsd:hexBinary"/>
+                        <xsd:element name="result" type="asn1:AuthCheckResult"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ImageRecord">
+        <xsd:sequence>
+            <xsd:element name="imageRecordId" type="x:RecordId"/>
+            <xsd:element name="imageDateTime" type="xsd:dateTime"/>
+            <xsd:element name="imageLocation">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="cameraOwner" type="x:Provider"/>
+                        <xsd:element name="cameraId">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedShort"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="imageReference" minOccurs="0" type="xsd:integer"/>
+            <xsd:element name="imageData" type="asn1:BitString"/>
+            <xsd:element name="subRecordAuthenticator" minOccurs="0" type="asn1:BitString"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RecordId">
+        <xsd:sequence>
+            <xsd:element name="providerId" minOccurs="0" type="x:Provider"/>
+            <xsd:element name="recordType" minOccurs="0" type="asn1:RecordType"/>
+            <xsd:element name="uniqueId" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ANPRRecord">
+        <xsd:sequence>
+            <xsd:element name="anprRecordId" type="x:RecordId"/>
+            <xsd:element name="associatedimages">
+                <xsd:complexType>
+                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element name="SEQUENCE">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="anprImage" type="x:RecordId"/>
+                                    <xsd:element name="contextImage" type="x:RecordId"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="imageDateTime" type="xsd:dateTime"/>
+            <xsd:element name="imageLocation">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="cameraOwner" type="x:Provider"/>
+                        <xsd:element name="cameraId">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedShort"/>
+                            </xsd:simpleType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="determinedVRM">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="anprResult">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:hexBinary">
+                                    <xsd:length value="14"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="anprConfidence">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="100"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="secondaryAnprResult" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:hexBinary">
+                                    <xsd:length value="14"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="manualResult" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:hexBinary">
+                                    <xsd:length value="14"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="operatorId" type="xsd:unsignedShort"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="vehicleDetails">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="vehicleMake" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="vehicleModel" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="vehicleColour" minOccurs="0" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="subRecordAuthenticator" minOccurs="0" type="asn1:BitString"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ClassificationRecord">
+        <xsd:sequence>
+            <xsd:element name="classificationRecordId" type="x:RecordId"/>
+            <xsd:element name="derivedLocalClass" type="xsd:unsignedByte"/>
+            <xsd:element name="measuredParameters">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="measurementTime" type="xsd:dateTime"/>
+                        <xsd:element name="measuredClass" minOccurs="0" type="xsd:unsignedByte"/>
+                        <xsd:element name="measuredVehicleLength" minOccurs="0" type="xsd:unsignedShort"/>
+                        <xsd:element name="measuredVehicleWidth" minOccurs="0" type="xsd:unsignedShort"/>
+                        <xsd:element name="measuredVehicleHeight" minOccurs="0" type="xsd:unsignedShort"/>
+                        <xsd:element name="measuredHeightAbove1stAxle" minOccurs="0" type="xsd:unsignedShort"/>
+                        <xsd:element name="measuredVehicleAxles" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="15"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="measuredTrailerAxles" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:unsignedByte">
+                                    <xsd:minInclusive value="0"/>
+                                    <xsd:maxInclusive value="7"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="measuredTrailerPresence" minOccurs="0" type="xsd:boolean"/>
+                        <xsd:any namespace="##other" processContents="lax" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="subRecordAuthenticator" minOccurs="0" type="asn1:BitString"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OperatorRecord">
+        <xsd:sequence>
+            <xsd:element name="operatorRecordId" type="x:RecordId"/>
+            <xsd:element name="operatorData">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="operatorTime" type="xsd:dateTime"/>
+                        <xsd:element name="operatorClass" minOccurs="0" type="xsd:unsignedByte"/>
+                        <xsd:element name="operatorId" minOccurs="0" type="xsd:unsignedShort"/>
+                        <xsd:element name="operatorVRM" minOccurs="0">
+                            <xsd:simpleType>
+                                <xsd:restriction base="xsd:hexBinary">
+                                    <xsd:length value="14"/>
+                                </xsd:restriction>
+                            </xsd:simpleType>
+                        </xsd:element>
+                        <xsd:element name="operatorPAN" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="operatorOBUId" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="machineReadPAN" minOccurs="0" type="xsd:string"/>
+                        <xsd:element name="machineReadOBUId" minOccurs="0" type="xsd:string"/>
+                        <xsd:any namespace="##other" processContents="lax" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="subRecordAuthenticator" minOccurs="0" type="asn1:BitString"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RelatedMessageId">
+        <xsd:sequence>
+            <xsd:element name="messageOriginator" type="x:Provider"/>
+            <xsd:element name="messageIdentifier" type="asn1:MessageIdentifier"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveCCCEvents">
+        <xsd:sequence>
+            <xsd:element name="userID" minOccurs="0" type="x:userID"/>
+            <xsd:element name="startTime" minOccurs="0" type="xsd:dateTime"/>
+            <xsd:element name="endTime" minOccurs="0" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
 </xsd:schema>
