@@ -14,7 +14,7 @@ this document must resume the european standard iso-12855-->
             <xsd:element name="informationrecipientID" type="Common:Provider"/>
             <xsd:element name="contextID" minOccurs="0" type="asn1:RegimeID"/>
             <xsd:element name="messageIdentifier" type="xsd:integer"/>
-            <xsd:element name="relatedMessageId" minOccurs="0"/>
+            <xsd:element name="relatedMessageId" minOccurs="0" type="Common:RelatedMessageId"/>
             <xsd:element name="aduType" type="asn1:ADUType"/>
             <xsd:element name="numberofStructs" type="asn1:NumberOfADUStruct"/>
             <xsd:element name="messageDate" type="asn1:GeneralizedTime"/>
@@ -23,22 +23,22 @@ this document must resume the european standard iso-12855-->
 
     <xsd:complexType name="AduType">
         <xsd:choice>
-            <!--            <xsd:element name="requestADU" type="x:RequestADU"/>-->
+            <!--<xsd:element name="requestADU" type="x:RequestADU"/>-->
             <xsd:element name="ackADU" type="x:AckADU"/>
-            <!--            <xsd:element name="trustObjectADU" type="x:TrustObjectADU"/>-->
-            <!--            <xsd:element name="efcContextDataADU" type="x:EFCContextDataADU"/>-->
+            <!--<xsd:element name="trustObjectADU" type="x:TrustObjectADU"/>-->
+            <!--<xsd:element name="efcContextDataADU" type="x:EFCContextDataADU"/>-->
             <xsd:element name="exceptionListADU" type="x:ExceptionListADU"/>
             <xsd:element name="reportAbnormalOBEADU" type="x:ReportAbnormalOBEADU"/>
             <xsd:element name="tollDeclarationADU" type="x:TollDeclarationADU"/>
-            <!--            <xsd:element name="billingDetailsADU" type="x:BillingDetailsADU"/>-->
-            <!--            <xsd:element name="paymentClaimADU" type="x:PaymentClaimADU"/>-->
-            <!--            <xsd:element name="reportQAADU" type="x:ReportQAADU"/>-->
-            <!--            <xsd:element name="statusADU" type="x:StatusADU"/>-->
+            <!--<xsd:element name="billingDetailsADU" type="x:BillingDetailsADU"/>-->
+            <!--<xsd:element name="paymentClaimADU" type="x:PaymentClaimADU"/>-->
+            <!--<xsd:element name="reportQAADU" type="x:ReportQAADU"/>-->
+            <!--<xsd:element name="statusADU" type="x:StatusADU"/>-->
             <xsd:element name="retrieveUserDetailsADU" type="x:RetrieveUserDetailsADU"/>
             <xsd:element name="provideUserDetailsADU" type="x:ProvideUserDetailsADU"/>
-            <!--            <xsd:element name="reportCCCEventADU" type="x:ReportCCCEventADU"/>-->
+            <!--<xsd:element name="reportCCCEventADU" type="x:ReportCCCEventADU"/>-->
             <xsd:element name="retrieveTollDeclarationADU" type="x:RetrieveTollDeclarationADU"/>
-            <!--            <xsd:element name="retrieveCCCEventADU" type="x:RetrieveCCCEventADU"/>-->
+            <!--<xsd:element name="retrieveCCCEventADU" type="x:RetrieveCCCEventADU"/>-->
         </xsd:choice>
     </xsd:complexType>
 
@@ -316,7 +316,7 @@ this document must resume the european standard iso-12855-->
                                                                         <xsd:element name="lastGnssFixLat" type="xsd:int"/>
                                                                         <xsd:element name="lastGnssFixTime" type="xsd:unsignedInt"/>
                                                                         <xsd:element name="currentHDOP" type="asn1:CurrentHDOP"/>
-                                                                        <xsd:element name="lastLAC">
+                                                                            <xsd:element name="lastLAC">
                                                                             <xsd:complexType>
                                                                                 <xsd:sequence>
                                                                                     <xsd:element name="timeOfLAC" type="xsd:unsignedInt"/>

@@ -65,7 +65,7 @@ this document must resume the european standard iso-12855-->
         <xsd:sequence>
             <xsd:element minOccurs="0" name="personalAccountNumber" type="asn1:PersonalAccountNumber"/>
             <xsd:element minOccurs="0" name="paymentMeansExpiryDate" type="asn1:DateCompact"/>
-            <xsd:element minOccurs="0" name="pamentMeansUsageControl" type="asn1:HexBinaryLength2"/>
+            <xsd:element minOccurs="0" name="paymentMeansUsageControl" type="asn1:HexBinaryLength2"/>
         </xsd:sequence>
     </xsd:complexType>
 
