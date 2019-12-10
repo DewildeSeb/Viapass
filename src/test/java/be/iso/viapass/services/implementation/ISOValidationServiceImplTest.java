@@ -1,20 +1,37 @@
 package be.iso.viapass.services.implementation;
 
-import be.iso.viapass.services.ISOValidationService;
+import be.iso.viapass.util.ConstantsISO;
+import be.iso.viapass.util.Converter;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 
 @RunWith(JUnitParamsRunner.class)
 public class ISOValidationServiceImplTest {
+
+        @BeforeClass
+        public static void setup() {
+                xPath = XPathFactory.newInstance().newXPath();
+        }
+
+        private static XPath xPath;
+        private static Document doc;
+        private static NodeList nodeList;
 
         private static final String RESPONSE_PROVIDE_DAILY_STATEMENT_PATH = "src/test/resources/provide_daily_statement_response.xml";
         private static final String RESPONSE_PROVIDE_DAILY_STATEMENT_WRONG_GENERALIZED_TIME_PATH = "src/test/resources/provide_daily_statement_response_wrong_generalized_time.xml";
@@ -56,12 +73,6 @@ public class ISOValidationServiceImplTest {
         private static final String ADU_TYPE_REPORT_CCC_EVENT_ADU = "reportCCCEventADU";
         private static final String ADU_TYPE_RETRIEVE_CCC_EVENT_ADU = "retrieveCCCEventADU";
 
-        private ISOValidationService isoValidationService = new ISOValidationServiceImpl();
-
-
-        public static int i = 1;
-
-
         public final Object[] parametersForTestFindADUTypeInRequestISOPath() {
                 /**
                  * Check if the method find the correct ADU type from a xml file
@@ -95,12 +106,16 @@ public class ISOValidationServiceImplTest {
         @Test
         @Parameters
         public void testFindADUTypeInRequestISOString(String xmlString, String typeResult) throws SAXException, ParserConfigurationException, XPathExpressionException, IOException {
-                Assert.assertEquals(isoValidationService.findADUTypeInRequestISOString(xmlString), typeResult);
+                doc = Converter.convertStringXMLToDocument(xmlString);
+                nodeList = (NodeList) xPath.compile(ConstantsISO.XPATH_TREE_ADUTYPE_IN_XML).evaluate(doc, XPathConstants.NODESET);
+                Assert.assertEquals(nodeList.item(0).getNodeName(), typeResult);
         }
 
         @Test
         @Parameters
-        public void testFindADUTypeInRequestISOPath(String xmlPath, String typeResult) throws SAXException, ParserConfigurationException, XPathExpressionException, IOException {
-                Assert.assertEquals(isoValidationService.findADUTypeInRequestISOPath(xmlPath), typeResult);
+        public void testFindADUTypeInRequestISOPath(String xmlPath, String typeResult) throws XPathExpressionException{
+                doc = Converter.convertXMLFileToXMLDocument(xmlPath);
+                nodeList = (NodeList) xPath.compile(ConstantsISO.XPATH_TREE_ADUTYPE_IN_XML).evaluate(doc, XPathConstants.NODESET);
+                Assert.assertEquals(nodeList.item(0).getNodeName(), typeResult);
         }
 }
