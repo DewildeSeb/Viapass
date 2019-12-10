@@ -1,6 +1,5 @@
 package be.iso.viapass.services.implementation;
 
-import be.iso.viapass.util.ConstantsISO;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.apache.logging.log4j.LogManager;
@@ -22,8 +21,9 @@ import java.io.StringReader;
 
 
 @RunWith(JUnitParamsRunner.class)
-public class ISOValidationServiceImplTestRequest {
+public class ISOValidationRequestTest {
 
+        public static final String SCHEMA_VALIDATION_XSD_ISO_12855_XSD_PATH = "src/main/resources/xsdFiles/SchemaValidationXSDISO12855.xsd";
 
         /******************************************REQUEST Provide Daily Statement**********************************************************************************/
 
@@ -1034,9 +1034,9 @@ public class ISOValidationServiceImplTestRequest {
         @BeforeClass
         public static void setup() throws SAXException {
                 FACTORY = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-                SCHEMA = FACTORY.newSchema(new File(ConstantsISO.SCHEMA_VALIDATION_XSD_ISO_12855_XSD_PATH));
+                SCHEMA = FACTORY.newSchema(new File(SCHEMA_VALIDATION_XSD_ISO_12855_XSD_PATH));
                 VALIDATOR = SCHEMA .newValidator();
-                LOG = LogManager.getLogger(ISOValidationServiceImplTestRequest.class);
+                LOG = LogManager.getLogger(ISOValidationRequestTest.class);
         }
 
         private static Logger LOG;

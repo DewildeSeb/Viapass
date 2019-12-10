@@ -33,8 +33,7 @@ public interface Converter {
                 return doc;
         }
 
-        static Document convertXMLFileToXMLDocument(String filePath)
-        {
+        static Document convertXMLFileToXMLDocument(String filePath){
                 //Parser that produces DOM object trees from XML content
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
                 //API to obtain DOM Document instance
