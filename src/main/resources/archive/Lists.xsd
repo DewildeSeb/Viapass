@@ -7,7 +7,7 @@ this document must resume the european standard iso-12855-->
   <!--__________________TO KEEP_____________________-->
 <!--  <xsd:simpleType name="AlphabetIndicator"> &lt;!&ndash;ToDO check if it's a tag or a value&ndash;&gt;-->
 <!--    <xsd:restriction base="xsd:token">-->
-<!--      <xsd:enumeration value="<latinAlphabetNo1/>"/>-->
+<!--      <xsd:enumeration value="latinAlphabetNo1"/>-->
 <!--      <xsd:enumeration value="latinAlphabetNo2"/>-->
 <!--      <xsd:enumeration value="latinAlphabetNo3"/>-->
 <!--      <xsd:enumeration value="latinAlphabetNo4"/>-->

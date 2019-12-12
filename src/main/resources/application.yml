@@ -3,3 +3,21 @@ viapassdb.enable: true
 viapassdb.connectionstring: jdbc:postgresql://localhost:5432/viapass
 viapassdb.connectionuser: postgres
 viapassdb.connectionpassword: postgres
+
+
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/viapass?currentSchema=public
+  jpa:
+    database: POSTGRESQL
+    generate-ddl: false
+    hibernate.ddl-auto: none
+    show-sql: true
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    properties.hibernate.current_session_context_class: thread
+    hibernate.transaction.auto_close_session: true
+    hibernate.connectionReleaseMode: AFTER_STATEMENT
+    hibernate.connection.shutdown: true
+    hibernate.idle_in_transaction_session_timeout: 100

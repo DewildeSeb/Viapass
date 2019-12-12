@@ -780,45 +780,86 @@ this document must resume the european standard iso-12855-->
         </xsd:union>
     </xsd:simpleType>
 
+    <xsd:simpleType name="AlphabetIndicator">
+        <xsd:restriction base="xsd:token">
+            <xsd:enumeration value="latinAlphabetNo1"/>
+            <xsd:enumeration value="latinAlphabetNo2"/>
+            <xsd:enumeration value="latinAlphabetNo3"/>
+            <xsd:enumeration value="latinAlphabetNo4"/>
+            <xsd:enumeration value="latinCyrillicAlphabet"/>
+            <xsd:enumeration value="latinArabicAlphabet"/>
+            <xsd:enumeration value="latinGreekAlphabet"/>
+            <xsd:enumeration value="latinHebrewAlphabet"/>
+            <xsd:enumeration value="latinAlphabetNo5"/>
+            <xsd:enumeration value="latinAlphabetNo6"/>
+            <xsd:enumeration value="twoOctetBMP"/>
+            <xsd:enumeration value="fourOctetCanonical"/>
+            <xsd:enumeration value="reservedForUse1"/>
+            <xsd:enumeration value="reservedForUse2"/>
+            <xsd:enumeration value="reservedForUse3"/>
+            <xsd:enumeration value="reservedForUse4"/>
+            <xsd:enumeration value="reservedForUse5"/>
+            <xsd:enumeration value="reservedForUse6"/>
+            <xsd:enumeration value="reservedForUse7"/>
+            <xsd:enumeration value="reservedForUse8"/>
+            <xsd:enumeration value="reservedForUse9"/>
+            <xsd:enumeration value="reservedForUse10"/>
+            <xsd:enumeration value="reservedForUse11"/>
+            <xsd:enumeration value="reservedForUse12"/>
+            <xsd:enumeration value="reservedForUse13"/>
+            <xsd:enumeration value="reservedForUse14"/>
+            <xsd:enumeration value="reservedForUse15"/>
+            <xsd:enumeration value="reservedForUse16"/>
+            <xsd:enumeration value="reservedForUse17"/>
+            <xsd:enumeration value="reservedForUse18"/>
+            <xsd:enumeration value="reservedForUse19"/>
+            <xsd:enumeration value="reservedForUse20"/>
+            <xsd:enumeration value="reservedForUse21"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
 
     <!--*************************************************************CHOICE***********************************$*********************-->
-    <xsd:complexType name="AlphabetIndicator">
-        <xsd:choice>
-            <xsd:element name="latinAlphabetNo1" type="xsd:string"/>
-            <xsd:element name="latinAlphabetNo2" type="xsd:string"/>
-            <xsd:element name="latinAlphabetNo3" type="xsd:string"/>
-            <xsd:element name="latinAlphabetNo4" type="xsd:string"/>
-            <xsd:element name="latinCyrillicAlphabet" type="xsd:string"/>
-            <xsd:element name="latinArabicAlphabet" type="xsd:string"/>
-            <xsd:element name="latinGreekAlphabet" type="xsd:string"/>
-            <xsd:element name="latinHebrewAlphabet" type="xsd:string"/>
-            <xsd:element name="latinAlphabetNo5" type="xsd:string"/>
-            <xsd:element name="latinAlphabetNo6" type="xsd:string"/>
-            <xsd:element name="twoOctetBMP" type="xsd:string"/>
-            <xsd:element name="fourOctetCanonical" type="xsd:string"/>
-            <xsd:element name="reservedForUse1" type="xsd:string"/>
-            <xsd:element name="reservedForUse2" type="xsd:string"/>
-            <xsd:element name="reservedForUse3" type="xsd:string"/>
-            <xsd:element name="reservedForUse4" type="xsd:string"/>
-            <xsd:element name="reservedForUse5" type="xsd:string"/>
-            <xsd:element name="reservedForUse6" type="xsd:string"/>
-            <xsd:element name="reservedForUse7" type="xsd:string"/>
-            <xsd:element name="reservedForUse8" type="xsd:string"/>
-            <xsd:element name="reservedForUse9" type="xsd:string"/>
-            <xsd:element name="reservedForUse10" type="xsd:string"/>
-            <xsd:element name="reservedForUse11" type="xsd:string"/>
-            <xsd:element name="reservedForUse12" type="xsd:string"/>
-            <xsd:element name="reservedForUse13" type="xsd:string"/>
-            <xsd:element name="reservedForUse14" type="xsd:string"/>
-            <xsd:element name="reservedForUse15" type="xsd:string"/>
-            <xsd:element name="reservedForUse16" type="xsd:string"/>
-            <xsd:element name="reservedForUse17" type="xsd:string"/>
-            <xsd:element name="reservedForUse18" type="xsd:string"/>
-            <xsd:element name="reservedForUse19" type="xsd:string"/>
-            <xsd:element name="reservedForUse20" type="xsd:string"/>
-            <xsd:element name="reservedForUse21" type="xsd:string"/>
-        </xsd:choice>
-    </xsd:complexType>
+
+<!--    Viapass change his mind, this is the old version for AlphabetIndicator-->
+<!--    <xsd:complexType name="AlphabetIndicator">-->
+<!--        <xsd:choice>-->
+<!--            <xsd:element name="latinAlphabetNo1" type="xsd:string"/>-->
+<!--            <xsd:element name="latinAlphabetNo2" type="xsd:string"/>-->
+<!--            <xsd:element name="latinAlphabetNo3" type="xsd:string"/>-->
+<!--            <xsd:element name="latinAlphabetNo4" type="xsd:string"/>-->
+<!--            <xsd:element name="latinCyrillicAlphabet" type="xsd:string"/>-->
+<!--            <xsd:element name="latinArabicAlphabet" type="xsd:string"/>-->
+<!--            <xsd:element name="latinGreekAlphabet" type="xsd:string"/>-->
+<!--            <xsd:element name="latinHebrewAlphabet" type="xsd:string"/>-->
+<!--            <xsd:element name="latinAlphabetNo5" type="xsd:string"/>-->
+<!--            <xsd:element name="latinAlphabetNo6" type="xsd:string"/>-->
+<!--            <xsd:element name="twoOctetBMP" type="xsd:string"/>-->
+<!--            <xsd:element name="fourOctetCanonical" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse1" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse2" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse3" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse4" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse5" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse6" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse7" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse8" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse9" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse10" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse11" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse12" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse13" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse14" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse15" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse16" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse17" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse18" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse19" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse20" type="xsd:string"/>-->
+<!--            <xsd:element name="reservedForUse21" type="xsd:string"/>-->
+<!--        </xsd:choice>-->
+<!--    </xsd:complexType>-->
+
     <xsd:complexType name="CopValue">
         <xsd:choice>
             <xsd:element name="noEntry" type="xsd:string"/>
